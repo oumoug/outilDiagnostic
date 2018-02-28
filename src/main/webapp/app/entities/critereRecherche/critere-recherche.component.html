@@ -1,0 +1,114 @@
+<!---<div class="container-fluid">-->
+  <div class="row">
+    <div class="col-sm-12">
+      <h4 jhiTranslate="outilDiagnostic.critereRecherche.home.title"></h4>
+      <div *ngIf="isErreur==true">
+        <div class="alert alert-danger">
+          <span jhiTranslate="outilDiagnostic.critereRecherche.conditionRecherche"></span>
+        </div>
+      </div>
+      <div *ngIf="isErreur==false">
+        <div class="alert alert-info">
+          <span jhiTranslate="outilDiagnostic.critereRecherche.conditionRecherche"></span>
+        </div>
+      </div>
+   </div>
+  </div>
+  <div class="row">
+    <div *ngIf="lengthChampsValid==true">
+                <div class="alert alert-danger">
+                  <span jhiTranslate="outilDiagnostic.critereRecherche.minLength"></span>
+                </div>
+            </div>
+            <div *ngIf="isUppercase==true">
+                <div class="alert alert-danger">
+                  <span jhiTranslate="outilDiagnostic.critereRecherche.lowerCase"></span>
+                </div>
+            </div>
+            <div *ngIf="profil==true">
+              <div class="alert alert-danger">
+                <span jhiTranslate="outilDiagnostic.critereRecherche.champProfil"></span>
+              </div>
+            </div>
+  </div>
+      <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
+        <div class="row">
+        
+           
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label jhiTranslate="outilDiagnostic.critereRecherche.profil" for="field_profil"></label>
+                <select class="form-control" id="field_profil" name="profil" [(ngModel)]="critereRecherche.profil" required >
+                  <option *ngFor="let profilOption of optionProfils" [selected]="profilOption==Personnels" [ngValue]="profilOption">{{profilOption}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label jhiTranslate="outilDiagnostic.critereRecherche.prenom" for="field_prenom"></label>
+                <input type="text" class="form-control" name="prenom" id="field_prenom" [(ngModel)]="critereRecherche.prenom" />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label jhiTranslate="outilDiagnostic.critereRecherche.nom" for="field_nom"></label>
+                <input type="text" class="form-control" name="nom" id="field_nom" [(ngModel)]="critereRecherche.nom" />
+              </div> 
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label jhiTranslate="outilDiagnostic.critereRecherche.mail" for="field_mail"></label>
+                <input type="text" class="form-control" name="mail" id="field_mail" [(ngModel)]="critereRecherche.mail" />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label jhiTranslate="outilDiagnostic.critereRecherche.etablissement" for="field_etablissement"></label>
+                <input type="text" class="form-control" name="etablisement" id="field_etablissement" [(ngModel)]="critereRecherche.etablissement" />
+              </div>
+            </div>
+            
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label ></label>
+                <button type="submit" class="btn btn-primary btn-block">
+                  <span class="fa fa-search "></span>
+                  <span jhiTranslate="entity.action.search"></span>
+                 </button>
+              </div> 
+            </div> 
+            
+        </div> 
+      </form>
+  <div *ngIf="isSearch==false">
+      <div class=" col-sm-12">
+          <div class="alert alert-info text-center">
+              <p class="lead"  jhiTranslate="outilDiagnostic.critereRecherche.rechercheEnCours"></p>
+              <span jhiTranslate="outilDiagnostic.critereRecherche.doSearch"></span>
+          </div>
+      </div>
+    </div>
+
+  <div *ngIf="isResultat==true">
+    <div class="row">
+        <div class="container-fluid mb-3">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#"> <span jhiTranslate="outilDiagnostic.critereRecherche.resume"></span><span class="badge badge-pill badge-dark"></span></a>
+                </li>
+                <div *ngIf="critereRecherche.profil==Personnels">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></span> <span class="badge badge-pill badge-dark"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></span><span class="badge badge-pill badge-light"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></span> <span class="badge badge-pill badge-light"></span></a>
+                </li>
+              </div>
+            </ul>
+        </div>
+    </div>
+  </div>
+<!--</div>-->

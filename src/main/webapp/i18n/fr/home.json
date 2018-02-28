@@ -1,6 +1,6 @@
 {
     "home": {
-        "title": "Bienvenue, Java Hipster !",
+        "title": "Critère de recherche",
         "subtitle": "Ceci est votre page d'accueil",
         "logged": {
             "message": "Vous êtes connecté en tant que \"{{username}}\"."
@@ -14,6 +14,13 @@
             "follow": "Suivez @java_hipster sur Twitter"
         },
         "like": "Si vous aimez JHipster, donnez nous une étoile sur",
-        "github": "GitHub "
+        "github": "GitHub ",
+        "recherche":{
+            "profil":"Profil",
+            "mail":"Adresse de messagerie",
+            "nom":"Nom",
+            "prenom":"Prénom",
+            "etab":"établissment"
+        }
     }
 }

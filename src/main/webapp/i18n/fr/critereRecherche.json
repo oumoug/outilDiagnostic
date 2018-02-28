@@ -1,0 +1,26 @@
+{
+    "outilDiagnostic": {
+        "critereRecherche" : {
+            "home": {
+                "title": "Critères de recherche"    
+            },
+            "ldapToutatice":"Toutatice",
+            "ldapEpp":"EPP",
+            "resume":"Résumé",
+            "ldapAaf":"AAF",
+           "profil":"Profil",
+           "nom":"Nom",
+           "prenom":"Prénom",
+           "etablissement":"Établissement",
+           "mail":"Adresse de messagerie",
+           "conditionRecherche":"Au moins 2 champs entre  le nom, le prénom, l'adresse de messagerie et Établissement doivent être fourni avant de pouvoir lancer une recherche.",
+           "rechercheEnCours":"Pas de recherche en cours",
+           "doSearch":"Merci de renseigner des critères et de lancer une recherche",
+           "minLength":" Les champs remplis doivent comporter au moins 3 caractères.",
+           "lowerCase":"Les caractères saisies doivent être en minuscule",
+           "specialCaractere": "Les champs remplis ne doivent pas contenir des caractères spéciaux",
+           "champProfil":"Vous devez choisir un profil"
+           
+        }
+    }
+}
