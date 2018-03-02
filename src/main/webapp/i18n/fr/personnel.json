@@ -30,7 +30,7 @@
             "etablissement":"Établissement",
             "fonction":"Fonction",
             "ville":"Ville",
-            "discipline":"discipline",
+            "discipline":"Discipline",
             "baseGestion":"Base de gestion"
             },
             "tableauAgora":{
@@ -39,7 +39,7 @@
             "birthday":"Date de naissance",
             "position":"Position",
             "libelle":"Libellé"
-            }        
+            }
         }
          
     }
