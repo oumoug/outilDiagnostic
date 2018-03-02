@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RepresentantLegalDetailComponent,RepresentantLegalComponent,representantLegalRoute} from './';
+import {OutilDiagnosticSharedModule} from "../../shared"
+import {RouterModule} from '@angular/router';
+import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
+const ENTITY_STATES = [
+  ...representantLegalRoute
+  
+];
+
+
 
 @NgModule({
   imports: [
-    CommonModule
+    OutilDiagnosticSharedModule,
+    RouterModule.forChild(ENTITY_STATES),
+    CritereRechercheModule 
   ],
-  declarations: []
+  declarations: [RepresentantLegalDetailComponent,RepresentantLegalComponent]
 })
 export class RepresantantLegalModule { }

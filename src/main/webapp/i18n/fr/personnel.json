@@ -1,0 +1,46 @@
+{
+    "outilDiagnostic": {
+        "personnel": {
+            "tableauSirhen": {
+            "nom":"​Nom",
+            "prenom":"Prénom",
+            "birthday":"Date de naissance",
+            "position":"Position",
+            "libelle":"Libellé"
+            },
+            "tableauEpp":{
+            "nom":"​Nom",
+            "prenom":"Prénom",
+            "birthday":"Date de naissance",
+            "position":"Position",
+            "libelle":"Libellé"
+            },
+            "tableauEppPrive":{
+            "nom":"​Nom",
+            "prenom":"Prénom",
+            "birthday":"Date de naissance",
+            "position":"Position",
+             "libelle":"Libellé"
+            },
+            "tableauAaf":{
+            "nom":"​Nom",
+            "prenom":"Prénom",
+            "birthday":"Date de naissance",
+            "identifiant":"Identifiant",
+            "etablissement":"Établissement",
+            "fonction":"Fonction",
+            "ville":"Ville",
+            "discipline":"discipline",
+            "baseGestion":"Base de gestion"
+            },
+            "tableauAgora":{
+            "nom":​"​Nom",
+            "prenom":"Prénom",
+            "birthday":"Date de naissance",
+            "position":"Position",
+            "libelle":"Libellé"
+            }        
+        }
+         
+    }
+}

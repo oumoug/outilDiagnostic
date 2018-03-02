@@ -17,7 +17,7 @@ import {RepresantantLegalModule} from './representant-legal/represantant-legal.m
         RepresantantLegalModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
-    declarations: [EleveComponent, PersonnelsComponent, RepresentantLegalComponent],
+    declarations: [],
     entryComponents: [],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

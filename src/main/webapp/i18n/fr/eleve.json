@@ -1,0 +1,49 @@
+{
+    "outilDiagnostic": {
+        "eleve":{
+            "tableauSiecle":{
+               "nom":"Nom",
+               "prenom":"Prénom",
+               "identifiant":"Identifiant",
+               "birthday":"Date de naissance",
+               "etablissement":"Établissement",
+               "responsable":"Responsables Légaux"
+           },
+           "tableauAaf":{
+           "nom": "Nom",
+           "prenom":"Prénom",
+           "identifiant":"Identifiant AAF",
+           "birthday":"Date de naissance",
+            "etablissement":"Établissement",
+            "classe":"Classe"
+
+           },
+           "tableauToutatice":{
+            "nom":"Nom",
+            "prenom":"Prénom",
+            "identifiant":" Identifiant",
+            "mail":"Adresse mail",
+            "etatCompte": "Etat du compte",
+            "lastCon":" Dernière date de connexion"
+           },
+           "tableauEduConnect":{
+            "nom": "Nom",
+            "prenom":"Prénom",
+            "identifiant":"Identifiant",
+            "mail":"Adresse Mail",
+            "etatCompte":"Etat du compte", 
+            "lastCon":"Date dernière de connexion"
+           },
+           "tableauAten":{
+            "nom":"Nom",
+            "prenom":"Prénom",
+            "identifiant":"identifiant",
+            "birthday":"Date de naissance",
+            "etablissement":"Établissement",
+            "responsable":"Responsables Légaux"
+           }
+
+
+        }
+    }
+}

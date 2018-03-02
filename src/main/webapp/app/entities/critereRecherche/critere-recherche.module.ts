@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {OutilDiagnosticSharedModule} from "../../shared"
-import { CritereRechercheComponent} from "./"
-
+import { CritereRechercheComponent,CritereRechercheService} from "./"
 @NgModule({
   imports: [
     CommonModule,
@@ -13,9 +12,10 @@ import { CritereRechercheComponent} from "./"
     CritereRechercheComponent,
     
   ],
-  entryComponents: [
-    CritereRechercheComponent,
-    
-  ]
+  providers:[
+    CritereRechercheService
+
+  ],
+  exports:[ CritereRechercheComponent ],
 })
 export class CritereRechercheModule { }

@@ -1,4 +1,4 @@
-<!---<div class="container-fluid">-->
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
       <h4 jhiTranslate="outilDiagnostic.critereRecherche.home.title"></h4>
@@ -16,30 +16,28 @@
   </div>
   <div class="row">
     <div *ngIf="lengthChampsValid==true">
-                <div class="alert alert-danger">
-                  <span jhiTranslate="outilDiagnostic.critereRecherche.minLength"></span>
-                </div>
-            </div>
-            <div *ngIf="isUppercase==true">
-                <div class="alert alert-danger">
-                  <span jhiTranslate="outilDiagnostic.critereRecherche.lowerCase"></span>
-                </div>
-            </div>
-            <div *ngIf="profil==true">
-              <div class="alert alert-danger">
-                <span jhiTranslate="outilDiagnostic.critereRecherche.champProfil"></span>
-              </div>
-            </div>
+      <div class="alert alert-danger">
+        <span jhiTranslate="outilDiagnostic.critereRecherche.minLength"></span>
+      </div>
+    </div>
+    <div *ngIf="isUppercase==true">
+      <div class="alert alert-danger">
+        <span jhiTranslate="outilDiagnostic.critereRecherche.lowerCase"></span>
+      </div>
+    </div>
+    <div *ngIf="profil==true">
+      <div class="alert alert-danger">
+        <span jhiTranslate="outilDiagnostic.critereRecherche.champProfil"></span>
+      </div>
+    </div>
   </div>
       <form name="editForm" role="form" novalidate (ngSubmit)="search()" #editForm="ngForm">
         <div class="row">
-        
-           
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.profil" for="field_profil"></label>
                 <select class="form-control" id="field_profil" name="profil" [(ngModel)]="critereRecherche.profil" required >
-                  <option *ngFor="let profilOption of optionProfils" [selected]="profilOption==Personnels" [ngValue]="profilOption">{{profilOption}}</option>
+                  <option *ngFor="let profilOption of optionProfils" [ngValue]="profilOption">{{profilOption}}</option>
                 </select>
               </div>
             </div>
@@ -64,20 +62,18 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.etablissement" for="field_etablissement"></label>
-                <input type="text" class="form-control" name="etablisement" id="field_etablissement" [(ngModel)]="critereRecherche.etablissement" />
+                <input type="text" class="form-control" name="etablissement" id="field_etablissement" [(ngModel)]="critereRecherche.etablissement" />
               </div>
-            </div>
-            
+            </div>           
             <div class="col-sm-4">
               <div class="form-group">
                 <label ></label>
                 <button type="submit" class="btn btn-primary btn-block">
                   <span class="fa fa-search "></span>
                   <span jhiTranslate="entity.action.search"></span>
-                 </button>
+                </button>
               </div> 
             </div> 
-            
         </div> 
       </form>
   <div *ngIf="isSearch==false">
@@ -88,27 +84,71 @@
           </div>
       </div>
     </div>
-
-  <div *ngIf="isResultat==true">
-    <div class="row">
-        <div class="container-fluid mb-3">
-            <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#"> <span jhiTranslate="outilDiagnostic.critereRecherche.resume"></span><span class="badge badge-pill badge-dark"></span></a>
+    <div class=" container-fluid mb-3">
+              <ul class="nav nav-tabs nav-justified">    
+                <!--- Menu pour une recherche d'éléve-->  
+                <li class="nav-item" *ngIf="menu=='eleve'">
+                    <a class="nav-link active" href="#" jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+                  </li>
+                <li class="nav-item" *ngIf="menu=='eleve'">
+                    <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></a>
                 </li>
-                <div *ngIf="critereRecherche.profil==Personnels">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></span> <span class="badge badge-pill badge-dark"></span></a>
+                <li class="nav-item" *ngIf="menu=='eleve'">
+                      <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></span><span class="badge badge-pill badge-light"></span></a>
+                <li class="nav-item" *ngIf="menu=='eleve'">
+                      <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></span> <span class="badge badge-pill badge-light"></span></a>
+                <li class="nav-item" *ngIf="menu=='eleve'">
+                    <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></a>
                 </li>
-              </div>
+                <li class="nav-item" *ngIf="menu=='eleve'">
+                  <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></a>
+                </li>
+                    <!--- Menu pour une recherche de rerésentant légal-->  
+                <li class="nav-item"  *ngIf="menu=='representantLegal'">
+                        <a class="nav-link active" href="#" jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+                </li>
+                <li class="nav-item" *ngIf="menu=='representantLegal'">
+                  <a class="nav-link" href="#"  jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></a>
+                </li>
+                <li class="nav-item" *ngIf="menu=='representantLegal'">
+                     <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
+                </li>
+                <li class="nav-item" *ngIf="menu=='representantLegal'">
+                    <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></a>
+                </li>
+                <li class="nav-item" *ngIf="menu=='representantLegal'">
+                    <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
+                </li>
+                <li class="nav-item" *ngIf="menu=='representantLegal'">
+                    <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></a>
+                </li>
+                     <!--- Menu pour une recherche de personnel-->  
+                <li class="nav-item" *ngIf="menu=='personnel'">
+                  <a class="nav-link active" href="#" jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                    <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                   <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                   <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                     <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                    <a class="nav-link" href="#"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAcademique"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                  <a class="nav-link" href="#" jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
+                </li>
+                <li class="nav-item"  *ngIf="menu=='personnel'">
+                    <a class="nav-link" href="#"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></a>
+                </li>
             </ul>
-        </div>
-    </div>
-  </div>
-<!--</div>-->
+          </div>
+</div>

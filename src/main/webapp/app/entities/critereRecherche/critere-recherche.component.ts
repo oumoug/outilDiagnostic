@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {CritereRecherche} from './CritereRecherche.model'
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+
+
 
 @Component({
   selector: 'jhi-critere-recherche',
@@ -10,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CritereRechercheComponent implements OnInit {
   critereRecherche :CritereRecherche
+  subscription:Subscription
   optionProfils:string[]
   isResultat:Boolean
   isSearch:Boolean
@@ -17,10 +21,10 @@ export class CritereRechercheComponent implements OnInit {
   lengthChampsValid:Boolean
   isUppercase:Boolean
   containSpecialCaractere:Boolean
-  router:Router
   profil:Boolean
-  constructor(private jhiAlertService: JhiAlertService,) { 
-    this.optionProfils=[];
+  menu:String
+  constructor(private jhiAlertService: JhiAlertService,private router:Router,private activatedRoute:ActivatedRoute) { 
+    this.optionProfils=[]
     this.isResultat=false;
     this.isSearch=false;
     this.isErreur=false;
@@ -28,10 +32,27 @@ export class CritereRechercheComponent implements OnInit {
     this.isUppercase=false;
     this. containSpecialCaractere=false;
     this.profil=false;
+    this.menu="";
     this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
   }
 
   ngOnInit() {
+    this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
+      if(params!=undefined){
+      
+        if(params['nom']!=undefined){
+          this.critereRecherche.nom=params['nom']
+        }
+        if(params['prenom']!=undefined){this.critereRecherche.prenom=params['prenom']}
+     if(params['mail']!=undefined){this.critereRecherche.mail=params['mail']}
+      if(params['etablissement']!=undefined){this.critereRecherche.etablissement=params['etablissement']}
+        if(params['profil']!=undefined ){
+          this.menu=params['profil'];
+          this.loadProfil(params['profil']);
+        }
+      }
+     
+    });
   
     this.initOptionProfil();
   }
@@ -42,17 +63,47 @@ export class CritereRechercheComponent implements OnInit {
     
 
   }
+  loadProfil(profil:string){
+    if(profil==="personnel"){
+      this.critereRecherche.profil="Personnels";
+      
+    }else if(profil=== "eleve"){
+      this.critereRecherche.profil="Élève";
+    }else if(profil==="representantLegal"){
+      this.critereRecherche.profil="Représentants légaux";
+    }
+
+
+  }
+  saveProfil(profil:string){
+   
+    if(profil==="Personnels"){
+      this.critereRecherche.profil="personnel";
+     
+      this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true });
+      
+    }else if(profil==="Élève"){
+      this.critereRecherche.profil="eleve";
+      this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true });
+    }else if(profil==="Représentants légaux"){
+      this.critereRecherche.profil="representantLegal";
+      this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true });
+    }
+
+  }
   search(){
     this.isErreur=false;
     this.lengthChampsValid=false;
     this.isUppercase=false
     this. containSpecialCaractere=false;
     this.profil=false;
-    if(this.critereRecherche.profil!=""){
+    this.isResultat=false;
+    if(this.critereRecherche.profil!==""){
       if(this.valideNbChamps()>=2){
         if(this.valideLengthChamps()){
           if(this.valideLowercase()){
-  
+            this.saveProfil(this.critereRecherche.profil);
+            this.isResultat=true;
           }else{
               this.isUppercase=true;
           } 
@@ -102,26 +153,26 @@ export class CritereRechercheComponent implements OnInit {
    
 }
 valideLowercase(){
-  if(this.critereRecherche.nom !="" &&  ! this.valideLowercaseString(this.critereRecherche.nom)){
+  if(this.critereRecherche.nom !=="" &&  ! this.valideLowercaseString(this.critereRecherche.nom)){
     return false
-  }else if(this.critereRecherche.prenom != "" && ! this.valideLowercaseString(this.critereRecherche.prenom)){
+  }else if(this.critereRecherche.prenom !== "" && ! this.valideLowercaseString(this.critereRecherche.prenom)){
     return false
-  }else if(this.critereRecherche.etablissement != "" && ! this.valideLowercaseString(this.critereRecherche.etablissement)) {
+  }else if(this.critereRecherche.etablissement !== "" && ! this.valideLowercaseString(this.critereRecherche.etablissement)) {
       return false
-  }else if(this.critereRecherche.mail != "" && ! this.valideLowercaseString(this.critereRecherche.mail)){
+  }else if(this.critereRecherche.mail !== "" && ! this.valideLowercaseString(this.critereRecherche.mail)){
       return false
   }else{
        return true
   }
 }
   valideLengthChamps(){
-    if(this.critereRecherche.nom !="" && this.critereRecherche.nom.length<3){
+    if(this.critereRecherche.nom !=="" && this.critereRecherche.nom.length<3){
       return false
-    }else if(this.critereRecherche.prenom != "" && this.critereRecherche.prenom.length<3){
+    }else if(this.critereRecherche.prenom !== "" && this.critereRecherche.prenom.length<3){
       return false
-    }else if(this.critereRecherche.etablissement !="" && this.critereRecherche.etablissement.length<3) {
+    }else if(this.critereRecherche.etablissement !=="" && this.critereRecherche.etablissement.length<3) {
         return false
-    }else if(this.critereRecherche.mail !="" && this.critereRecherche.mail.length<3){
+    }else if(this.critereRecherche.mail !=="" && this.critereRecherche.mail.length<3){
         return false
     }else{
         return true
@@ -136,11 +187,11 @@ valideLowercase(){
     }
   }
   valideCaractereSpecial(){
-    if(this.critereRecherche.nom !="" && ! this.valideCaractereSpecialString(this.critereRecherche.nom)){
+    if(this.critereRecherche.nom !=="" && ! this.valideCaractereSpecialString(this.critereRecherche.nom)){
       return false
-    }else if(this.critereRecherche.prenom != "" && ! this.valideCaractereSpecialString(this.critereRecherche.prenom)){
+    }else if(this.critereRecherche.prenom !== "" && ! this.valideCaractereSpecialString(this.critereRecherche.prenom)){
       return false
-    }else if(this.critereRecherche.etablissement !="" && ! this.valideCaractereSpecialString(this.critereRecherche.etablissement)) {
+    }else if(this.critereRecherche.etablissement !=="" && ! this.valideCaractereSpecialString(this.critereRecherche.etablissement)) {
         return false
     }else{
         return true

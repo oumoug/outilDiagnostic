@@ -1,10 +1,26 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {EleveComponent, EleveDetailComponent,eleveRoute,EleveService} from "./"
+import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
+import {OutilDiagnosticSharedModule} from "../../shared"
+
+const ENTITY_STATES = [
+  ...eleveRoute
+  
+];
 
 @NgModule({
   imports: [
-    CommonModule
+    OutilDiagnosticSharedModule,
+    RouterModule.forChild(ENTITY_STATES),
+    CritereRechercheModule 
+   
+  
+    
   ],
-  declarations: []
+  providers: [
+    EleveService
+  ],
+  declarations: [EleveDetailComponent,EleveComponent]
 })
 export class EleveModule { }
