@@ -1,91 +1,212 @@
 
 <jhi-critere-recherche></jhi-critere-recherche>
+<div class="container">
+    <!-- onglet resume-->
+        <div *ngIf="menuActive=='resume'">
+            <div class="row">
+                <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th>
+                                
+                                </tr>
+                            </thead> 
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- onglet resume-->
+    <!-- onglet siecle-->
+    <div *ngIf="menuActive=='siecle'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr><div *ngIf="menuActive=='aaf'"></div>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+            </div>
+    </div>
+    <!-- onglet siecle-->
 
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.nom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.identifiant"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
-               
-            </tr>
-        </thead>
+     <!-- onglet aaf-->
+    <div *ngIf="menuActive=='aaf'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th>
+                                
+                                </tr>
+                            </thead> 
+                        </table>
+                    </div>
+            </div>
+    </div>
+     <!-- onglet aaf-->
 
-        
-    </table>
-</div>
-
-
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.nom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.identifiant"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th>
-               
-            </tr>
-        </thead>
-
-        
-    </table>
-</div>
-
-
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.nom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.identifiant"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th>
-               
-            </tr>
-        </thead>
-    </table>
-</div>
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.nom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.identifiant"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th>
-               
-            </tr>
-        </thead>
-    </table>
-</div>
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAten.nom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAten.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAten.identifiant"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th>
-                <th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>
-               
-            </tr>
-        </thead>
-    </table>
+      <!-- onglet toutatice-->
+    <div *ngIf="menuActive=='toutatice'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+            </div>
+    </div>
+     <!-- ongglet toutatice-->
+     <!-- onglet eduConnect-->
+    <div *ngIf="menuActive=='eduConnect'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+            </div>
+    </div>
+    <!-- ongglet eduConnect-->
+    <!-- ongglet aten-->
+    <div *ngIf="menuActive=='aten'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+            </div>
+    </div>
+    <!-- ongglet aten-->
 </div>

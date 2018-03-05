@@ -33,13 +33,20 @@
             "discipline":"Discipline",
             "baseGestion":"Base de gestion"
             },
-            "tableauAgora":{
-            "nom":​"​Nom",
-            "prenom":"Prénom",
-            "birthday":"Date de naissance",
-            "position":"Position",
-            "libelle":"Libellé"
+            "tableauAgora": {
+                "nom":"​Nom",
+                "prenom":"Prénom",
+                "birthday":"Date de naissance",
+                "position":"Position",
+                "libelle":"Libellé"
+            },
+            "tableauAnnuaireACA":{
+
+            },
+            "tableauAnnuaireTouta":{
+            
             }
+            
         }
          
     }

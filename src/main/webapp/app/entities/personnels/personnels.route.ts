@@ -11,4 +11,12 @@ export const personnelsRoute: Routes = [
        
         data: {},
     },
+    {
+
+        path: 'personnel/:menuActive',
+        component: PersonnelsComponent,
+       
+        data: {},
+
+    }
 ]

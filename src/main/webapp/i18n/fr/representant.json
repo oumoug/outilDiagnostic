@@ -1,0 +1,47 @@
+{
+    "outilDiagnostic": {
+        "representant": {
+            "tableauSiecle":{
+              "nom": "Nom",
+               "prenom":"Prénom",
+                "etablissement":"Établissement",
+                "enfant":"Identifiants enfant(s)",
+                "dateSortie":"Date de sortie élève"
+            },
+            "tableauAaf":{
+                "nom":"Nom",
+                "prenom":"Prénom",
+                "idAaf":"Identifiant AAF",
+                "etablissement":"Établissement"
+
+            },
+            "tableauAten":{
+                "nom":"Nom",
+                "prenom":"Prénom",
+                "identifiant":"Identifiant",
+                "mail":"Adresse mail",
+                "etatCompte":"Etat du compte",
+                "lastCon":"Dernière date de connexion",
+                "enfant":"Enfant(s) rattaché(s)"
+            },
+            "tableauToutatice":{
+               "nom": "Nom",
+                "prenom":"Prénom",
+                "identifiant":"Identifiant",
+                "mail":"Adresse mail",
+                "etatCompte":"Etat du compte",
+                "lastCon":"Dernière date de connexion",
+                "enfant":"Enfant(s) rattaché(s)"
+            },
+            "tableauEduconnect":{
+                "nom":"Nom",
+                "prenom":"Prénom",
+                "identifiant":"Identifiant",
+                "mail":"Adresse mail",
+                "etatCompte":"Etat du compte",
+                "lastCon":"Date de dernière connexion",
+                "enfant":"Enfant(s) rattaché(s)"
+            }
+        }
+    }
+}

@@ -23,6 +23,7 @@ export class CritereRechercheComponent implements OnInit {
   containSpecialCaractere:Boolean
   profil:Boolean
   menu:String
+  menuActive:string
   constructor(private jhiAlertService: JhiAlertService,private router:Router,private activatedRoute:ActivatedRoute) { 
     this.optionProfils=[]
     this.isResultat=false;
@@ -33,7 +34,13 @@ export class CritereRechercheComponent implements OnInit {
     this. containSpecialCaractere=false;
     this.profil=false;
     this.menu="";
+    this.menuActive="resume"
     this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
+  }
+  menuActif(menu:String,composant:string){
+    this.router.navigate([composant],{ queryParams:{'menuActive':menu} , skipLocationChange: true });
+
+
   }
 
   ngOnInit() {
@@ -43,12 +50,21 @@ export class CritereRechercheComponent implements OnInit {
         if(params['nom']!=undefined){
           this.critereRecherche.nom=params['nom']
         }
-        if(params['prenom']!=undefined){this.critereRecherche.prenom=params['prenom']}
-     if(params['mail']!=undefined){this.critereRecherche.mail=params['mail']}
-      if(params['etablissement']!=undefined){this.critereRecherche.etablissement=params['etablissement']}
+        if(params['prenom']!=undefined){
+          this.critereRecherche.prenom=params['prenom']
+        }
+        if(params['mail']!=undefined){
+          this.critereRecherche.mail=params['mail']
+        }
+        if(params['etablissement']!=undefined){
+          this.critereRecherche.etablissement=params['etablissement']
+        }
         if(params['profil']!=undefined ){
           this.menu=params['profil'];
           this.loadProfil(params['profil']);
+        }
+        if(params['menuActive']!=undefined){
+          this.menuActive=params['menuActive']
         }
       }
      
@@ -84,7 +100,7 @@ export class CritereRechercheComponent implements OnInit {
       
     }else if(profil==="Élève"){
       this.critereRecherche.profil="eleve";
-      this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true });
+      this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true});
     }else if(profil==="Représentants légaux"){
       this.critereRecherche.profil="representantLegal";
       this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true });

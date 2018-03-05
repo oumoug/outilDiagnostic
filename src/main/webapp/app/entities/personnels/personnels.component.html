@@ -1,80 +1,213 @@
 <jhi-critere-recherche>
     
 </jhi-critere-recherche>
+<!--- onglet résume-->
+<div class="container">
+    <div *ngIf="menuActive=='resume'">
+        <div class="row">
+            <div class="col-sm-12 align-self-center">
+                <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
+                            
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-12 align-self-center">
+                <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.nom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.prenom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>
+                            
+                            </tr>
+                        </thead>  
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-12 align-self-center">
+                <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.nom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.prenom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>
+                            
+                            </tr>
+                        </thead> 
+                    </table>
+                </div>
+            </div>
 
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
-               
-            </tr>
-        </thead>
+            <div class="col-sm-12 align-self-center">
+                <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.nom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.prenom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.identifiant"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.birthday"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.etablissement"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th>
+                            
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-12 align-self-center">
+                <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></h4>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.nom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.prenom"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>
+                                <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>
+                            
+                            </tr>
+                        </thead>   
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--- onglet résume-->
 
-        
-    </table>
+    <!-- onglet sihren-->
+    <div *ngIf="menuActive=='sirhen'">
+            <div class="row">
+                    <div class="col-sm-12 align-self-center">
+                        <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th>
+                                        <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th>
+                                        <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
+                                        <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
+                                        <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
+                                    
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+    </div>
+     <!-- onglet sihren-->
+
+    <!-- onglet epp-->
+    <div *ngIf="menuActive=='epp'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>
+                                
+                                </tr>
+                            </thead>  
+                        </table>
+                    </div>
+            </div>
+    </div>
+     <!-- onglet epp-->
+
+     <!-- onglet eppPrive-->
+    <div *ngIf="menuActive=='eppPrive'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>
+                                
+                                </tr>
+                            </thead> 
+                        </table>
+                    </div>
+            </div>
+    </div>
+    <!-- onglet eppPrive-->
+    <!-- onglet aaf-->
+    <div *ngIf="menuActive=='aaf'">
+            <div class="col-sm-12 align-self-center">
+                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.identifiant"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.etablissement"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th>
+                                
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+            </div>
+    </div>
+    <!-- onglet aaf-->
+    <!-- onglet agora-->
+    <div *ngIf="menuActive=='agora'">
+            <div class="col-sm-12 align-self-center">
+                <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></h4>
+                <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.nom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.prenom"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>
+                                    <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>
+                                
+                                </tr>
+                            </thead>   
+                        </table>
+                </div>
+            </div>
+    </div>
+        <!-- onglet agora-->
 </div>
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.nom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>
-               
-            </tr>
-        </thead>
-
-        
-    </table>
-</div>
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.nom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>
-               
-            </tr>
-        </thead>
-
-        
-    </table>
-</div>
-
-
-
-<h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
-<div class="table-responsive">
-    <table class="table table-sm table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.nom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.prenom"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.identifiant"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.birthday"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.etablissement"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th>
-                <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th>
-               
-            </tr>
-        </thead>
-
-        
-    </table>
-</div>
-
-
