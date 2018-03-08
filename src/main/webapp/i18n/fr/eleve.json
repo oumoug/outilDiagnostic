@@ -41,7 +41,8 @@
             "birthday":"Date de naissance",
             "etablissement":"Établissement",
             "responsable":"Responsables Légaux"
-           }
+           },
+           "detail":"Détail"
 
 
         }

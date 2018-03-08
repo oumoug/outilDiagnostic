@@ -3,6 +3,7 @@ import { RepresentantLegalDetailComponent,RepresentantLegalComponent,representan
 import {OutilDiagnosticSharedModule} from "../../shared"
 import {RouterModule} from '@angular/router';
 import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
+import {RepresentantLegalService} from "./representant-legal.service"
 const ENTITY_STATES = [
   ...representantLegalRoute
   
@@ -16,6 +17,12 @@ const ENTITY_STATES = [
     RouterModule.forChild(ENTITY_STATES),
     CritereRechercheModule 
   ],
-  declarations: [RepresentantLegalDetailComponent,RepresentantLegalComponent]
+  providers:[
+    RepresentantLegalService
+  ],
+  declarations: [
+    RepresentantLegalDetailComponent,
+    RepresentantLegalComponent
+  ]
 })
 export class RepresantantLegalModule { }

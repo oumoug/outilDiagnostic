@@ -4,7 +4,6 @@ import {OutilDiagnosticSharedModule} from "../../shared"
 import { CritereRechercheComponent,CritereRechercheService} from "./"
 @NgModule({
   imports: [
-    CommonModule,
     OutilDiagnosticSharedModule
     
   ],

@@ -3,7 +3,7 @@
 </jhi-critere-recherche>
 <!--- onglet résume-->
 <div class="container">
-    <div *ngIf="menuActive=='resume'">
+    <div *ngIf="ongletActive=='resume'">
         <div class="row">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
@@ -16,9 +16,22 @@
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
+                                <th></th>
                             
                             </tr>
                         </thead>
+                        <tbody>
+                                <tr *ngFor="let personnel of personnels">
+                                    <ng-template [ngIf]="personnel.nomSirhen!=null|| personnel.prenomSirhen!=null|| personnel.dateNaissanceSirhen!=null|| personnel.positionSirhen!=null|| personnel.libelleSirhen!=null">
+                                        <td>{{personnel.nomSirhen}}</td>
+                                        <td>{{personnel.prenomSirhen}}</td>
+                                        <td>{{personnel.dateNaissanceSirhen}}</td>
+                                        <td>{{personnel.positionSirhen}}</td>
+                                        <td>{{personnel.libelleSirhen}}</td>  
+                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                    </ng-template>
+                                </tr>
+                            </tbody> 
                     </table>
                 </div>
             </div>
@@ -33,9 +46,21 @@
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>
-                            
+                                <th></th>
                             </tr>
-                        </thead>  
+                        </thead> 
+                        <tbody>
+                                <tr *ngFor="let personnel of personnels">
+                                    <ng-template [ngIf]="personnel.nomEpp!=null|| personnel.prenomEpp!=null|| personnel.dateNaissanceEpp!=null|| personnel.positionEpp!=null|| personnel.libelleEpp!=null">
+                                        <td>{{personnel.nomEpp}}</td>
+                                        <td>{{personnel.prenomEpp}}</td>
+                                        <td>{{personnel.dateNaissanceEpp}}</td>
+                                        <td>{{personnel.positionEpp}}</td>
+                                        <td>{{personnel.libelleEpp}}</td>  
+                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                    </ng-template>
+                                </tr>
+                            </tbody> 
                     </table>
                 </div>
             </div>
@@ -50,9 +75,21 @@
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>
-                            
+                                <th></th>
                             </tr>
                         </thead> 
+                        <tbody>
+                                <tr *ngFor="let personnel of personnels">
+                                    <ng-template [ngIf]="personnel.nomEppPrive!=null|| personnel.prenomEppPrive!=null|| personnel.dateNaissanceEppPrive!=null|| personnel.positionEppPrive!=null|| personnel.libelleEppPrive!=null">
+                                        <td>{{personnel.nomEppPrive}}</td>
+                                        <td>{{personnel.prenomEppPrive}}</td>
+                                        <td>{{personnel.dateNaissanceEppPrive}}</td>
+                                        <td>{{personnel.positionEppPrive}}</td>
+                                        <td>{{personnel.libelleEppPrive}}</td>  
+                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                    </ng-template>
+                                </tr>
+                            </tbody> 
                     </table>
                 </div>
             </div>
@@ -71,9 +108,24 @@
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th>
-                            
+                                <th></th>
                             </tr>
                         </thead>
+                        <tbody>
+                                <tr *ngFor="let personnel of personnels">
+                                    <ng-template [ngIf]="personnel.nomAaf!=null|| personnel.prenomAaf!=null|| personnel.dateNaissanceAaf!=null|| personnel.identifiantAaf!=null|| personnel.etablissementAaf!=null||  personnel.villeAaf!=null||  personnel.fonctionAaf!=null||  personnel.disciplineAaf!=null">
+                                        <td>{{personnel.nomAaf}}</td>
+                                        <td>{{personnel.prenomAaf}}</td>
+                                        <td>{{personnel.identifiantAaf}}</td> 
+                                        <td>{{personnel.dateNaissanceAaf}}</td>
+                                        <td>{{personnel.etablissementAaf}}</td>
+                                        <td>{{personnel.fonctionAaf}}</td>  
+                                        <td>{{personnel.villeAaf}}</td>  
+                                        <td>{{personnel.disciplineAaf}}</td>  
+                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                    </ng-template>
+                                </tr>
+                            </tbody> 
                     </table>
                 </div>
             </div>
@@ -88,9 +140,21 @@
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>
                                 <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>
-                            
+                                <th></th>
                             </tr>
-                        </thead>   
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let personnel of personnels">
+                                    <ng-template [ngIf]="personnel.nomAgora!=null|| personnel.prenomAgora!=null|| personnel.dateNaissanceAgora!=null|| personnel.positionAgora!=null|| personnel.libelleAgora!=null">
+                                        <td>{{personnel.nomAgora}}</td>
+                                        <td>{{personnel.prenomAgora}}</td>
+                                        <td>{{personnel.dateNaissanceAgora}}</td>
+                                        <td>{{personnel.positionAgora}}</td>
+                                        <td>{{personnel.libelleAgora}}</td>  
+                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                    </ng-template>
+                                </tr>
+                            </tbody>  
                     </table>
                 </div>
             </div>
@@ -99,7 +163,7 @@
     <!--- onglet résume-->
 
     <!-- onglet sihren-->
-    <div *ngIf="menuActive=='sirhen'">
+    <div *ngIf="ongletActive=='sirhen'">
             <div class="row">
                     <div class="col-sm-12 align-self-center">
                         <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
@@ -112,9 +176,21 @@
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
-                                    
+                                        <th></th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                        <tr *ngFor="let personnel of personnels">
+                                            <ng-template [ngIf]="personnel.nomSirhen!=null|| personnel.prenomSirhen!=null|| personnel.dateNaissanceSirhen!=null|| personnel.positionSirhen!=null|| personnel.libelleSirhen!=null">
+                                                <td>{{personnel.nomSirhen}}</td>
+                                                <td>{{personnel.prenomSirhen}}</td>
+                                                <td>{{personnel.dateNaissanceSirhen}}</td>
+                                                <td>{{personnel.positionSirhen}}</td>
+                                                <td>{{personnel.libelleSirhen}}</td>  
+                                                <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            </ng-template>
+                                        </tr>
+                                    </tbody> 
                             </table>
                         </div>
                     </div>
@@ -123,7 +199,7 @@
      <!-- onglet sihren-->
 
     <!-- onglet epp-->
-    <div *ngIf="menuActive=='epp'">
+    <div *ngIf="ongletActive=='epp'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
                     <div class="table-responsive">
@@ -135,9 +211,21 @@
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>
-                                
+                                    <th></th>
                                 </tr>
-                            </thead>  
+                            </thead> 
+                            <tbody>
+                                    <tr *ngFor="let personnel of personnels">
+                                        <ng-template [ngIf]="personnel.nomEpp!=null|| personnel.prenomEpp!=null|| personnel.dateNaissanceEpp!=null|| personnel.positionEpp!=null|| personnel.libelleEpp!=null">
+                                            <td>{{personnel.nomEpp}}</td>
+                                            <td>{{personnel.prenomEpp}}</td>
+                                            <td>{{personnel.dateNaissanceEpp}}</td>
+                                            <td>{{personnel.positionEpp}}</td>
+                                            <td>{{personnel.libelleEpp}}</td>  
+                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        </ng-template>
+                                    </tr>
+                                </tbody>  
                         </table>
                     </div>
             </div>
@@ -145,7 +233,7 @@
      <!-- onglet epp-->
 
      <!-- onglet eppPrive-->
-    <div *ngIf="menuActive=='eppPrive'">
+    <div *ngIf="ongletActive=='eppPrive'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
                     <div class="table-responsive">
@@ -157,16 +245,28 @@
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>
-                                
+                                    <th></th>
                                 </tr>
                             </thead> 
+                            <tbody>
+                                    <tr *ngFor="let personnel of personnels">
+                                        <ng-template [ngIf]="personnel.nomEppPrive!=null|| personnel.prenomEppPrive!=null|| personnel.dateNaissanceEppPrive!=null|| personnel.positionEppPrive!=null|| personnel.libelleEppPrive!=null">
+                                            <td>{{personnel.nomEppPrive}}</td>
+                                            <td>{{personnel.prenomEppPrive}}</td>
+                                            <td>{{personnel.dateNaissanceEppPrive}}</td>
+                                            <td>{{personnel.positionEppPrive}}</td>
+                                            <td>{{personnel.libelleEppPrive}}</td>  
+                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        </ng-template>
+                                    </tr>
+                                </tbody>
                         </table>
                     </div>
             </div>
     </div>
     <!-- onglet eppPrive-->
     <!-- onglet aaf-->
-    <div *ngIf="menuActive=='aaf'">
+    <div *ngIf="ongletActive=='aaf'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
                     <div class="table-responsive">
@@ -181,16 +281,31 @@
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th>
-                                
+                                    <th></th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                    <tr *ngFor="let personnel of personnels">
+                                        <ng-template [ngIf]="personnel.nomAaf!=null|| personnel.prenomAaf!=null|| personnel.dateNaissanceAaf!=null|| personnel.identifiantAaf!=null|| personnel.etablissementAaf!=null||  personnel.villeAaf!=null||  personnel.fonctionAaf!=null||  personnel.disciplineAaf!=null">
+                                            <td>{{personnel.nomAaf}}</td>
+                                            <td>{{personnel.prenomAaf}}</td>
+                                            <td>{{personnel.identifiantAaf}}</td> 
+                                            <td>{{personnel.dateNaissanceAaf}}</td>
+                                            <td>{{personnel.etablissementAaf}}</td>
+                                            <td>{{personnel.fonctionAaf}}</td>  
+                                            <td>{{personnel.villeAaf}}</td>  
+                                            <td>{{personnel.disciplineAaf}}</td>  
+                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        </ng-template>
+                                    </tr>
+                                </tbody> 
                         </table>
                     </div>
             </div>
     </div>
     <!-- onglet aaf-->
     <!-- onglet agora-->
-    <div *ngIf="menuActive=='agora'">
+    <div *ngIf="ongletActive=='agora'">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></h4>
                 <div class="table-responsive">
@@ -202,9 +317,21 @@
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>
                                     <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>
-                                
+                                    <th></th>
                                 </tr>
-                            </thead>   
+                            </thead>  
+                            <tbody>
+                                    <tr *ngFor="let personnel of personnels">
+                                        <ng-template [ngIf]="personnel.nomAgora!=null|| personnel.prenomAgora!=null|| personnel.dateNaissanceAgora!=null|| personnel.positionAgora!=null|| personnel.libelleAgora!=null">
+                                            <td>{{personnel.nomAgora}}</td>
+                                            <td>{{personnel.prenomAgora}}</td>
+                                            <td>{{personnel.dateNaissanceAgora}}</td>
+                                            <td>{{personnel.positionAgora}}</td>
+                                            <td>{{personnel.libelleAgora}}</td>  
+                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        </ng-template>
+                                    </tr>
+                                </tbody>   
                         </table>
                 </div>
             </div>

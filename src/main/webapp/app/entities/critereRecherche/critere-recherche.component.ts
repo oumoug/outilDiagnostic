@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {CritereRecherche} from './CritereRecherche.model'
+import {CritereRechercheService} from './critere-recherche.service'
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -23,8 +24,8 @@ export class CritereRechercheComponent implements OnInit {
   containSpecialCaractere:Boolean
   profil:Boolean
   menu:String
-  menuActive:string
-  constructor(private jhiAlertService: JhiAlertService,private router:Router,private activatedRoute:ActivatedRoute) { 
+  ongletActive:string
+  constructor(private critereRechercheService:CritereRechercheService,  private router:Router,private activatedRoute:ActivatedRoute) { 
     this.optionProfils=[]
     this.isResultat=false;
     this.isSearch=false;
@@ -34,11 +35,11 @@ export class CritereRechercheComponent implements OnInit {
     this. containSpecialCaractere=false;
     this.profil=false;
     this.menu="";
-    this.menuActive="resume"
+    this.ongletActive="resume"
     this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
   }
-  menuActif(menu:String,composant:string){
-    this.router.navigate([composant],{ queryParams:{'menuActive':menu} , skipLocationChange: true });
+  ongletActif(menu:String,composant:string){
+    this.router.navigate([composant],{ queryParams:{'ongletActive':menu} , skipLocationChange: true });
 
 
   }
@@ -63,8 +64,8 @@ export class CritereRechercheComponent implements OnInit {
           this.menu=params['profil'];
           this.loadProfil(params['profil']);
         }
-        if(params['menuActive']!=undefined){
-          this.menuActive=params['menuActive']
+        if(params['ongletActive']!=undefined){
+          this.ongletActive=params['ongletActive']
         }
       }
      
@@ -95,7 +96,6 @@ export class CritereRechercheComponent implements OnInit {
    
     if(profil==="Personnels"){
       this.critereRecherche.profil="personnel";
-     
       this.router.navigate([this.critereRecherche.profil],{ queryParams:this.critereRecherche , skipLocationChange: true });
       
     }else if(profil==="Élève"){
@@ -118,6 +118,7 @@ export class CritereRechercheComponent implements OnInit {
       if(this.valideNbChamps()>=2){
         if(this.valideLengthChamps()){
           if(this.valideLowercase()){
+           
             this.saveProfil(this.critereRecherche.profil);
             this.isResultat=true;
           }else{
@@ -214,8 +215,6 @@ valideLowercase(){
     }
 
   }
-  private onError(error:string) {
-    this.jhiAlertService.error(error, null, null);
-  }
+ 
 
 }

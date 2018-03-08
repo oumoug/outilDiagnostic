@@ -3,6 +3,7 @@ import {RouterModule} from '@angular/router';
 import { PersonnelsDetailComponent,PersonnelsComponent, personnelsRoute } from './';
 import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
 import {OutilDiagnosticSharedModule} from "../../shared"
+import {PersonnelService} from "./"
 
 const ENTITY_STATES = [
   ...personnelsRoute
@@ -15,6 +16,13 @@ const ENTITY_STATES = [
     RouterModule.forChild(ENTITY_STATES),
     CritereRechercheModule 
   ],
-  declarations: [PersonnelsDetailComponent,PersonnelsComponent]
+  providers:[
+    PersonnelService
+
+  ],
+declarations: [
+  PersonnelsDetailComponent,
+  PersonnelsComponent
+]
 })
 export class PersonnelsModule { }
