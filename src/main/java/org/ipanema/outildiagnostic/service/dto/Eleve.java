@@ -8,7 +8,7 @@ public class Eleve{
     private String  identifiantSiecle;
     private String dateNaissanceSiecle;
     private String etablissementSiecle;
-    private List<String> representantLegalSiecle;
+    private List<Parent> representantLegalSiecle;
     private String nomAaf;
     private String prenomAaf;
     private String identifiantAaf;
@@ -32,21 +32,21 @@ public class Eleve{
     private String  identifiantAten;
     private String dateNaissanceAten;
     private String etablissementAten;
-    private List<String> representantLegalAten;
+    private List<Parent> representantLegalAten;
     public Eleve(){
-        this.representantLegalSiecle=new ArrayList<String>();
-        this.representantLegalAten=new ArrayList<String>();
+        this.representantLegalSiecle=new ArrayList<Parent>();
+        this.representantLegalAten=new ArrayList<Parent>();
     }
     /**
      * @return the representantLegalAten
      */
-    public List<String> getRepresentantLegalAten() {
+    public List<Parent> getRepresentantLegalAten() {
         return representantLegalAten;
     }
     /**
      * @return the represantantLegalSiecle
      */
-    public List<String> getRepresentantLegalSiecle() {
+    public List<Parent> getRepresentantLegalSiecle() {
         return representantLegalSiecle;
     }
     /**
@@ -388,13 +388,13 @@ public class Eleve{
     /**
      * @param represantantLegalSiecle the represantantLegalSiecle to set
      */
-    public void setRepresentantLegalSiecle(List<String> represantantLegalSiecle) {
+    public void setRepresentantLegalSiecle(List<Parent> represantantLegalSiecle) {
         this.representantLegalSiecle = represantantLegalSiecle;
     }
     /**
      * @param representantLegalAten the representantLegalAten to set
      */
-    public void setRepresentantLegalAten(List<String> representantLegalAten) {
+    public void setRepresentantLegalAten(List<Parent> representantLegalAten) {
         this.representantLegalAten = representantLegalAten;
     }
     

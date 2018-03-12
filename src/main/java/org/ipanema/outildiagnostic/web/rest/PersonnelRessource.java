@@ -68,6 +68,9 @@ public class PersonnelRessource{
         personnel1.setVilleAaf("lannion");
         personnel1.setFonctionAaf("enseignant");
         personnel1.setDisciplineAaf("electronique");
+        personnel1.setNomEpp("loulou");
+        personnel1.setNomEppPrive("nomEppPrive");
+        personnel1.setPositionAgora("positionAgora");
         entities.add(personnel1);
         entities.add(personnel2);
         entities.add(personnel3);

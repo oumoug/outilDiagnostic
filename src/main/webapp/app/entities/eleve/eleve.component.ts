@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router} from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import {CritereRecherche} from '../critereRecherche/'
+import {CritereRecherche,CritereRechercheService} from '../critereRecherche/'
 import {EleveService} from "./eleve.service"
 import {Eleve} from "./eleve.model"
 import {JhiAlertService } from 'ng-jhipster';
@@ -13,25 +13,16 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 })
 export class EleveComponent implements OnInit {
   subscription:Subscription  
-  critereRecherche:CritereRecherche
-  ongletActive:string
   eleves:Eleve[]
-  constructor(private router: ActivatedRoute,private eleveService:EleveService,private jhiAlertService:JhiAlertService ) {
-    this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
-    this.ongletActive="resume"
+  constructor(private router: Router,private eleveService:EleveService,
+    private jhiAlertService:JhiAlertService,
+    private activatedRoute:ActivatedRoute,private critereRechercheService:CritereRechercheService ) {
     this.eleves=[]
    }
 
   ngOnInit() {
-    this.subscription=this.router.queryParams.subscribe((params) => {
-      this.critereRecherche.nom=params['nom'],
-      this.critereRecherche.prenom=params['prenom'],
-      this.critereRecherche.mail=params['mail'],
-      this.critereRecherche.etablissement=params['etablissement'],
-      this.critereRecherche.profil=params['profil']
-      if(params['ongletActive']!=undefined){this.ongletActive=params['ongletActive']}
-    });
-    this.eleveService.search(this.critereRecherche).subscribe(
+    this.critereRechercheService.loadProfil(  this.critereRechercheService.getCritere().profil)
+    this.eleveService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<Eleve[]>) => this.setEleves(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
   }
@@ -41,6 +32,13 @@ export class EleveComponent implements OnInit {
     }
 
   }
+  afficheDetail(eleve:Eleve,siDetail:string){
+    this.eleveService.setEleve(eleve);
+    this.router.navigate(["eleveDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
+  }
+  ongletActif(onglet:string){
+    this.critereRechercheService.setOngletActive(onglet);
+   }
   private onError(error) {
     this.jhiAlertService.error(error.message, null, null);
   }

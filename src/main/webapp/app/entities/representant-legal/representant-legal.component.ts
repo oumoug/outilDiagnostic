@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import {CritereRecherche} from '../critereRecherche/'
+import {CritereRechercheService} from '../critereRecherche/'
 import {RepresentantLegal} from "./representant-legal.model"
 import {RepresentantLegalService} from "./representant-legal.service"
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -13,28 +13,26 @@ import {JhiAlertService } from 'ng-jhipster';
 })
 export class RepresentantLegalComponent implements OnInit {
   subscription:Subscription  
-  critereRecherche:CritereRecherche
-  ongletActive:string
+  
   representantLegals:RepresentantLegal[]
-  constructor(private router: ActivatedRoute,private representantLegalService:RepresentantLegalService,private jhiAlertService:JhiAlertService) { 
-    this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
-    this.ongletActive="resume";
+  constructor(private activatedRouter: ActivatedRoute,
+    private router:Router ,
+    private representantLegalService:RepresentantLegalService,
+    private jhiAlertService:JhiAlertService,
+    private critereRechercheService:CritereRechercheService ) { 
     this.representantLegals=[]
   }
 
   ngOnInit() {
-    this.subscription=this.router.queryParams.subscribe((params) => {
-      this.critereRecherche.nom=params['nom'],
-      this.critereRecherche.prenom=params['prenom'],
-      this.critereRecherche.mail=params['mail'],
-      this.critereRecherche.etablissement=params['etablissement'],
-      this.critereRecherche.profil=params['profil']
-      if(params['ongletActive']!=undefined){this.ongletActive=params['ongletActive']}
-    });
-   this.representantLegalService.search(this.critereRecherche).subscribe(
+    this.critereRechercheService.loadProfil(  this.critereRechercheService.getCritere().profil)
+   this.representantLegalService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<RepresentantLegal[]>) => this.setRepresentantLegals(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
+      
   }
+  ongletActif(onglet:string){
+    this.critereRechercheService.setOngletActive(onglet);
+   }
 
   setRepresentantLegals(data){
     for (let i = 0; i < data.length; i++) {
@@ -44,6 +42,9 @@ export class RepresentantLegalComponent implements OnInit {
   private onError(error) {
     this.jhiAlertService.error(error.message, null, null);
   }
-
+  afficheDetail(representantLegal:RepresentantLegal,siDetail:string){
+    this.representantLegalService.setRepresentantLegal(representantLegal)
+    this.router.navigate(["representantLegalDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
+  }
 
 }

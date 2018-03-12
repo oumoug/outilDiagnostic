@@ -9,17 +9,22 @@ import {createRequestOption } from '../../shared';
 @Injectable()
 export class PersonnelService {
   private resourceUrl =  SERVER_API_URL + 'api/personnels';
+  personnel:Personnel
   constructor(private http: HttpClient) { }
   
   search(critere:CritereRecherche):Observable<HttpResponse<Personnel[]>>{
     const copy = this.convert(critere);
-    if(critere.profil==="personnel"){
-      const options = createRequestOption(critere);
-     return this.http.post<Personnel[]>(this.resourceUrl,copy,{ observe: 'response' })
+    const options = createRequestOption(critere);
+    return this.http.post<Personnel[]>(this.resourceUrl,copy,{ observe: 'response' })
      .map((res:HttpResponse<Personnel[]>) => this.convertArrayResponse(res));
-    }
   }
- 
+  setPersonnel(personnel:Personnel){
+    this.personnel=personnel;
+
+  }
+  getPersonnel(){
+    return this.personnel
+  }
   private convert(critere:CritereRecherche): CritereRecherche {
     const copy: CritereRecherche = Object.assign({}, critere);
     return copy;

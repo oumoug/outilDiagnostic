@@ -10,11 +10,11 @@ export const eleveRoute: Routes = [
        
         data: {},
     },
-  /*  {
-        path: 'eleve/:uid',
+    {
+        path: 'eleveDetail',
         component: EleveDetailComponent,
         data: {
            
         },
-    }*/
+    }
 ];

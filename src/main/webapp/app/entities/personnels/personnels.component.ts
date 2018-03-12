@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import {CritereRecherche} from '../critereRecherche/';
+import {CritereRechercheService} from '../critereRecherche/';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
 import {JhiAlertService } from 'ng-jhipster';
@@ -14,26 +14,19 @@ import {PersonnelService} from "./personnel.service"
 })
 export class PersonnelsComponent implements OnInit {
   subscription:Subscription  
-  critereRecherche:CritereRecherche
   personnels:Personnel[]
-  ongletActive:string
   
-  constructor(private activatedRoute: ActivatedRoute,private personnelService:PersonnelService, private jhiAlertService:JhiAlertService ) {
-    this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
-    this.ongletActive="resume";
+  constructor(private activatedRoute: ActivatedRoute,
+    private personnelService:PersonnelService,
+    private jhiAlertService:JhiAlertService,
+    private critereRechercheService:CritereRechercheService ,
+    private router:Router ) {
     this.personnels=[]
    }
 
   ngOnInit() {
-      this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
-      this.critereRecherche.nom=params['nom'],
-      this.critereRecherche.prenom=params['prenom'],
-      this.critereRecherche.mail=params['mail'],
-      this.critereRecherche.etablissement=params['etablissement'],
-      this.critereRecherche.profil=params['profil']
-      if(params['ongletActive']!=undefined){this.ongletActive=params['ongletActive']}
-    });
-    this.personnelService.search(this.critereRecherche).subscribe(
+    this.critereRechercheService.loadProfil(  this.critereRechercheService.getCritere().profil)
+    this.personnelService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<Personnel[]>) => this.setPersonnels(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
   }
@@ -44,6 +37,13 @@ export class PersonnelsComponent implements OnInit {
   }
   private onError(error) {
     this.jhiAlertService.error(error.message, null, null);
+  }
+  ongletActif(onglet:string){
+    this.critereRechercheService.setOngletActive(onglet);
+   }
+   afficheDetail(personnel:Personnel,siDetail:string){
+    this.personnelService.setPersonnel(personnel)
+    this.router.navigate(["personnelDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
   }
 
 }

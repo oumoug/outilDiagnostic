@@ -1,3 +1,162 @@
-<p>
-  representant-legal-detail works!
-</p>
+<div class="container">
+    <div class="table-responsive">
+            <a (click)="previousState() " class="btn btn-sm btn-info mb-2"><i jhiTranslate="outilDiagnostic.eleve.retour" class="fa fa-caret-left"></i></a>
+        <table class="table table-sm">
+            <colgroup>
+                <col style="width: 40%">
+            </colgroup>
+
+            <tr><th jhiTranslate="outilDiagnostic.eleve.typePersonne"></th><td>Représentant Légal</td></tr>
+        </table>
+    </div>
+</div>
+<ng-template [ngIf]="siDetail==='toutatice'">
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-12 align-self-center">
+              <table class="table table-sm table-striped">
+                  <colgroup>
+                      <col style="width: 30%">
+                  </colgroup>
+  
+                  <thead class="thead-dark">
+                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                  </thead>
+                  <tbody>
+                      <tr><th jhiTranslate="outilDiagnostic.representant.tableauToutatice.nom"> </th>   <td>{{representantLegal.nomToutatice}}</td></tr>
+                      <tr><th jhiTranslate="outilDiagnostic.representant.tableauToutatice.prenom"></th> <td>{{representantLegal.prenomToutatice}}</td></tr>
+                      <tr> <th jhiTranslate="outilDiagnostic.representant.tableauToutatice.identifiant"></th><td>{{representantLegal.identifiantToutatice}}</td></tr>
+                      <tr> <th jhiTranslate="outilDiagnostic.representant.tableauToutatice.mail"></th><td>{{representantLegal.mailToutatice}}</td></th> </tr>
+                      <tr><th jhiTranslate="outilDiagnostic.representant.tableauToutatice.etatCompte"></th> <td>{{representantLegal.etatCompteToutatice}}</td></tr>    
+                      <tr><th jhiTranslate="outilDiagnostic.representant.tableauToutatice.lastCon"></th><td>{{representantLegal.lastConToutatice}}</td> </tr>
+                      <tr><th jhiTranslate="outilDiagnostic.representant.tableauToutatice.enfant"></th>
+                        <td  *ngIf="representantLegal.identifiantEnfantToutatice.length>0">
+                                <tr  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">
+                                  <td>{{enfant.nom}} {{enfant.prenom}}</td>
+                                </tr>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="siDetail==='siecle'">
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-12 align-self-center">
+                  <table class="table table-sm table-striped">
+                      <colgroup>
+                          <col style="width: 30%">
+                      </colgroup>
+      
+                      <thead class="thead-dark">
+                          <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                      </thead>
+                      <tbody>
+                            <tr><th jhiTranslate="outilDiagnostic.representant.tableauSiecle.nom"></th>  <td>{{representantLegal.nomSiecle}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.representant.tableauSiecle.prenom"></th>  <td>{{representantLegal.prenomSiecle}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.representant.tableauSiecle.etablissement"></th> <td>{{representantLegal.etablissementSiecle}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.representant.tableauSiecle.enfant"></th>
+                                <td  *ngIf="representantLegal.identifiantEnfantSiecle.length>0">
+                                        <tr  *ngFor="let enfant of representantLegal.identifiantEnfantSiecle">
+                                          <td>{{enfant.nom}} {{enfant.prenom}}</td>
+                                        </tr>
+                              </td>
+                            </tr>
+                            <tr> <th jhiTranslate="outilDiagnostic.representant.tableauSiecle.dateSortie"></th>  <td>{{representantLegal.dateSortieSiecle}}</td></tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+        </div>
+      </ng-template>
+      
+      <ng-template [ngIf]="siDetail==='aaf'">
+            <div class="container">
+              <div class="row">
+                  <div class="col-sm-12 align-self-center">
+                      <table class="table table-sm table-striped">
+                          <colgroup>
+                              <col style="width: 30%">
+                          </colgroup>
+          
+                          <thead class="thead-dark">
+                              <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                          </thead>
+                          <tbody>
+                                <tr> <th jhiTranslate="outilDiagnostic.representant.tableauAaf.nom"></th> <td>{{representantLegal.nomAaf}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.representant.tableauAaf.prenom"></th> <td>{{representantLegal.prenomAaf}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.representant.tableauAaf.idAaf"></th> <td>{{representantLegal.identifiantAaf}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.representant.tableauSiecle.etablissement"></th> <td>{{representantLegal.etablissementAaf}}</td></tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template [ngIf]="siDetail==='eduConnect'">
+                <div class="container">
+                  <div class="row">
+                      <div class="col-sm-12 align-self-center">
+                          <table class="table table-sm table-striped">
+                              <colgroup>
+                                  <col style="width: 30%">
+                              </colgroup>
+              
+                              <thead class="thead-dark">
+                                  <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                              </thead>
+                              <tbody>
+                                    <tr><th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.nom"></th><td>{{representantLegal.nomEduconnect}}</td></tr>
+                                    <tr><th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.prenom"></th><td>{{representantLegal.prenomEduconnect}}</td></tr>
+                                    <tr><th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.identifiant"></th> <td>{{representantLegal.identifiantEduconnect}}</td> </tr>
+                                    <tr><th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.mail"></th><td>{{representantLegal.mailEduconnect}}</td> </tr>
+                                    <tr>  <th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.etatCompte"></th>  <td>{{representantLegal.etatCompteEduconnect}}</td></tr>  
+                                    <tr> <th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.lastCon"></th> <td>{{representantLegal.lastConEduconnect}}</td> </tr>
+                                    <tr><th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.enfant"></th>
+                                        <td  *ngIf="representantLegal.identifiantEnfantEduconnect.length>0">
+                                                <tr  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">
+                                                  <td>{{enfant.nom}} {{enfant.prenom}}</td>
+                                                </tr>
+                                      </td>  
+                                    </tr>  
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="siDetail==='aten'">
+                    <div class="container">
+                      <div class="row">
+                          <div class="col-sm-12 align-self-center">
+                              <table class="table table-sm table-striped">
+                                  <colgroup>
+                                      <col style="width: 30%">
+                                  </colgroup>
+                  
+                                  <thead class="thead-dark">
+                                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                                  </thead>
+                                  <tbody>
+                                        <tr><th jhiTranslate="outilDiagnostic.representant.tableauAten.nom"></th>  <td>{{representantLegal.nomAten}}</td></tr>
+                                        <tr> <th jhiTranslate="outilDiagnostic.representant.tableauAten.prenom"></th>  <td>{{representantLegal.prenomAten}}</td></tr>
+                                        <tr><th jhiTranslate="outilDiagnostic.representant.tableauAten.identifiant"></th>  <td>{{representantLegal.identifiantAten}}</td></tr>
+                                        <tr> <th jhiTranslate="outilDiagnostic.representant.tableauAten.mail"></th>  <td>{{representantLegal.mailAten}}</td></tr>
+                                        <tr> <th jhiTranslate="outilDiagnostic.representant.tableauAten.etatCompte"></th>  <td>{{representantLegal.etatCompteAten}}</td></tr>   
+                                        <tr><th jhiTranslate="outilDiagnostic.representant.tableauAten.lastCon"></th>  <td>{{representantLegal.lastConAten}}</td></tr>  
+                                        <tr><th jhiTranslate="outilDiagnostic.representant.tableauAten.enfant"></th>
+                                            <td  *ngIf="representantLegal.identifiantEnfantAten.length>0">
+                                                    <tr  *ngFor="let enfant of representantLegal.identifiantEnfantAten">
+                                                      <td>{{enfant.nom}} {{enfant.prenom}}</td>
+                                                    </tr>
+                                          </td>
+                                        </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                    </div>
+                  </ng-template>

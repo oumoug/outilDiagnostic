@@ -9,7 +9,38 @@ import { createRequestOption } from '../../shared';
 
 @Injectable()
 export class CritereRechercheService {
-  private resourceUrl =  SERVER_API_URL + 'api/critereRecherche';
-  constructor(private http: HttpClient) { }
+  critereRecherche:CritereRecherche
+  ongletActive:string
+
+  constructor() { 
+    this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
+    this.ongletActive="resume"
+    
+  }
+  
+  
+  getOngletActive(){
+    return this.ongletActive;
+  }
+  setOngletActive(onglet:string){
+    this.ongletActive=onglet;
+  }
+  getCritere(){
+    return  this.critereRecherche
+  }
+  setCritere(critere:CritereRecherche){
+    this.critereRecherche=critere;
+  }
+  loadProfil(profil:string){
+    if(profil==="personnel"){
+      this.critereRecherche.profil="Personnels";
+    }else if(profil=== "eleve"){
+      this.critereRecherche.profil="Élève";
+    }else if(profil==="representantLegal"){
+      this.critereRecherche.profil="Représentants légaux";
+    }
+
+
+  }
   
 }

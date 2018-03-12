@@ -8,17 +8,22 @@ import {createRequestOption } from '../../shared';
 @Injectable()
 export class RepresentantLegalService {
   private resourceUrl =  SERVER_API_URL + 'api/representantLegals';
+  representantLegal:RepresentantLegal
+
   constructor(private http: HttpClient) { }
   
   search(critere:CritereRecherche):Observable<HttpResponse<RepresentantLegal[]>>{
     const copy = this.convert(critere);
-    if(critere.profil==="representantLegal"){
       const options = createRequestOption(critere);
      return this.http.post<RepresentantLegal[]>(this.resourceUrl,copy,{ observe: 'response' })
      .map((res:HttpResponse<RepresentantLegal[]>) => this.convertArrayResponse(res));
-    }
   }
- 
+  getRepresentantLegal(){
+    return this.representantLegal;
+  }
+  setRepresentantLegal(representantLegal:RepresentantLegal){
+    this.representantLegal=representantLegal
+  }
   private convert(critere:CritereRecherche): CritereRecherche {
     const copy: CritereRecherche = Object.assign({}, critere);
     return copy;

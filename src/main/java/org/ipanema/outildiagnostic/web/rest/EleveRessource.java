@@ -9,6 +9,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import org.ipanema.outildiagnostic.service.dto.CritereRecherche;
 import org.ipanema.outildiagnostic.service.dto.Eleve;
+import org.ipanema.outildiagnostic.service.dto.Parent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -25,12 +26,20 @@ public class EleveRessource{
         log.debug("REST request to get Record : {}", critere);
         // appel webService
         List<Eleve> entities = new ArrayList<Eleve>();
-        List<String> parent=new ArrayList<String>();
+        List<Parent> parent=new ArrayList<Parent>();
         Eleve eleve1=new Eleve();
         Eleve eleve2=new Eleve();
         Eleve eleve3=new Eleve();
-        parent.add("uuid1");
-        parent.add("uuid2");
+        Parent parent1=new Parent();
+        Parent parent2=new Parent();
+        parent1.setNom("papa");
+        parent2.setNom("maman");
+        parent2.setPrenom("borgnol");
+        parent1.setPrenom("borgnol");
+        
+
+        parent.add( parent1);
+        parent.add( parent2);
         eleve1.setNomAaf("titi");
         eleve1.setPrenomAaf("loulu");
         eleve1.setClasseAaf("cm2");

@@ -1,15 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import {CritereRecherche} from '../critereRecherche'
+import {CritereRechercheService,RechercheDetail} from '../critereRecherche'
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute,Router } from '@angular/router';
+import {EleveService} from "./eleve.service"
+import { Eleve } from '.';
+
 @Component({
   selector: 'jhi-eleve.detail',
   templateUrl: './eleve-detail.component.html',
   styles: []
 })
 export class EleveDetailComponent implements OnInit {
-  critereRecherche:CritereRecherche;
-  constructor() { }
+  
+  subscription:Subscription;
+  rechercheDetail:RechercheDetail
+  eleve:Eleve
+  siDetail:string
+  constructor(private activatedRoute:ActivatedRoute,private eleveService:EleveService,private router:Router,private critereRechercheService:CritereRechercheService ) { }
 
   ngOnInit() {
+   
+   this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
+      if(params['siDetail']!=undefined){
+        this.siDetail=params['siDetail']
+      }
+    });
+    this.eleve=this.eleveService.getEleve();
   }
+  previousState() {
+    if(this.critereRechercheService.getCritere().profil==="Élève"){
+      this.critereRechercheService.getCritere().profil="eleve"
+    }
+    this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
+  }
+
 
 }

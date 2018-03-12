@@ -6,7 +6,7 @@ public class RepresentantLegal{
     private String nomSiecle;
     private  String prenomSiecle;
     private  String etablissementSiecle;
-    private  List<String>  identifiantEnfantSiecle;
+    private  List<Enfant>  identifiantEnfantSiecle;
     private  String  dateSortieSiecle;
     private  String  nomAaf;
     private  String  prenomAaf;
@@ -18,24 +18,26 @@ public class RepresentantLegal{
     private  String  mailAten;
     private  String  etatcompteAten;
     private  String  lastConAten;
-    private  List<String>  identifiantEnfantAten;
+    private  List<Enfant>  identifiantEnfantAten;
     private  String nomToutatice;
     private  String prenomToutatice;
     private  String identifiantToutatice;
     private  String mailToutatice;
     private  String etatCompteToutatice;
     private  String lastConToutatice;
-    private   List<String> identifiantEnfantToutatice;
+    private   List<Enfant> identifiantEnfantToutatice;
     private  String nomEduconnect;
     private  String  prenomEduconnect;
     private  String  identifiantEduconnect;
     private  String mailEduconnect;
     private  String  etatCompteEduconnect;
     private  String   lastConEduconnect;
-    private   List<String> identifiantEnfantEduconnect;
+    private   List<Enfant> identifiantEnfantEduconnect;
     public RepresentantLegal(){
-        this.identifiantEnfantAten=new ArrayList<String>();
-        this.identifiantEnfantEduconnect=new ArrayList<String>();
+        this.identifiantEnfantAten=new ArrayList<Enfant>();
+        this.identifiantEnfantEduconnect=new ArrayList<Enfant>();
+        this.identifiantEnfantToutatice=new ArrayList<Enfant>();
+        this.identifiantEnfantSiecle=new ArrayList<Enfant>();
 
     }
     /**
@@ -95,25 +97,25 @@ public class RepresentantLegal{
     /**
      * @return the identifiantEnfantAten
      */
-    public List<String> getIdentifiantEnfantAten() {
+    public List<Enfant> getIdentifiantEnfantAten() {
         return identifiantEnfantAten;
     }
     /**
      * @return the identifiantEnfantEduconnect
      */
-    public List<String> getIdentifiantEnfantEduconnect() {
+    public List<Enfant> getIdentifiantEnfantEduconnect() {
         return identifiantEnfantEduconnect;
     }
     /**
      * @return the identifiantEnfantSiecle
      */
-    public List<String> getIdentifiantEnfantSiecle() {
+    public List<Enfant> getIdentifiantEnfantSiecle() {
         return identifiantEnfantSiecle;
     }
     /**
      * @return the identifiantEnfantToutatice
      */
-    public List<String> getIdentifiantEnfantToutatice() {
+    public List<Enfant> getIdentifiantEnfantToutatice() {
         return identifiantEnfantToutatice;
     }
     /**
@@ -276,25 +278,25 @@ public class RepresentantLegal{
     /**
      * @param identifiantEnfantAten the identifiantEnfantAten to set
      */
-    public void setIdentifiantEnfantAten(List<String> identifiantEnfantAten) {
+    public void setIdentifiantEnfantAten(List<Enfant> identifiantEnfantAten) {
         this.identifiantEnfantAten = identifiantEnfantAten;
     }
     /**
      * @param identifiantEnfantEduconnect the identifiantEnfantEduconnect to set
      */
-    public void setIdentifiantEnfantEduconnect(List<String> identifiantEnfantEduconnect) {
+    public void setIdentifiantEnfantEduconnect(List<Enfant> identifiantEnfantEduconnect) {
         this.identifiantEnfantEduconnect = identifiantEnfantEduconnect;
     }
     /**
      * @param identifiantEnfantSiecle the identifiantEnfantSiecle to set
      */
-    public void setIdentifiantEnfantSiecle(List<String> identifiantEnfantSiecle) {
+    public void setIdentifiantEnfantSiecle(List<Enfant> identifiantEnfantSiecle) {
         this.identifiantEnfantSiecle = identifiantEnfantSiecle;
     }
     /**
      * @param identifiantEnfantToutatice the identifiantEnfantToutatice to set
      */
-    public void setIdentifiantEnfantToutatice(List<String> identifiantEnfantToutatice) {
+    public void setIdentifiantEnfantToutatice(List<Enfant> identifiantEnfantToutatice) {
         this.identifiantEnfantToutatice = identifiantEnfantToutatice;
     }
     /**

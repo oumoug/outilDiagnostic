@@ -1,10 +1,11 @@
+import {Parent} from "."
 export interface Eleve{
     nomSiecle:string,
     prenomSiecle:string,
     identifiantSiecle:string,
     dateNaissanceSiecle:string,
     etablissementSiecle:string
-    representantLegalSiecle:String[]
+    representantLegalSiecle:Parent[]
     nomAaf:string
     prenomAaf:string
     identifiantAaf:string
@@ -28,7 +29,7 @@ export interface Eleve{
     identifiantAten:string,
     dateNaissanceAten:string,
     etablissementAten:string,
-    representantLegalAten:string[],
+    representantLegalAten:Parent[],
 
 
 }

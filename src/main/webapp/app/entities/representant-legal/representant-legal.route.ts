@@ -10,4 +10,10 @@ export const representantLegalRoute: Routes = [
        
         data: {},
     },
+    {
+        path: 'representantLegalDetail',
+        component: RepresentantLegalDetailComponent ,
+       
+        data: {},
+    }
 ]

@@ -1,8 +1,9 @@
+import {Enfant} from "./enfant.model"
 export interface RepresentantLegal{
     nomSiecle:string
     prenomSiecle:string
     etablissementSiecle:string
-    identifiantEnfantSiecle:string[]
+    identifiantEnfantSiecle:Enfant[]
     dateSortieSiecle:string
     nomAaf:string
     prenomAaf:string
@@ -14,20 +15,20 @@ export interface RepresentantLegal{
     mailAten:string
     etatcompteAten:string
     lastConAten:string
-    identifiantEnfantAten:string[]
+    identifiantEnfantAten:Enfant[]
     nomToutatice:string
     prenomToutatice:string
     identifiantToutatice:string
     mailToutatice:string
     etatCompteToutatice:string
     lastConToutatice:string
-    identifiantEnfantToutatice:string[]
+    identifiantEnfantToutatice:Enfant[]
     nomEduconnect:string
     prenomEduconnect:string
     identifiantEduconnect:string
     mailEduconnect:string
     etatCompteEduconnect:string
     lastConEduconnect:string
-    identifiantEnfantEduconnect:string[]
+    identifiantEnfantEduconnect:Enfant[]
 
 }

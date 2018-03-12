@@ -1,4 +1,150 @@
 
-<p>
-  eleve.detail works!
-</p>
+<div class="container">
+        <div class="table-responsive">
+                <a (click)="previousState() " class="btn btn-sm btn-info mb-2"><i jhiTranslate="outilDiagnostic.eleve.retour" class="fa fa-caret-left"></i></a>
+            <table class="table table-sm">
+                <colgroup>
+                    <col style="width: 40%">
+                </colgroup>
+    
+                <tr><th jhiTranslate="outilDiagnostic.eleve.typePersonne"></th><td>Éleve</td></tr>
+            </table>
+        </div>
+</div>
+<ng-template [ngIf]="siDetail==='siecle'">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-12 align-self-center">
+            <table class="table table-sm table-striped">
+                <colgroup>
+                    <col style="width: 30%">
+                </colgroup>
+
+                <thead class="thead-dark">
+                    <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.nom"></th> <td>{{eleve.nomSiecle}}</td></tr>
+                  <tr><th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.prenom"></th> <td>{{eleve.prenomSiecle}}</td></tr>
+                  <tr><th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.identifiant"></th> <td>{{eleve.identifiantSiecle}}</td></tr>
+                  <tr><th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th><td>{{eleve.dateNaissanceSiecle}}</td></tr>
+                  <tr><th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th><td>{{eleve.etablissementSiecle}}</td></tr>
+                  <tr><th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
+                    <td>
+                        <tr *ngIf="eleve.representantLegalSiecle.length>0">
+                            <tr  *ngFor="let representant of eleve.representantLegalSiecle"><td>{{representant.nom}} {{representant.prenom}}</td></tr>
+                       </tr>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template [ngIf]="siDetail==='aaf'">
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-12 align-self-center">
+              <table class="table table-sm table-striped">
+                  <colgroup>
+                      <col style="width: 30%">
+                  </colgroup>
+  
+                  <thead class="thead-dark">
+                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                  </thead>
+                  <tbody>
+                     <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAaf.nom"></th> <td>{{eleve.nomAaf}}</td></tr>
+                     <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAaf.prenom"></th><td>{{eleve.prenomAaf}}</td></tr>
+                     <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAaf.identifiant"></th><td>{{eleve.identifiantAaf}}</td></tr>
+                     <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th><td>{{eleve.dateNaissanceAaf}}</td></tr>
+                     <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th><td>{{eleve.etablissementAaf}}</td></tr>
+                     <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th><td>{{eleve.classeAaf}}</td></tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="siDetail==='toutatice'">
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-12 align-self-center">
+              <table class="table table-sm table-striped">
+                  <colgroup>
+                      <col style="width: 30%">
+                  </colgroup>
+  
+                  <thead class="thead-dark">
+                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                  </thead>
+                  <tbody>
+                        <tr><th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.nom"></th><td>{{eleve.nomToutatice}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.prenom"></th><td>{{eleve.prenomToutatice}}</td></tr>
+                        <tr> <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.identifiant"></th><td>{{eleve.identifiantToutatice}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th><td>{{eleve.mailToutatice}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th><td>{{eleve.etatCompteToutatice}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th><td>{{eleve.lastConToutatice}}</td></tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="siDetail==='EduConnect'">
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-12 align-self-center">
+              <table class="table table-sm table-striped">
+                  <colgroup>
+                      <col style="width: 30%">
+                  </colgroup>
+  
+                  <thead class="thead-dark">
+                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.nom"></th><td>{{eleve.nomEduconnect}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.prenom"></th><td>{{eleve.prenomEduconnect}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.identifiant"></th><td>{{eleve.identifiantEduconnect}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th><td>{{eleve.mailEduconnect}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th><td>{{eleve.etatCompteEduconnect}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th><td>{{eleve.lastConEduconnect}}</td></tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="siDetail==='aten'">
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-12 align-self-center">
+              <table class="table table-sm table-striped">
+                  <colgroup>
+                      <col style="width: 30%">
+                  </colgroup>
+  
+                  <thead class="thead-dark">
+                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAten.nom"></th><td>{{eleve.nomAten}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAten.prenom"></th><td>{{eleve.prenomAten}}</td></tr>
+                    <tr> <th jhiTranslate="outilDiagnostic.eleve.tableauAten.identifiant"></th><td>{{eleve.identifantAten}}</td></tr>
+                    <tr> <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th><td>{{eleve.dateNaissanceAten}}</td></tr>
+                    <tr> <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th><td>{{eleve.etablissementAten}}</td></tr>
+                    <tr><th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>
+                        <td>
+                                <tr *ngIf="eleve.representantLegalAten.length>0">
+                                        <tr  *ngFor="let representant of eleve.representantLegalAten"><td>{{representant.nom}} {{representant.prenom }}</td></tr>
+                                </tr>
+                        </td> 
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+  </ng-template>

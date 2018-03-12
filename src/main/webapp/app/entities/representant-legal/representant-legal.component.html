@@ -1,8 +1,31 @@
 
 <jhi-critere-recherche></jhi-critere-recherche>
+<div class=" container-fluid mb-3">
+    <ul class="nav nav-tabs nav-justified">    
+          <!--- menu pour une recherche de rerésentant légal-->  
+      <li class="nav-item">
+        <a  [class.active]="critereRechercheService.ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume','representantLegal')"  jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+      </li>
+      <li class="nav-item">
+        <a [class.active]="critereRechercheService.ongletActive=='siecle'" [class.nav-link]='true'  (click)="ongletActif('siecle','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></a>
+      </li>
+      <li class="nav-item">
+           <a  [class.active]="critereRechercheService.ongletActive=='aaf'" [class.nav-link]='true' (click)="ongletActif('aaf','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
+      </li>
+      <li class="nav-item">
+          <a [class.active]="critereRechercheService.ongletActive=='aten'" [class.nav-link]='true'  (click)="ongletActif('aten','representantLegal')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></a>
+      </li>
+      <li class="nav-item">
+          <a  [class.active]="critereRechercheService.ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
+      </li>
+      <li class="nav-item">
+          <a [class.active]="critereRechercheService.ongletActive=='eduConnect'" [class.nav-link]='true'  (click)="ongletActif('eduConnect','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></a>
+      </li>
+    </ul>
+</div>
 <div class="container">
       <!-- onglet resume-->
-    <div *ngIf="ongletActive=='resume'">
+    <div *ngIf="critereRechercheService.ongletActive=='resume'">
         <div  class="row">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
@@ -21,13 +44,17 @@
                         </thead>
                         <tbody>
                                 <tr *ngFor="let representantLegal of representantLegals">
-                                    <ng-template [ngIf]="representantLegal.nomSiecle!=null|| representantLegal.prenomSiecle!=null|| representantLegal.etablissementSiecle!=null|| representantLegal.enfantSiecle!=null|| representantLegal.dateSortieSiecle!=null">
+                                    <ng-template [ngIf]="representantLegal.nomSiecle!=null|| representantLegal.prenomSiecle!=null|| representantLegal.etablissementSiecle!=null|| representantLegal.enfantSiecle!=null|| representantLegal.dateSortieSiecle!=null || representantLegal.identifiantEnfantSiecle.length>0">
                                         <td>{{representantLegal.nomSiecle}}</td>
                                         <td>{{representantLegal.prenomSiecle}}</td>
                                         <td>{{representantLegal.etablissementSiecle}}</td>
-                                        <td>{{representantLegal.enfantSiecle}}</td>
+                                        <td>
+                                                <tr *ngIf="representantLegal.identifiantEnfantSiecle.length>0">
+                                                     <td  *ngFor="let enfant of representantLegal.identifiantEnfantSiecle">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                </tr>
+                                            </td>  
                                         <td>{{representantLegal.dateSortieSiecle}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody>
@@ -54,7 +81,7 @@
                                         <td>{{representantLegal.prenomAaf}}</td>
                                         <td>{{representantLegal.identifiantAaf}}</td>
                                         <td>{{representantLegal.etablissementAaf}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody>  
@@ -79,7 +106,7 @@
                         </thead>  
                         <tbody>
                                 <tr *ngFor="let representantLegal of representantLegals">
-                                    <ng-template [ngIf]="representantLegal.nomAten!=null|| representantLegal.prenomAten!=null|| representantLegal.identifiantAten!=null|| representantLegal.mailAten!=null|| representantLegal.etatCompteAten!=null|| representantLegal.lastConAten!=null||representantLegal.identifiantEnfantAten!=[]">
+                                    <ng-template [ngIf]="representantLegal.nomAten!=null|| representantLegal.prenomAten!=null|| representantLegal.identifiantAten!=null|| representantLegal.mailAten!=null|| representantLegal.etatCompteAten!=null|| representantLegal.lastConAten!=null||representantLegal.identifiantEnfantAten.length>0">
                                         <td>{{representantLegal.nomAten}}</td>
                                         <td>{{representantLegal.prenomAten}}</td>
                                         <td>{{representantLegal.identifiantAten}}</td>
@@ -87,11 +114,11 @@
                                         <td>{{representantLegal.etatCompteAten}}</td>  
                                         <td>{{representantLegal.lastConAten}}</td> 
                                         <td>
-                                               <tr *ngIf="representantLegal.identifiantEnfantAten!=[]">
-                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten">{{enfant}}</td>
+                                               <tr *ngIf="representantLegal.identifiantEnfantAten.length>0">
+                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten">{{enfant.nom}} {{enfant.prenom}}</td>
                                                 </tr>
                                         </td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody>   
@@ -116,7 +143,7 @@
                         </thead>
                         <tbody>
                                 <tr *ngFor="let representantLegal of representantLegals">
-                                    <ng-template [ngIf]="representantLegal.nomToutatice!=null|| representantLegal.prenomToutatice!=null|| representantLegal.identifiantToutatice!=null|| representantLegal.mailToutatice!=null|| representantLegal.etatCompteToutatice!=null|| representantLegal.lastConToutatice!=null||representantLegal.identifiantEnfantToutatice!=[]">
+                                    <ng-template [ngIf]="representantLegal.nomToutatice!=null|| representantLegal.prenomToutatice!=null|| representantLegal.identifiantToutatice!=null|| representantLegal.mailToutatice!=null|| representantLegal.etatCompteToutatice!=null|| representantLegal.lastConToutatice!=null||representantLegal.identifiantEnfantToutatice.length>0">
                                         <td>{{representantLegal.nomToutatice}}</td>
                                         <td>{{representantLegal.prenomToutatice}}</td>
                                         <td>{{representantLegal.identifiantToutatice}}</td>
@@ -124,11 +151,11 @@
                                         <td>{{representantLegal.etatCompteToutatice}}</td>  
                                         <td>{{representantLegal.lastConToutatice}}</td> 
                                         <td>
-                                             <tr *ngIf="representantLegal.identifiantEnfantToutatice!=[]">
-                                                <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">{{enfant}}</td>
+                                             <tr *ngIf="representantLegal.identifiantEnfantToutatice.length>0">
+                                                <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">{{enfant.nom}} {{enfant.prenom}}</td>
                                             </tr>
                                         </td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'toutatice')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody>       
@@ -153,7 +180,7 @@
                         </thead>
                         <tbody>
                                 <tr *ngFor="let representantLegal of representantLegals">
-                                    <ng-template [ngIf]="representantLegal.nomEduconnect!=null|| representantLegal.prenomEduconnect!=null|| representantLegal.identifiantEduconnect!=null|| representantLegal.mailEduconnect!=null|| representantLegal.etatCompteEduconnect!=null|| representantLegal.lastConEduconnect!=null||representantLegal.identifiantEnfantEduconnect!=[]">
+                                    <ng-template [ngIf]="representantLegal.nomEduconnect!=null|| representantLegal.prenomEduconnect!=null|| representantLegal.identifiantEduconnect!=null|| representantLegal.mailEduconnect!=null|| representantLegal.etatCompteEduconnect!=null|| representantLegal.lastConEduconnect!=null||representantLegal.identifiantEnfantEduconnect.length>0">
                                         <td>{{representantLegal.nomEduconnect}}</td>
                                         <td>{{representantLegal.prenomEduconnect}}</td>
                                         <td>{{representantLegal.identifiantEduconnect}}</td>
@@ -161,11 +188,11 @@
                                         <td>{{representantLegal.etatCompteEduconnect}}</td>  
                                         <td>{{representantLegal.lastConEduconnect}}</td> 
                                         <td>
-                                            <tr *ngIf="representantLegal.identifiantEnfantEduconnect!=[]">
-                                                 <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">{{enfant}}</td>
+                                            <tr *ngIf="representantLegal.identifiantEnfantEduconnect.length>0">
+                                                 <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">{{enfant.nom}} {{enfant.prenom}}</td>
                                             </tr>
                                         </td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'eduConnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                         </tbody>         
@@ -176,7 +203,7 @@
     </div>
      <!-- onglet resume-->
      <!-- onglet siecle-->
-    <div *ngIf="ongletActive=='siecle'">
+    <div *ngIf="critereRechercheService.ongletActive=='siecle'">
         <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
                 <div class="table-responsive">
@@ -193,13 +220,17 @@
                         </thead>
                         <tbody>
                                 <tr *ngFor="let representantLegal of representantLegals">
-                                    <ng-template [ngIf]="representantLegal.nomSiecle!=null|| representantLegal.prenomSiecle!=null|| representantLegal.etablissementSiecle!=null|| representantLegal.enfantSiecle!=null|| representantLegal.dateSortieSiecle!=null">
+                                    <ng-template [ngIf]="representantLegal.nomSiecle!=null|| representantLegal.prenomSiecle!=null|| representantLegal.etablissementSiecle!=null|| representantLegal.dateSortieSiecle!=null ||representantLegal.identifiantEnfantSiecle.length>0">
                                         <td>{{representantLegal.nomSiecle}}</td>
                                         <td>{{representantLegal.prenomSiecle}}</td>
                                         <td>{{representantLegal.etablissementSiecle}}</td>
-                                        <td>{{representantLegal.enfantSiecle}}</td>
+                                        <td>
+                                                <tr *ngIf="representantLegal.identifiantEnfantSiecle.length>0">
+                                                     <td  *ngFor="let enfant of representantLegal.identifiantSiecle">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                </tr>
+                                            </td>  
                                         <td>{{representantLegal.dateSortieSiecle}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a  (click)="afficheDetail(representantLegal,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody>
@@ -211,7 +242,7 @@
 
 
     <!-- onglet aaf-->
-    <div *ngIf="ongletActive=='aaf'">
+    <div *ngIf="critereRechercheService.ongletActive=='aaf'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
                     <div class="table-responsive">
@@ -232,7 +263,7 @@
                                             <td>{{representantLegal.prenomAaf}}</td>
                                             <td>{{representantLegal.identifiantAaf}}</td>
                                             <td>{{representantLegal.etablissementAaf}}</td>  
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(representantLegal,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody>  
@@ -243,7 +274,7 @@
      <!-- onglet aaf-->
 
      <!-- onglet aten-->
-    <div *ngIf="ongletActive=='aten'">
+    <div *ngIf="critereRechercheService.ongletActive=='aten'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
                     <div class="table-responsive">
@@ -262,7 +293,7 @@
                             </thead>  
                             <tbody>
                                     <tr *ngFor="let representantLegal of representantLegals">
-                                        <ng-template [ngIf]="representantLegal.nomAten!=null|| representantLegal.prenomAten!=null|| representantLegal.identifiantAten!=null|| representantLegal.mailAten!=null|| representantLegal.etatCompteAten!=null|| representantLegal.lastConAten!=null||representantLegal.identifiantEnfantAten!=[]">
+                                        <ng-template [ngIf]="representantLegal.nomAten!=null|| representantLegal.prenomAten!=null|| representantLegal.identifiantAten!=null|| representantLegal.mailAten!=null|| representantLegal.etatCompteAten!=null|| representantLegal.lastConAten!=null|| representantLegal.identifiantEnfantAten.length>0">
                                             <td>{{representantLegal.nomAten}}</td>
                                             <td>{{representantLegal.prenomAten}}</td>
                                             <td>{{representantLegal.identifiantAten}}</td>
@@ -270,11 +301,11 @@
                                             <td>{{representantLegal.etatCompteAten}}</td>  
                                             <td>{{representantLegal.lastConAten}}</td> 
                                             <td>
-                                                    <tr *ngIf="representantLegal.identifiantEnfantAten!=[]">
-                                                         <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten">{{enfant}}</td>
+                                                    <tr *ngIf="representantLegal.identifiantEnfantAten.length>0">
+                                                         <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten">{{enfant.nom}} {{enfant.prenom}}</td>
                                                      </tr>
                                              </td>
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(representantLegal,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody>    
@@ -285,7 +316,7 @@
      <!-- onglet aten-->
 
      <!-- onglet toutatice-->
-    <div *ngIf="ongletActive=='toutatice'">
+    <div *ngIf="critereRechercheService.ongletActive=='toutatice'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
                     <div class="table-responsive">
@@ -304,7 +335,7 @@
                             </thead> 
                             <tbody>
                                     <tr *ngFor="let representantLegal of representantLegals">
-                                        <ng-template [ngIf]="representantLegal.nomToutatice!=null|| representantLegal.prenomToutatice!=null|| representantLegal.identifiantToutatice!=null|| representantLegal.mailToutatice!=null|| representantLegal.etatCompteToutatice!=null|| representantLegal.lastConToutatice!=null||representantLegal.identifiantEnfantToutatice!=[]">
+                                        <ng-template [ngIf]="representantLegal.nomToutatice != null || representantLegal.prenomToutatice != null || representantLegal.identifiantToutatice != null || representantLegal.mailToutatice != null || representantLegal.etatCompteToutatice != null || representantLegal.lastConToutatice != null  || representantLegal.identifiantEnfantToutatice.length>0">
                                             <td>{{representantLegal.nomToutatice}}</td>
                                             <td>{{representantLegal.prenomToutatice}}</td>
                                             <td>{{representantLegal.identifiantToutatice}}</td>
@@ -312,11 +343,11 @@
                                             <td>{{representantLegal.etatCompteToutatice}}</td>  
                                             <td>{{representantLegal.lastConToutatice}}</td> 
                                             <td>
-                                                 <tr *ngIf="representantLegal.identifiantEnfantToutatice!=[]">
-                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">{{enfant}}</td>
+                                                 <tr *ngIf="representantLegal.identifiantEnfantToutatice.length>0">
+                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">{{enfant.nom}} {{enfant.prenom}}</td>
                                                 </tr>
                                             </td>    
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(representantLegal,'toutatice')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody>     
@@ -327,7 +358,7 @@
     <!-- onglet toutatice-->
 
     <!-- onglet eduConnect-->
-    <div *ngIf="ongletActive=='eduConnect'">
+    <div *ngIf="critereRechercheService.ongletActive=='eduConnect'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
                     <div class="table-responsive">
@@ -346,7 +377,7 @@
                             </thead> 
                             <tbody>
                                     <tr *ngFor="let representantLegal of representantLegals">
-                                        <ng-template [ngIf]="representantLegal.nomEduconnect!=null|| representantLegal.prenomEduconnect!=null|| representantLegal.identifiantEduconnect!=null|| representantLegal.mailEduconnect!=null|| representantLegal.etatCompteEduconnect!=null|| representantLegal.lastConEduconnect!=null||representantLegal.identifiantEnfantEduconnect!=[]">
+                                        <ng-template [ngIf]="representantLegal.nomEduconnect!=null|| representantLegal.prenomEduconnect!=null|| representantLegal.identifiantEduconnect!=null|| representantLegal.mailEduconnect!=null|| representantLegal.etatCompteEduconnect!=null|| representantLegal.lastConEduconnect!=null||representantLegal.identifiantEnfantEduconnect.length>0">
                                             <td>{{representantLegal.nomEduconnect}}</td>
                                             <td>{{representantLegal.prenomEduconnect}}</td>
                                             <td>{{representantLegal.identifiantEduconnect}}</td>
@@ -354,11 +385,11 @@
                                             <td>{{representantLegal.etatCompteEduconnect}}</td>  
                                             <td>{{representantLegal.lastConEduconnect}}</td> 
                                             <td>
-                                                <tr *ngIf="representantLegal.identifiantEnfantEduconnect!=[]">
-                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">{{enfant}}</td>
+                                                <tr *ngIf="representantLegal.identifiantEnfantEduconnect.length>0">
+                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">{{enfant.nom}} {{enfant.prenom}}</td>
                                                 </tr>
                                             </td>    
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(representantLegal,'eduConnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                             </tbody>       

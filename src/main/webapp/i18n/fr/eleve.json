@@ -42,7 +42,11 @@
             "etablissement":"Établissement",
             "responsable":"Responsables Légaux"
            },
-           "detail":"Détail"
+           "detail":"Détail",
+           "typePersonne":"Type de personne",
+           "propriete":"Propriété",
+           "valeur":"Valeur(s)",
+           "retour":"Retour aux résultats de recherche"
 
 
         }

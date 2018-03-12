@@ -1,9 +1,38 @@
 <jhi-critere-recherche>
     
 </jhi-critere-recherche>
+<div class=" container-fluid mb-3">
+    <ul class="nav nav-tabs nav-justified">    
+           <!--- menu pour une recherche de personnel-->  
+      <li class="nav-item" >
+        <a [class.active]="critereRechercheService.ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume','personnel')" jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+      </li>
+      <li class="nav-item">
+          <a  [class.active]="critereRechercheService.ongletActive=='sirhen'" [class.nav-link]='true' (click)="ongletActif('sirhen','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></a>
+      </li>
+      <li class="nav-item">
+         <a  [class.active]="critereRechercheService.ongletActive=='epp'" [class.nav-link]='true' (click)="ongletActif('epp','personnel')" jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></a>
+      </li>
+      <li class="nav-item">
+         <a  [class.active]="critereRechercheService.ongletActive=='eppPrive'" [class.nav-link]='true' (click)="ongletActif('eppPrive','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></a>
+      </li>
+      <li class="nav-item">
+           <a [class.active]="critereRechercheService.ongletActive=='aaf'" [class.nav-link]='true'  (click)="ongletActif('aaf','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
+      </li>
+      <li class="nav-item">
+          <a  [class.active]="critereRechercheService.ongletActive=='academique'" [class.nav-link]='true' (click)="ongletActif('academique','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAcademique"></a>
+      </li>
+      <li class="nav-item">
+        <a  [class.active]="critereRechercheService.ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
+      </li>
+      <li class="nav-item">
+          <a  [class.active]="critereRechercheService.ongletActive=='agora'" [class.nav-link]='true' (click)="ongletActif('agora','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></a>
+      </li>
+  </ul>
+</div>
 <!--- onglet résume-->
 <div class="container">
-    <div *ngIf="ongletActive=='resume'">
+    <div *ngIf="critereRechercheService.ongletActive=='resume'">
         <div class="row">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
@@ -28,7 +57,7 @@
                                         <td>{{personnel.dateNaissanceSirhen}}</td>
                                         <td>{{personnel.positionSirhen}}</td>
                                         <td>{{personnel.libelleSirhen}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(personnel,'sirhen')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody> 
@@ -57,7 +86,7 @@
                                         <td>{{personnel.dateNaissanceEpp}}</td>
                                         <td>{{personnel.positionEpp}}</td>
                                         <td>{{personnel.libelleEpp}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(personnel,'epp')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody> 
@@ -86,7 +115,7 @@
                                         <td>{{personnel.dateNaissanceEppPrive}}</td>
                                         <td>{{personnel.positionEppPrive}}</td>
                                         <td>{{personnel.libelleEppPrive}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(personnel,'eppPrive')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody> 
@@ -122,7 +151,7 @@
                                         <td>{{personnel.fonctionAaf}}</td>  
                                         <td>{{personnel.villeAaf}}</td>  
                                         <td>{{personnel.disciplineAaf}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(personnel,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody> 
@@ -151,7 +180,7 @@
                                         <td>{{personnel.dateNaissanceAgora}}</td>
                                         <td>{{personnel.positionAgora}}</td>
                                         <td>{{personnel.libelleAgora}}</td>  
-                                        <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <td class="text-right"><a (click)="afficheDetail(personnel,'agora')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                     </ng-template>
                                 </tr>
                             </tbody>  
@@ -163,7 +192,7 @@
     <!--- onglet résume-->
 
     <!-- onglet sihren-->
-    <div *ngIf="ongletActive=='sirhen'">
+    <div *ngIf="critereRechercheService.ongletActive=='sirhen'">
             <div class="row">
                     <div class="col-sm-12 align-self-center">
                         <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
@@ -187,7 +216,7 @@
                                                 <td>{{personnel.dateNaissanceSirhen}}</td>
                                                 <td>{{personnel.positionSirhen}}</td>
                                                 <td>{{personnel.libelleSirhen}}</td>  
-                                                <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                                <td class="text-right"><a (click)="afficheDetail(personnel,'sirhen')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                             </ng-template>
                                         </tr>
                                     </tbody> 
@@ -199,7 +228,7 @@
      <!-- onglet sihren-->
 
     <!-- onglet epp-->
-    <div *ngIf="ongletActive=='epp'">
+    <div *ngIf="critereRechercheService.ongletActive=='epp'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
                     <div class="table-responsive">
@@ -222,7 +251,7 @@
                                             <td>{{personnel.dateNaissanceEpp}}</td>
                                             <td>{{personnel.positionEpp}}</td>
                                             <td>{{personnel.libelleEpp}}</td>  
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(personnel,'epp')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody>  
@@ -233,7 +262,7 @@
      <!-- onglet epp-->
 
      <!-- onglet eppPrive-->
-    <div *ngIf="ongletActive=='eppPrive'">
+    <div *ngIf="critereRechercheService.ongletActive=='eppPrive'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
                     <div class="table-responsive">
@@ -256,7 +285,7 @@
                                             <td>{{personnel.dateNaissanceEppPrive}}</td>
                                             <td>{{personnel.positionEppPrive}}</td>
                                             <td>{{personnel.libelleEppPrive}}</td>  
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(personnel,'eppPrive')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody>
@@ -266,7 +295,7 @@
     </div>
     <!-- onglet eppPrive-->
     <!-- onglet aaf-->
-    <div *ngIf="ongletActive=='aaf'">
+    <div *ngIf="critereRechercheService.ongletActive=='aaf'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
                     <div class="table-responsive">
@@ -295,7 +324,7 @@
                                             <td>{{personnel.fonctionAaf}}</td>  
                                             <td>{{personnel.villeAaf}}</td>  
                                             <td>{{personnel.disciplineAaf}}</td>  
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a (click)="afficheDetail(personnel,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody> 
@@ -305,7 +334,7 @@
     </div>
     <!-- onglet aaf-->
     <!-- onglet agora-->
-    <div *ngIf="ongletActive=='agora'">
+    <div *ngIf="critereRechercheService.ongletActive=='agora'">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></h4>
                 <div class="table-responsive">
@@ -328,7 +357,7 @@
                                             <td>{{personnel.dateNaissanceAgora}}</td>
                                             <td>{{personnel.positionAgora}}</td>
                                             <td>{{personnel.libelleAgora}}</td>  
-                                            <td class="text-right"><a href="#" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                            <td class="text-right"><a(click)="afficheDetail(personnel,'agora')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
                                     </tr>
                                 </tbody>   

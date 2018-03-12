@@ -13,8 +13,8 @@ export const personnelsRoute: Routes = [
     },
     {
 
-        path: 'personnel/:menuActive',
-        component: PersonnelsComponent,
+        path: 'personnelDetail',
+        component: PersonnelsDetailComponent,
        
         data: {},
 
