@@ -13,7 +13,7 @@ export interface RepresentantLegal{
     prenomAten:string
     identifiantAten:string
     mailAten:string
-    etatcompteAten:string
+    etatCompteAten:string
     lastConAten:string
     identifiantEnfantAten:Enfant[]
     nomToutatice:string

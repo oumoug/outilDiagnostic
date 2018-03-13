@@ -10,13 +10,22 @@ import {createRequestOption } from '../../shared';
 export class PersonnelService {
   private resourceUrl =  SERVER_API_URL + 'api/personnels';
   personnel:Personnel
-  constructor(private http: HttpClient) { }
+  detail:Boolean
+  constructor(private http: HttpClient) {
+    this.detail=false
+   }
   
   search(critere:CritereRecherche):Observable<HttpResponse<Personnel[]>>{
     const copy = this.convert(critere);
     const options = createRequestOption(critere);
     return this.http.post<Personnel[]>(this.resourceUrl,copy,{ observe: 'response' })
      .map((res:HttpResponse<Personnel[]>) => this.convertArrayResponse(res));
+  }
+  setDetail(detail:Boolean){
+    this.detail=detail
+  }
+  getDetail(){
+    return this.detail
   }
   setPersonnel(personnel:Personnel){
     this.personnel=personnel;

@@ -13,14 +13,23 @@
             "prenom":"Prénom",
             "birthday":"Date de naissance",
             "position":"Position",
-            "libelle":"Libellé"
+            "libelle":"Libellé",
+            "infoComp":"Informations complementaires",
+            "grade":"Grade",
+             "numen":"Numen",
+             "fonction":"Fonction"
             },
             "tableauEppPrive":{
             "nom":"​Nom",
             "prenom":"Prénom",
             "birthday":"Date de naissance",
             "position":"Position",
-             "libelle":"Libellé"
+             "libelle":"Libellé",
+             "infoComp":"Informations complementaires",
+             "grade":"Grade",
+             "numen":"Numen"
+
+
             },
             "tableauAaf":{
             "nom":"​Nom",
@@ -38,7 +47,8 @@
                 "prenom":"Prénom",
                 "birthday":"Date de naissance",
                 "position":"Position",
-                "libelle":"Libellé"
+                "libelle":"Libellé",
+                "infoComp":"Informations complementaires"
             },
             "tableauAnnuaireACA":{
 

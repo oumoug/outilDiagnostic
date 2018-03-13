@@ -15,6 +15,7 @@ import {PersonnelService} from "./personnel.service"
 export class PersonnelsComponent implements OnInit {
   subscription:Subscription  
   personnels:Personnel[]
+ 
   
   constructor(private activatedRoute: ActivatedRoute,
     private personnelService:PersonnelService,
@@ -25,7 +26,7 @@ export class PersonnelsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.critereRechercheService.loadProfil(  this.critereRechercheService.getCritere().profil)
+    this.critereRechercheService.loadProfil(this.critereRechercheService.getCritere().profil)
     this.personnelService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<Personnel[]>) => this.setPersonnels(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
@@ -39,10 +40,12 @@ export class PersonnelsComponent implements OnInit {
     this.jhiAlertService.error(error.message, null, null);
   }
   ongletActif(onglet:string){
+    this.personnelService.setDetail(false);
     this.critereRechercheService.setOngletActive(onglet);
    }
    afficheDetail(personnel:Personnel,siDetail:string){
     this.personnelService.setPersonnel(personnel)
+    this.personnelService.setDetail(true);
     this.router.navigate(["personnelDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
   }
 

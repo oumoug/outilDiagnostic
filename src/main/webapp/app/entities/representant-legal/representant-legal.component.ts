@@ -6,6 +6,7 @@ import {RepresentantLegal} from "./representant-legal.model"
 import {RepresentantLegalService} from "./representant-legal.service"
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import {JhiAlertService } from 'ng-jhipster';
+import{Enfant} from "."
 @Component({
   selector: 'jhi-representant-legal',
   templateUrl: './representant-legal.component.html',
@@ -38,6 +39,18 @@ export class RepresentantLegalComponent implements OnInit {
     for (let i = 0; i < data.length; i++) {
       this.representantLegals.push(data[i]);
     }
+  }
+  searchEleve(enfant:Enfant){
+    this.critereRechercheService.getCritere().profil="eleve";
+    if(enfant.nom!==""){
+      this.critereRechercheService.getCritere().nom=enfant.nom
+
+    }
+    if(enfant.prenom!==""){
+      this.critereRechercheService.getCritere().prenom=enfant.prenom
+    }
+    this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
+
   }
   private onError(error) {
     this.jhiAlertService.error(error.message, null, null);

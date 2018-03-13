@@ -6,6 +6,7 @@ import {EleveService} from "./eleve.service"
 import {Eleve} from "./eleve.model"
 import {JhiAlertService } from 'ng-jhipster';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {Parent} from "."
 @Component({
   selector: 'jhi-eleve',
   templateUrl: './eleve.component.html',
@@ -21,7 +22,7 @@ export class EleveComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.critereRechercheService.loadProfil(  this.critereRechercheService.getCritere().profil)
+    this.critereRechercheService.loadProfil(this.critereRechercheService.getCritere().profil)
     this.eleveService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<Eleve[]>) => this.setEleves(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
@@ -30,6 +31,18 @@ export class EleveComponent implements OnInit {
     for (let i = 0; i < data.length; i++) {
       this.eleves.push(data[i]);
     }
+
+  }
+  searchRepresentant(representant:Parent){
+    this.critereRechercheService.getCritere().profil="representantLegal";
+    if(representant.nom!==""){
+      this.critereRechercheService.getCritere().nom=representant.nom
+
+    }
+    if(representant.prenom!==""){
+      this.critereRechercheService.getCritere().prenom=representant.prenom
+    }
+    this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
 
   }
   afficheDetail(eleve:Eleve,siDetail:string){

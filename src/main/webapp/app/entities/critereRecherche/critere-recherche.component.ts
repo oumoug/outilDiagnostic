@@ -16,7 +16,6 @@ export class CritereRechercheComponent implements OnInit {
   subscription:Subscription
   optionProfils:string[]
   isResultat:Boolean
-  isSearch:Boolean
   isErreur:Boolean
   lengthChampsValid:Boolean
   profil:Boolean
@@ -24,7 +23,6 @@ export class CritereRechercheComponent implements OnInit {
   constructor(private critereRechercheService:CritereRechercheService,  private router:Router,private activatedRoute:ActivatedRoute) { 
     this.optionProfils=[]
     this.isResultat=false;
-    this.isSearch=false;
     this.isErreur=false;
     this.lengthChampsValid=false;
     this.profil=false;
@@ -53,6 +51,7 @@ export class CritereRechercheComponent implements OnInit {
       this.critereRechercheService.getCritere().profil="representantLegal";
       this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
     }
+    this.critereRechercheService.setIsSearch(true);
 
   }
   search(){

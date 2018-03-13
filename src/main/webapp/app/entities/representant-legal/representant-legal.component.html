@@ -23,7 +23,7 @@
       </li>
     </ul>
 </div>
-<div class="container">
+<div class="container-fluid mb-3">
       <!-- onglet resume-->
     <div *ngIf="critereRechercheService.ongletActive=='resume'">
         <div  class="row">
@@ -38,7 +38,7 @@
                                 <th jhiTranslate="outilDiagnostic.representant.tableauSiecle.etablissement"></th>
                                 <th jhiTranslate="outilDiagnostic.representant.tableauSiecle.enfant"></th>
                                 <th jhiTranslate="outilDiagnostic.representant.tableauSiecle.dateSortie"></th>
-                                <th></th>
+                               <!-- <th></th>-->
                                 
                             </tr>
                         </thead>
@@ -50,11 +50,11 @@
                                         <td>{{representantLegal.etablissementSiecle}}</td>
                                         <td>
                                                 <tr *ngIf="representantLegal.identifiantEnfantSiecle.length>0">
-                                                     <td  *ngFor="let enfant of representantLegal.identifiantEnfantSiecle">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                     <td  *ngFor="let enfant of representantLegal.identifiantEnfantSiecle"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                                 </tr>
                                             </td>  
                                         <td>{{representantLegal.dateSortieSiecle}}</td>  
-                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <!--<td class="text-right"><a (click)="afficheDetail(representantLegal,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>
@@ -71,7 +71,7 @@
                                 <th jhiTranslate="outilDiagnostic.representant.tableauAaf.prenom"></th>
                                 <th jhiTranslate="outilDiagnostic.representant.tableauAaf.idAaf"></th>
                                 <th jhiTranslate="outilDiagnostic.representant.tableauSiecle.etablissement"></th> 
-                                <th></th>    
+                                <!--<th></th>    -->
                             </tr>
                         </thead>
                         <tbody>
@@ -81,7 +81,7 @@
                                         <td>{{representantLegal.prenomAaf}}</td>
                                         <td>{{representantLegal.identifiantAaf}}</td>
                                         <td>{{representantLegal.etablissementAaf}}</td>  
-                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <!--<td class="text-right"><a (click)="afficheDetail(representantLegal,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>  
@@ -101,7 +101,7 @@
                                 <th jhiTranslate="outilDiagnostic.representant.tableauAten.etatCompte"></th>    
                                 <th jhiTranslate="outilDiagnostic.representant.tableauAten.lastCon"></th>  
                                 <th jhiTranslate="outilDiagnostic.representant.tableauAten.enfant"></th>  
-                                <th></th>     
+                                <!--<th></th>     -->
                             </tr>
                         </thead>  
                         <tbody>
@@ -115,10 +115,10 @@
                                         <td>{{representantLegal.lastConAten}}</td> 
                                         <td>
                                                <tr *ngIf="representantLegal.identifiantEnfantAten.length>0">
-                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten"><a (click)="searchEleve(enfant)" class="fa fa-search">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                                 </tr>
                                         </td>  
-                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <!--<td class="text-right"><a (click)="afficheDetail(representantLegal,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>   
@@ -138,7 +138,7 @@
                                 <th jhiTranslate="outilDiagnostic.representant.tableauToutatice.etatCompte"></th>    
                                 <th jhiTranslate="outilDiagnostic.representant.tableauToutatice.lastCon"></th>  
                                 <th jhiTranslate="outilDiagnostic.representant.tableauToutatice.enfant"></th>   
-                                <th></th>    
+                                <!--<th></th>    -->
                             </tr>
                         </thead>
                         <tbody>
@@ -152,10 +152,10 @@
                                         <td>{{representantLegal.lastConToutatice}}</td> 
                                         <td>
                                              <tr *ngIf="representantLegal.identifiantEnfantToutatice.length>0">
-                                                <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                             </tr>
                                         </td>  
-                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'toutatice')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                        <!--<td class="text-right"><a (click)="afficheDetail(representantLegal,'toutatice')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>       
@@ -175,7 +175,7 @@
                                 <th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.etatCompte"></th>    
                                 <th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.lastCon"></th>  
                                 <th jhiTranslate="outilDiagnostic.representant.tableauEduconnect.enfant"></th>  
-                                <th></th>     
+                                <!--<th></th>     -->
                             </tr>
                         </thead>
                         <tbody>
@@ -189,10 +189,10 @@
                                         <td>{{representantLegal.lastConEduconnect}}</td> 
                                         <td>
                                             <tr *ngIf="representantLegal.identifiantEnfantEduconnect.length>0">
-                                                 <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                 <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                             </tr>
                                         </td>  
-                                        <td class="text-right"><a (click)="afficheDetail(representantLegal,'eduConnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
+                                       <!-- <td class="text-right"><a (click)="afficheDetail(representantLegal,'eduConnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                         </tbody>         
@@ -226,7 +226,7 @@
                                         <td>{{representantLegal.etablissementSiecle}}</td>
                                         <td>
                                                 <tr *ngIf="representantLegal.identifiantEnfantSiecle.length>0">
-                                                     <td  *ngFor="let enfant of representantLegal.identifiantSiecle">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                     <td  *ngFor="let enfant of representantLegal.identifiantEnfantSiecle"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                                 </tr>
                                             </td>  
                                         <td>{{representantLegal.dateSortieSiecle}}</td>  
@@ -265,7 +265,7 @@
                                             <td>{{representantLegal.etablissementAaf}}</td>  
                                             <td class="text-right"><a (click)="afficheDetail(representantLegal,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
                                         </ng-template>
-                                    </tr>
+                                    </tr> 
                                 </tbody>  
                         </table>
                     </div>
@@ -302,7 +302,7 @@
                                             <td>{{representantLegal.lastConAten}}</td> 
                                             <td>
                                                     <tr *ngIf="representantLegal.identifiantEnfantAten.length>0">
-                                                         <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                         <td  *ngFor="let enfant of representantLegal.identifiantEnfantAten"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                                      </tr>
                                              </td>
                                             <td class="text-right"><a (click)="afficheDetail(representantLegal,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
@@ -344,7 +344,7 @@
                                             <td>{{representantLegal.lastConToutatice}}</td> 
                                             <td>
                                                  <tr *ngIf="representantLegal.identifiantEnfantToutatice.length>0">
-                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantToutatice"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                                 </tr>
                                             </td>    
                                             <td class="text-right"><a (click)="afficheDetail(representantLegal,'toutatice')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
@@ -386,7 +386,7 @@
                                             <td>{{representantLegal.lastConEduconnect}}</td> 
                                             <td>
                                                 <tr *ngIf="representantLegal.identifiantEnfantEduconnect.length>0">
-                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect">{{enfant.nom}} {{enfant.prenom}}</td>
+                                                    <td  *ngFor="let enfant of representantLegal.identifiantEnfantEduconnect"><a (click)="searchEleve(enfant)" class="fa fa-search ">{{enfant.nom}} {{enfant.prenom}}</a></td>
                                                 </tr>
                                             </td>    
                                             <td class="text-right"><a (click)="afficheDetail(representantLegal,'eduConnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>

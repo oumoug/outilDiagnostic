@@ -1,116 +1,44 @@
-<div class="container">
-    <div class="table-responsive">
-            <a (click)="previousState() " class="btn btn-sm btn-info mb-2"><i jhiTranslate="outilDiagnostic.eleve.retour" class="fa fa-caret-left"></i></a>
-        <table class="table table-sm">
-            <colgroup>
-                <col style="width: 40%">
-            </colgroup>
 
-            <tr><th jhiTranslate="outilDiagnostic.eleve.typePersonne"></th><td>Personnel</td></tr>
-        </table>
-    </div>
-</div>
-<ng-template [ngIf]="siDetail==='sirhen'">
+<jhi-personnels></jhi-personnels>
+<ng-template [ngIf]="personnelService.detail==true">
     <div class="container">
-      <div class="row">
-          <div class="col-sm-12 align-self-center">
-              <table class="table table-sm table-striped">
-                  <colgroup>
-                      <col style="width: 30%">
-                  </colgroup>
-  
-                  <thead class="thead-dark">
-                      <tr><th>Propriété</th><th>Valeur(s)</th></tr>
-                  </thead>
-                  <tbody>
-                      <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th><td>{{personnel.nomSirhen}}</td></tr>
-                      <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th><td>{{personnel.prenomSirhen}}</td></tr>
-                      <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th><td>{{personnel.dateNaissanceSirhen}}</td></tr>
-                      <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th><td>{{personnel.positionSirhen}}</td></tr>
-                      <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th><td>{{personnel.libelleSirhen}}</td></tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
+        <div class="table-responsive">
+               <!-- <a (click)="previousState() " class="btn btn-sm btn-info mb-2"><i jhiTranslate="outilDiagnostic.eleve.retour" class="fa fa-caret-left"></i></a>-->
+            <table class="table table-sm">
+                <colgroup>
+                    <col style="width: 40%">
+                </colgroup>
+
+                <tr><th jhiTranslate="outilDiagnostic.eleve.typePersonne"></th><td>Personnel</td></tr>
+            </table>
+        </div>
     </div>
-  </ng-template>
-  <ng-template [ngIf]="siDetail==='epp'">
-      <div class="container">
-        <div class="row">
-            <div class="col-sm-12 align-self-center">
-                <table class="table table-sm table-striped">
-                    <colgroup>
-                        <col style="width: 30%">
-                    </colgroup>
-    
-                    <thead class="thead-dark">
-                        <tr><th>Propriété</th><th>Valeur(s)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.nom"></th>  <td>{{personnel.nomEpp}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.prenom"></th>  <td>{{personnel.prenomEpp}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>  <td>{{personnel.dateNaissanceEpp}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>  <td>{{personnel.positionEpp}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>  <td>{{personnel.libelleEpp}}</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template [ngIf]="siDetail==='eppPrive'">
-      <div class="container">
-        <div class="row">
-            <div class="col-sm-12 align-self-center">
-                <table class="table table-sm table-striped">
-                    <colgroup>
-                        <col style="width: 30%">
-                    </colgroup>
-    
-                    <thead class="thead-dark">
-                        <tr><th>Propriété</th><th>Valeur(s)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.nom"></th>  <td>{{personnel.nomEppPrive}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.prenom"></th>  <td>{{personnel.prenomEppPrive}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>  <td>{{personnel.dateNaissanceEppPrive}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>  <td>{{personnel.positionEppPrive}}</td></tr>
-                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>  <td>{{personnel.libelleEppPrive}}</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-      </div>
-    </ng-template>
-    <ng-template [ngIf]="siDetail==='aaf'">
+   <ng-template [ngIf]="siDetail==='sirhen'">
         <div class="container">
-          <div class="row">
-              <div class="col-sm-12 align-self-center">
-                  <table class="table table-sm table-striped">
-                      <colgroup>
-                          <col style="width: 30%">
-                      </colgroup>
-      
-                      <thead class="thead-dark">
-                          <tr><th>Propriété</th><th>Valeur(s)</th></tr>
-                      </thead>
-                      <tbody>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.nom"></th><td>{{personnel.nomAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.prenom"></th><td>{{personnel.prenomAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.identifiant"></th><td>{{personnel.identifiantAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.birthday"></th><td>{{personnel.dateNaissanceAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.etablissement"></th><td>{{personnel.etablissementAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th><td>{{personnel.fonctionAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th><td>{{personnel.villeAaf}}</td></tr>
-                          <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th><td>{{personnel.disciplineAaf}}</td></tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
+        <div class="row">
+            <div class="col-sm-12 align-self-center">
+                <table class="table table-sm table-striped">
+                    <colgroup>
+                        <col style="width: 30%">
+                    </colgroup>
+    
+                    <thead class="thead-dark">
+                        <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th><td>{{personnelService.personnel.nomSirhen}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th><td>{{personnelService.personnel.prenomSirhen}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th><td>{{personnelService.personnel.dateNaissanceSirhen}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th><td>{{personnelService.personnel.positionSirhen}}</td></tr>
+                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th><td>{{personnelService.personnel.libelleSirhen}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </ng-template>
-      <ng-template [ngIf]="siDetail==='agora'">
-          <div class="container">
+        </div>
+    </ng-template>
+    <ng-template [ngIf]="siDetail==='epp'">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-12 align-self-center">
                     <table class="table table-sm table-striped">
@@ -122,14 +50,90 @@
                             <tr><th>Propriété</th><th>Valeur(s)</th></tr>
                         </thead>
                         <tbody>
-                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.nom"></th>  <td>{{personnel.nomAgora}}</td></tr>
-                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.prenom"></th>  <td>{{personnel.prenomAgora}}</td></tr>
-                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>  <td>{{personnel.dateNaissanceAgora}}</td></tr>
-                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>  <td>{{personnel.positionAgora}}</td></tr>
-                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>  <td>{{personnel.libelleAgora}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.nom"></th>  <td>{{personnelService.personnel.nomEpp}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.prenom"></th>  <td>{{personnelService.personnel.prenomEpp}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>  <td>{{personnelService.personnel.dateNaissanceEpp}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>  <td>{{personnelService.personnel.positionEpp}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>  <td>{{personnelService.personnel.libelleEpp}}</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-          </div>
+        </div>
         </ng-template>
+        <ng-template [ngIf]="siDetail==='eppPrive'">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 align-self-center">
+                    <table class="table table-sm table-striped">
+                        <colgroup>
+                            <col style="width: 30%">
+                        </colgroup>
+        
+                        <thead class="thead-dark">
+                            <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.nom"></th>  <td>{{personnelService.personnel.nomEppPrive}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.prenom"></th>  <td>{{personnelService.personnel.prenomEppPrive}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>  <td>{{personnelService.personnel.dateNaissanceEppPrive}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>  <td>{{personnelService.personnel.positionEppPrive}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>  <td>{{personnelService.personnel.libelleEppPrive}}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </ng-template>
+        <ng-template [ngIf]="siDetail==='aaf'">
+            <div class="container">
+            <div class="row">
+                <div class="col-sm-12 align-self-center">
+                    <table class="table table-sm table-striped">
+                        <colgroup>
+                            <col style="width: 30%">
+                        </colgroup>
+        
+                        <thead class="thead-dark">
+                            <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.nom"></th><td>{{personnelService.personnel.nomAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.prenom"></th><td>{{personnelService.personnel.prenomAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.identifiant"></th><td>{{personnelService.personnel.identifiantAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.birthday"></th><td>{{personnelService.personnel.dateNaissanceAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.etablissement"></th><td>{{personnelService.personnel.etablissementAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th><td>{{personnelService.personnel.fonctionAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th><td>{{personnelService.personnel.villeAaf}}</td></tr>
+                            <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th><td>{{personnelService.personnel.disciplineAaf}}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </ng-template>
+        <ng-template [ngIf]="siDetail==='agora'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 align-self-center">
+                        <table class="table table-sm table-striped">
+                            <colgroup>
+                                <col style="width: 30%">
+                            </colgroup>
+            
+                            <thead class="thead-dark">
+                                <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.nom"></th>  <td>{{personnelService.personnel.nomAgora}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.prenom"></th>  <td>{{personnelService.personnel.prenomAgora}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>  <td>{{personnelService.personnel.dateNaissanceAgora}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>  <td>{{personnelService.personnel.positionAgora}}</td></tr>
+                                <tr><th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>  <td>{{personnelService.personnel.libelleAgora}}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+</ng-template>

@@ -23,11 +23,11 @@
       </li>
     </ul>
 </div>
-<div class="container">
+<div class="container-fluid  mb-3">
     <!-- onglet resume-->
         <div *ngIf="critereRechercheService.ongletActive=='resume'">
             <div class="row">
-                <div class="col-sm-12 align-self-center">
+                <!--  <div class="col-sm-12">-->
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
                     <div class="table-responsive">
                         <table class="table table-sm table-striped table-bordered">
@@ -39,7 +39,7 @@
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
-                                    <th></th>
+                                   <!--  <th></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,17 +52,17 @@
                                         <td>{{eleve.etablissementSiecle}}</td>
                                         <td>
                                             <tr *ngIf="eleve.representantLegalSiecle.length!=0">
-                                                <td  *ngFor="let representant of eleve.representantLegalSiecle">{{representant.nom }} {{representant.prenom}}</td>
+                                                <td  *ngFor="let representant of eleve.representantLegalSiecle"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
                                             </tr>
                                         </td> 
-                                        <td  class="text-right"><a (click)="afficheDetail(eleve,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
+                                        <!-- <td  class="text-right"><a (click)="afficheDetail(eleve,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>  
                         </table>
                     </div>
-                </div>
-                <div class="col-sm-12 align-self-center">
+                <!--  </div>-->
+                <!--<div class="col-sm-12 align-self-center">-->
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
                     <div class="table-responsive">
                         <table class="table table-sm table-striped table-bordered">
@@ -74,7 +74,7 @@
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th>
-                                    <th></th>
+                                   <!--  <th></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,14 +86,14 @@
                                         <td>{{eleve.dateNaissanceAaf}}</td>
                                         <td>{{eleve.etablissementAaf}}</td> 
                                         <td>{{eleve.classeAaf}}</td>   
-                                        <td class="text-right"><a (click)="afficheDetail(eleve,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
+                                        <!-- <td class="text-right"><a (click)="afficheDetail(eleve,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>  
                         </table>
                     </div>
-                </div>
-                <div class="col-sm-12 align-self-center">
+                <!--</div>-->
+                <!-- <div class="col-sm-12 align-self-center">-->
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
                     <div class="table-responsive">
                         <table class="table table-sm table-striped table-bordered">
@@ -105,7 +105,7 @@
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th>
-                                    <th></th>
+                                    <!-- <th></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,15 +117,15 @@
                                         <td>{{eleve.mailToutatice}}</td>
                                         <td>{{eleve.etatCompteToutatice}}</td>  
                                         <td>{{eleve.lastConToutatice}}</td>  
-                                        <td   class="text-right"><a (click)="afficheDetail(eleve,'toutatice')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
+                                        <!-- <td   class="text-right"><a (click)="afficheDetail(eleve,'toutatice')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
                                 </ng-template>
                                 </tr>
                             </tbody>  
                         
                         </table>
                     </div>
-                </div>
-                <div class="col-sm-12 align-self-center">
+                 <!--</div>-->
+                <!-- <div class="col-sm-12 align-self-center">-->
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
                     <div class="table-responsive">
                         <table class="table table-sm table-striped table-bordered">
@@ -137,7 +137,7 @@
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th>
-                                    <th></th>
+                                    <!-- <th></th>-->
                                 
                                 </tr>
                             </thead>
@@ -150,14 +150,14 @@
                                         <td>{{eleve.mailEduconnect}}</td>
                                         <td>{{eleve.etatCompteEduconnect}}</td>  
                                         <td>{{eleve.lastConEduconnect}}</td>  
-                                        <td class="text-right"><a (click)="afficheDetail(eleve,'Educonnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
+                                        <!-- <td class="text-right"><a (click)="afficheDetail(eleve,'Educonnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                 </tr>
                             </tbody>  
                         </table>
                     </div>
-                </div>
-                <div class="col-sm-12 align-self-center">
+                <!-- </div>-->
+               <!--  <div class="col-sm-12 align-self-center">-->
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
                     <div class="table-responsive">
                         <table class="table table-sm table-striped table-bordered">
@@ -169,7 +169,7 @@
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th>
                                     <th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>  
-                                    <th></th>                              
+                                    <!-- <th></th>      -->                        
                                 </tr>
                             </thead>
                             <tbody>
@@ -182,16 +182,16 @@
                                         <td>{{eleve.etablissementAten}}</td>  
                                         <td>
                                              <tr *ngIf="eleve.representantLegalAten!=null">
-                                                 <td  *ngFor="let representant of eleve.representantLegalAten">{{representant.nom}} {{representant.prenom }}</td>
+                                                 <td  *ngFor="let representant of eleve.representantLegalAten"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
                                             </tr>
                                         </td>   
-                                        <td class="text-right"><a (click)="afficheDetail(eleve,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
+                                       <!--  <td class="text-right"><a (click)="afficheDetail(eleve,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
                                     </ng-template>
                                  </tr>  
                             </tbody>  
                         </table>
                     </div>
-                </div>
+                <!-- </div>-->
         </div>
     </div>
     <!-- onglet resume-->
@@ -222,7 +222,7 @@
                                             <td>{{eleve.etablissementSiecle}}</td>
                                             <td>
                                                 <tr *ngIf="eleve.representantLegalSiecle.length!=0">
-                                                     <td  *ngFor="let representant of eleve.representantLegalSiecle">{{representant.nom}} {{representant.prenom}}</td>
+                                                     <td  *ngFor="let representant of eleve.representantLegalSiecle"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
                                                 </tr>
                                             </td>  
                                             <td  class="text-right"><a (click)="afficheDetail(eleve,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
@@ -368,7 +368,7 @@
                                             <td>{{eleve.etablissementAten}}</td>  
                                             <td>
                                                 <tr *ngIf="eleve.representantLegalAten.length!=0">
-                                                    <td  *ngFor="let representant of eleve.representantLegalAten">{{representant.nom}} {{representant.prenom}}</td>
+                                                    <td  *ngFor="let representant of eleve.representantLegalAten"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
                                                 </tr>
                                             </td>  
                                             <td class="text-right"><a (click)="afficheDetail(eleve,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>

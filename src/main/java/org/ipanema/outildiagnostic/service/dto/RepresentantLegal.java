@@ -16,7 +16,7 @@ public class RepresentantLegal{
     private  String  prenomAten;
     private  String identifiantAten;
     private  String  mailAten;
-    private  String  etatcompteAten;
+    private  String  etatCompteAten;
     private  String  lastConAten;
     private  List<Enfant>  identifiantEnfantAten;
     private  String nomToutatice;
@@ -61,8 +61,8 @@ public class RepresentantLegal{
     /**
      * @return the etatcompteAten
      */
-    public String getEtatcompteAten() {
-        return etatcompteAten;
+    public String getEtatCompteAten() {
+        return etatCompteAten;
     }
     /**
      * @return the etatCompteEduconnect
@@ -242,8 +242,8 @@ public class RepresentantLegal{
     /**
      * @param etatcompteAten the etatcompteAten to set
      */
-    public void setEtatcompteAten(String etatcompteAten) {
-        this.etatcompteAten = etatcompteAten;
+    public void setEtatCompteAten(String etatcompteAten) {
+        this.etatCompteAten = etatcompteAten;
     }
     /**
      * @param etatCompteEduconnect the etatCompteEduconnect to set
@@ -400,6 +400,41 @@ public class RepresentantLegal{
      */
     public void setPrenomToutatice(String prenomToutatice) {
         this.prenomToutatice = prenomToutatice;
+    }
+    @Override
+    public String toString() {
+        return "RepresentantLegal{"+
+        "nomSiecle='"+getNomSiecle()+"'"+
+    ",prenomSiecle='"+getPrenomSiecle()+"'"+
+    ",etablissementSiecle='"+getEtablissementSiecle()+"'"+
+    ",identifiantEnfantSiecle='"+getIdentifiantEnfantSiecle()+"'"+
+    ",dateSortieSiecle='"+getDateSortieSiecle()+"'"+
+    ",nomAaf='"+getNomAaf()+"'"+
+    ",prenomAaf='"+getPrenomAaf()+"'"+
+    ",identifiantAaf='"+getIdentifiantAaf()+"'"+
+    ",etablissementAaf='"+getEtablissementAaf()+"'"+
+    ",nomAten='"+getNomAten()+"'"+
+    ",prenomAten='"+getPrenomAten()+"'"+
+    ",identifiantAten='"+getIdentifiantAten()+"'"+
+    ",mailAten='"+getMailAten()+"'"+
+    ",etatCompteAten='"+getEtatCompteAten()+"'"+
+    ",lastConAten='"+getLastConAten()+"'"+
+    ",identifiantEnfantAten='"+getIdentifiantEnfantAten()+"'"+
+    ",nomToutatice='" +getNomToutatice()+"'"+
+    ",prenomToutatice='"+getPrenomToutatice()+"'"+
+    ",identifiantToutatice='"+getIdentifiantToutatice()+"'"+
+    ",mailToutatice='"+getMailToutatice()+"'"+
+    ",etatCompteToutatice='"+getEtatCompteToutatice()+"'"+
+    ",lastConToutatice='"+getLastConToutatice()+"'"+
+    ",identifiantEnfantToutatice='"+getIdentifiantEnfantToutatice()+"'"+
+    ",nomEduconnect='"+getNomEduconnect()+"'"+
+    ",prenomEduconnect='"+getPrenomEduconnect()+"'"+
+    ",identifiantEduconnect='"+getIdentifiantEduconnect()+"'"+
+    ",mailEduconnect='"+getMailEduconnect()+"'"+
+    ",etatCompteEduconnect='"+getEtatCompteEduconnect()+"'"+
+    ",lastConEduconnect='"+getLastConEduconnect()+"'"+
+    ",identifiantEnfantEduconnect='"+getIdentifiantEnfantEduconnect()+"'}";
+
     }
     
 }

@@ -1,6 +1,8 @@
 package org.ipanema.outildiagnostic.service.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,11 +17,19 @@ public class Personnel implements Serializable{
     private String prenomEpp;
     private String  dateNaissanceEpp;
     private String libelleEpp;
+    private String positionEpp;
+    private List<String> infoCompEpp;
+    private String gradeEpp;
+    private String numenEpp;
+    private String fonctionEpp;
     private String nomEppPrive;
     private String prenomEppPrive;
     private String dateNaissanceEppPrive;
     private String positionEppPrive;
     private String libelleEppPrive;
+    private List<String> infoCompEppPrive;
+    private String gradeEppPrive;
+    private String numenEppPrive;
     private String nomAaf;
     private String  prenomAaf;
     private String dateNaissanceAaf;
@@ -34,6 +44,122 @@ public class Personnel implements Serializable{
     private String dateNaissanceAgora;
     private String positionAgora;
     private String libelleAgora;
+    private List<String> infoCompAgora;
+    public Personnel(){
+        this.infoCompAgora=new ArrayList<String>();
+        this.infoCompEpp=new ArrayList<String>();
+        this.infoCompEppPrive=new ArrayList<String>();
+    }
+    /**
+     * @param positionEpp the positionEpp to set
+     */
+    public void setPositionEpp(String positionEpp) {
+        this.positionEpp = positionEpp;
+    }
+
+    /**
+     * @return the positionEpp
+     */
+    public String getPositionEpp() {
+        return positionEpp;
+    }
+    /**
+     * @return the fonctionEpp
+     */
+    public String getFonctionEpp() {
+        return fonctionEpp;
+    }
+    /**
+     * @return the gradeEpp
+     */
+    public String getGradeEpp() {
+        return gradeEpp;
+    }
+    /**
+     * @return the numenEpp
+     */
+    public String getNumenEpp() {
+        return numenEpp;
+    }
+    /**
+     * @param fonctionEpp the fonctionEpp to set
+     */
+    public void setFonctionEpp(String fonctionEpp) {
+        this.fonctionEpp = fonctionEpp;
+    }
+    /**
+     * @param gradeEpp the gradeEpp to set
+     */
+    public void setGradeEpp(String gradeEpp) {
+        this.gradeEpp = gradeEpp;
+    }
+    /**
+     * @param numenEpp the numenEpp to set
+     */
+    public void setNumenEpp(String numenEpp) {
+        this.numenEpp = numenEpp;
+    }
+    /**
+     * @return the infoCompAgora
+     */
+    public List<String> getInfoCompAgora() {
+        return infoCompAgora;
+    }
+    /**
+     * @param infoCompAgora the infoCompAgora to set
+     */
+    public void setInfoCompAgora(List<String> infoCompAgora) {
+        this.infoCompAgora = infoCompAgora;
+    }
+    /**
+     * @return the gradeEppPrive
+     */
+    public String getGradeEppPrive() {
+        return gradeEppPrive;
+    }
+    /**
+     * @return the infoCompEpp
+     */
+    public List<String> getInfoCompEpp() {
+        return infoCompEpp;
+    }
+    /**
+     * @return the infoCompEppPrive
+     */
+    public List<String> getInfoCompEppPrive() {
+        return infoCompEppPrive;
+    }
+    /**
+     * @return the numenEppPrive
+     */
+    public String getNumenEppPrive() {
+        return numenEppPrive;
+    }
+    /**
+     * @param gradeEppPrive the gradeEppPrive to set
+     */
+    public void setGradeEppPrive(String gradeEppPrive) {
+        this.gradeEppPrive = gradeEppPrive;
+    }
+    /**
+     * @param infoCompEpp the infoCompEpp to set
+     */
+    public void setInfoCompEpp(List<String> infoCompEpp) {
+        this.infoCompEpp = infoCompEpp;
+    }
+    /**
+     * @param infoCompEppPrive the infoCompEppPrive to set
+     */
+    public void setInfoCompEppPrive(List<String> infoCompEppPrive) {
+        this.infoCompEppPrive = infoCompEppPrive;
+    }
+    /**
+     * @param numenEppPrive the numenEppPrive to set
+     */
+    public void setNumenEppPrive(String numenEppPrive) {
+        this.numenEppPrive = numenEppPrive;
+    }
+    
     /**
      * @return the baseGestionAaf
      */
@@ -382,11 +508,19 @@ public class Personnel implements Serializable{
     ",prenomEpp='"+getPrenomEpp()+"'"+
     ",dateNaissanceEpp='"+getDateNaissanceEpp()+"'"+
     ",libelleEpp='"+getLibelleEpp()+"'"+
+    ",positionEpp='"+getPositionEpp()+"'"+
+    ",infoCompEpp='"+getInfoCompEpp()+"'"+
+     ",gradeEpp='"+getGradeEpp()+"'"+
+    ",numenEpp='"+getNumenEpp()+"'"+
+   ",fonctionEpp='"+getFonctionEpp()+"'"+
     ",nomEppPrive='"+getNomEppPrive()+"'"+
     ",prenomEppPrive='"+getPrenomEppPrive()+"'"+
     ",dateNaissanceEppPrive='"+getDateNaissanceEppPrive()+"'"+
     ",positionEppPrive='"+getPositionEppPrive()+"'"+
     ",libelleEppPrive='"+getLibelleEppPrive()+"'"+
+    ",infoCompEppPrive='"+getInfoCompEppPrive()+"'"+
+    ",gradeEppPrive='"+getGradeEppPrive()+"'"+
+    ",numenEppPrive='"+getNumenEppPrive()+"'"+
     ",nomAaf='"+getNomAaf()+"'"+
     ",prenomAaf='"+getPrenomAaf()+"'"+
     ",dateNaissanceAaf='"+getDateNaissanceAaf()+"'"+
@@ -400,8 +534,11 @@ public class Personnel implements Serializable{
     ",prenomAgora='"+getPrenomAgora()+"'"+
     ",dateNaissanceAgora='"+getDateNaissanceAgora()+"'"+
    ",positionAgora='"+getPositionAgora()+"'"+
-   ",libelleAgora='"+getLibelleAgora()+"'}";
+   ",libelleAgora='"+getLibelleAgora()+
+   ",infoCompAgora='"+getInfoCompAgora()+"'}";
     }
+
+
     public JSONObject PersonnelToJson() throws JSONException{
         JSONObject entity = new JSONObject();
         entity.put("nomSirhen",getNomSirhen());

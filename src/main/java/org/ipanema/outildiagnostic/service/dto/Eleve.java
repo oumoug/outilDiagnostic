@@ -397,5 +397,39 @@ public class Eleve{
     public void setRepresentantLegalAten(List<Parent> representantLegalAten) {
         this.representantLegalAten = representantLegalAten;
     }
+    @Override
+    public String toString() {
+        return "Eleve{"+
+        "nomSiecle='"+getNomSiecle()+"'"+
+        ",prenomSiecle='"+getPrenomSiecle()+"'"+
+        ",identifiantSiecle='"+getIdentifiantSiecle()+"'"+
+        ",dateNaissanceSiecle='"+getDateNaissanceSiecle()+"'"+
+        ",etablissementSiecle='"+getEtablissementSiecle()+"'"+
+        ",representantLegalSiecle='"+getRepresentantLegalSiecle()+"'"+
+        ",nomAaf='"+getNomAaf()+"'"+
+        ",prenomAaf='"+getPrenomAaf()+"'"+
+        ",identifiantAaf='"+getIdentifiantAaf()+"'"+
+        ",dateNaissanceAaf='"+getDateNaissanceAaf()+"'"+
+        ",etablissementAaf='"+getEtablissementAaf()+"'"+
+        ",classeAaf='"+getClasseAaf()+"'"+
+        ",nomToutatice='"+getNomToutatice()+"'"+
+        ",prenomToutatice='"+getPrenomToutatice()+"'"+
+        ",identifiantToutatice='"+getIdentifiantToutatice()+"'"+
+        ",mailToutatice='"+getMailToutatice()+"'"+
+        ",etatCompteToutatice='"+getEtatCompteToutatice()+"'"+
+        ",lastConToutatice='"+getLastConToutatice()+"'"+
+        ",nomEduconnect='"+getNomEduconnect()+"'"+
+        ",prenomEduconnect='"+getPrenomEduconnect()+"'"+
+        ",identifiantEduconnect='"+getIdentifiantEduconnect()+"'"+
+        ",mailEduconnect='"+getMailEduconnect()+"'"+
+        ",etatCompteEduconnect='"+getEtatCompteEduconnect()+"'"+
+        ",lastConEduconnect='"+getLastConEduconnect()+"'"+
+        ",nomAten='"+getNomAten()+"'"+
+        ",prenomAten='"+getPrenomAten()+"'"+
+        ",identifiantAten='"+getIdentifiantAten()+"'"+
+        ",dateNaissanceAten='"+getDateNaissanceAten()+"'"+
+        ",etablissementAten='"+getEtablissementAten()+"'"+
+        ",representantLegalAten='"+getRepresentantLegalAten()+"'}";
+    }
     
 }

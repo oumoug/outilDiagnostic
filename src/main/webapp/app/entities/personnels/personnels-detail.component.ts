@@ -13,7 +13,7 @@ import{Personnel} from "."
 export class PersonnelsDetailComponent implements OnInit {
   subscription:Subscription;
   siDetail:string
-  personnel:Personnel
+  
   constructor(private critereRechercheService:CritereRechercheService,
               private personnelService:PersonnelService,
               private router:Router,
@@ -26,9 +26,8 @@ export class PersonnelsDetailComponent implements OnInit {
         this.siDetail=params['siDetail']
       }
     });
-    this.personnel=this.personnelService.getPersonnel()
   }
-  
+
   previousState() {
     if(this.critereRechercheService.getCritere().profil==="Personnels"){
       this.critereRechercheService.getCritere().profil="personnel"

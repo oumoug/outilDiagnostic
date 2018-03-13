@@ -11,13 +11,20 @@ import { createRequestOption } from '../../shared';
 export class CritereRechercheService {
   critereRecherche:CritereRecherche
   ongletActive:string
+  isSearch:Boolean
 
   constructor() { 
     this.critereRecherche={nom:"",prenom:"",mail:"",etablissement:"",profil:""}
     this.ongletActive="resume"
+    this.isSearch=false;
     
   }
-  
+  getIsSearch(){
+    return this.isSearch
+  }
+  setIsSearch(val:Boolean){
+    this.isSearch=val
+  }
   
   getOngletActive(){
     return this.ongletActive;

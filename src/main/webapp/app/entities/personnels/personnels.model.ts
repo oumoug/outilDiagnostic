@@ -12,11 +12,18 @@ export class Personnel implements BaseEntity {
     dateNaissanceEpp:string,
     positionEpp:string,
     libelleEpp:string,
+    infoCompEpp:string[],
+    gradeEpp:string,
+    numenEpp:string,
+    fonctionEpp:string,
     nomEppPrive:string,
     prenomEppPrive:string,
     dateNaissanceEppPrive:string,
     positionEppPrive:string,
     libelleEppPrive:string,
+    infoCompEppPrive:string[],
+    gradeEppPrive:string,
+    numenEppPrive:string,
     nomAaf:string,
     prenomAaf:string,
     dateNaissanceAaf:string,
@@ -30,6 +37,8 @@ export class Personnel implements BaseEntity {
     prenomAgora:string,
     dateNaissanceAgora:string,
     positionAgora:string,
-    libelleAgora:string)
+    libelleAgora:string,
+    infoCompAgora:string[]
+)
     {}
 }
