@@ -31,7 +31,7 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.profil" for="field_profil"></label>
-                <select class="form-control" id="field_profil" name="profil" [(ngModel)]="critereRechercheService.critereRecherche.profil" required >
+                <select class="form-control" id="field_profil" name="profil" [(ngModel)]="getCritereRechercheService().critereRecherche.profil" required >
                   <option *ngFor="let profilOption of optionProfils" [ngValue]="profilOption">{{profilOption}}</option>
                 </select>
               </div>
@@ -39,25 +39,25 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.prenom" for="field_prenom"></label>
-                <input type="text" class="form-control" name="prenom" id="field_prenom" [(ngModel)]="critereRechercheService.critereRecherche.prenom" />
+                <input type="text" class="form-control" name="prenom" id="field_prenom" [(ngModel)]="getCritereRechercheService().critereRecherche.prenom" />
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.nom" for="field_nom"></label>
-                <input type="text" class="form-control" name="nom" id="field_nom" [(ngModel)]="critereRechercheService.critereRecherche.nom" />
+                <input type="text" class="form-control" name="nom" id="field_nom" [(ngModel)]="getCritereRechercheService().critereRecherche.nom" />
               </div> 
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.mail" for="field_mail"></label>
-                <input type="text" class="form-control" name="mail" id="field_mail" [(ngModel)]="critereRechercheService.critereRecherche.mail" />
+                <input type="text" class="form-control" name="mail" id="field_mail" [(ngModel)]="getCritereRechercheService().critereRecherche.mail" />
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.etablissement" for="field_etablissement"></label>
-                <input type="text" class="form-control" name="etablissement" id="field_etablissement" [(ngModel)]="critereRechercheService.critereRecherche.etablissement" />
+                <input type="text" class="form-control" name="etablissement" id="field_etablissement" [(ngModel)]="getCritereRechercheService().critereRecherche.etablissement" />
               </div>
             </div>           
             <div class="col-sm-4">
@@ -71,7 +71,7 @@
             </div> 
         </div> 
       </form>
-  <div *ngIf="critereRechercheService.isSearch==false">
+  <div *ngIf="getCritereRechercheService().isSearch==false">
       <div class=" col-sm-12">
           <div class="alert alert-info text-center">
               <p class="lead"  jhiTranslate="outilDiagnostic.critereRecherche.rechercheEnCours"></p>

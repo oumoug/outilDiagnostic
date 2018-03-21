@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import{CritereRechercheService} from "../critereRecherche"
-import {RepresentantLegal} from "."
-import {ActivatedRoute, Router} from "@angular/router"
-import {RepresentantLegalService} from "./representant-legal.service"
+import {CritereRechercheService} from '../critereRecherche'
+import {RepresentantLegal} from '.'
+import {ActivatedRoute, Router} from '@angular/router'
+import {RepresentantLegalService} from './representant-legal.service'
 
 @Component({ 
   selector: 'jhi-representant-legal-detail',
@@ -21,15 +21,15 @@ export class RepresentantLegalDetailComponent implements OnInit {
 
   ngOnInit() {
     this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
-      if(params['siDetail']!=undefined){
+      if(params['siDetail']!==undefined){
         this.siDetail=params['siDetail']
       }
     });
     this.representantLegal=this.representantLegalService.getRepresentantLegal();
   }
   previousState() {
-    if(this.critereRechercheService.getCritere().profil==="Représentants légaux"){
-      this.critereRechercheService.getCritere().profil="representantLegal"
+    if(this.critereRechercheService.getCritere().profil==='Représentants légaux'){
+      this.critereRechercheService.getCritere().profil='representantLegal'
     }
     this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
   }

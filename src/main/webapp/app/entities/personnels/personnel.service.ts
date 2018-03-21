@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import{CritereRecherche} from "../critereRecherche"
+import {CritereRecherche} from '../critereRecherche'
 import { SERVER_API_URL } from '../../app.constants';
 import { Observable } from 'rxjs/Observable';
-import{Personnel} from "../personnels/personnels.model"
+import {Personnel} from '../personnels/personnels.model'
 import {createRequestOption } from '../../shared';
 
 @Injectable()
@@ -17,7 +17,6 @@ export class PersonnelService {
   
   search(critere:CritereRecherche):Observable<HttpResponse<Personnel[]>>{
     const copy = this.convert(critere);
-    const options = createRequestOption(critere);
     return this.http.post<Personnel[]>(this.resourceUrl,copy,{ observe: 'response' })
      .map((res:HttpResponse<Personnel[]>) => this.convertArrayResponse(res));
   }

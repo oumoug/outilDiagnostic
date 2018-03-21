@@ -1,38 +1,36 @@
-<jhi-critere-recherche>
-    
-</jhi-critere-recherche>
+<jhi-critere-recherche></jhi-critere-recherche>
 <div class=" container-fluid mb-3">
     <ul class="nav nav-tabs nav-justified">    
            <!--- menu pour une recherche de personnel-->  
       <li class="nav-item" >
-        <a [class.active]="critereRechercheService.ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume','personnel')" jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+        <a [class.active]="getCritereRechercheService().ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume')" jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
       </li>
       <li class="nav-item">
-          <a  [class.active]="critereRechercheService.ongletActive=='sirhen'" [class.nav-link]='true' (click)="ongletActif('sirhen','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></a>
+          <a  [class.active]="getCritereRechercheService().ongletActive=='sirhen'" [class.nav-link]='true' (click)="ongletActif('sirhen')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></a>
       </li>
       <li class="nav-item">
-         <a  [class.active]="critereRechercheService.ongletActive=='epp'" [class.nav-link]='true' (click)="ongletActif('epp','personnel')" jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></a>
+         <a  [class.active]="getCritereRechercheService().ongletActive=='epp'" [class.nav-link]='true' (click)="ongletActif('epp')" jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></a>
       </li>
       <li class="nav-item">
-         <a  [class.active]="critereRechercheService.ongletActive=='eppPrive'" [class.nav-link]='true' (click)="ongletActif('eppPrive','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></a>
+         <a  [class.active]="getCritereRechercheService().ongletActive=='eppPrive'" [class.nav-link]='true' (click)="ongletActif('eppPrive')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></a>
       </li>
       <li class="nav-item">
-           <a [class.active]="critereRechercheService.ongletActive=='aaf'" [class.nav-link]='true'  (click)="ongletActif('aaf','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
+           <a [class.active]="getCritereRechercheService().ongletActive=='aaf'" [class.nav-link]='true'  (click)="ongletActif('aaf')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
       </li>
       <li class="nav-item">
-          <a  [class.active]="critereRechercheService.ongletActive=='academique'" [class.nav-link]='true' (click)="ongletActif('academique','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAcademique"></a>
+          <a  [class.active]="getCritereRechercheService().ongletActive=='academique'" [class.nav-link]='true' (click)="ongletActif('academique')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAcademique"></a>
       </li>
       <li class="nav-item">
-        <a  [class.active]="critereRechercheService.ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
+        <a  [class.active]="getCritereRechercheService().ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
       </li>
       <li class="nav-item">
-          <a  [class.active]="critereRechercheService.ongletActive=='agora'" [class.nav-link]='true' (click)="ongletActif('agora','personnel')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></a>
+          <a  [class.active]="getCritereRechercheService().ongletActive=='agora'" [class.nav-link]='true' (click)="ongletActif('agora')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></a>
       </li>
   </ul>
 </div>
 <!--- onglet résume-->
 <div class="container-fluid mb-3">
-    <div *ngIf="critereRechercheService.ongletActive=='resume'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='resume'">
         <div class="row">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
@@ -212,14 +210,15 @@
         </div>
     </div>
     <!--- onglet résume-->
-
+   
+    
     <!-- onglet sihren-->
-    <div *ngIf="critereRechercheService.ongletActive=='sirhen'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='sirhen'">
             <div class="row">
                     <div class="col-sm-12 align-self-center">
                         <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
                         <div class="table-responsive">
-                            <table class="table table-sm table-striped table-bordered">
+                            <table class="table table-sm table-striped table-bordered table-hover">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th>
@@ -227,22 +226,46 @@
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
                                         <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
-                                        <th></th>
+                                       
                                     </tr>
-                                </thead>
+                                </thead> 
                                 <tbody>
-                                        <tr *ngFor="let personnel of personnels">
-                                            <ng-template [ngIf]="personnel.nomSirhen!=null|| personnel.prenomSirhen!=null|| personnel.dateNaissanceSirhen!=null|| personnel.positionSirhen!=null|| personnel.libelleSirhen!=null">
-                                                <td>{{personnel.nomSirhen}}</td>
-                                                <td>{{personnel.prenomSirhen}}</td>
-                                                <td>{{personnel.dateNaissanceSirhen}}</td>
-                                                <td>{{personnel.positionSirhen}}</td>
-                                                <td>{{personnel.libelleSirhen}}</td>  
-                                                <td class="text-right"><a (click)="afficheDetail(personnel,'sirhen')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
-                                            </ng-template>
-                                        </tr>
+                                    <ng-container *ngFor="let personnel of personnels">
+                                            <tr (click)="afficheDetail(personnel)" >
+                                                   
+                                                            <td>{{personnel.nomSirhen}} </td>
+                                                            <td>{{personnel.prenomSirhen}}</td>
+                                                            <td>{{personnel.dateNaissanceSirhen}}</td>
+                                                            <td>{{personnel.positionSirhen}}</td>
+                                                            <td>{{personnel.libelleSirhen}}</td>  
+                                            <tr>
+                                                    <div class="row">
+                                                            <div class="col-sm-12">
+                                                        <ng-template [ngIf]= "getPersonnelService().personnel!==undefined && getPersonnelService().personnel.nomSirhen===personnel.nomSirhen">
+                                                                 
+                                                               <!-- <ng-template [ngIf]="siDetail==='sirhen'">-->
+                                                                             <table class="table table-sm table-striped">
+                                                                                 <thead class="bg-primary">
+                                                                                     <tr><th>Propriété</th><th>Valeur(s)</th></tr>
+                                                                                 </thead>
+                                                                                 <tbody>
+                                                                                     <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th><td>{{personnelService.personnel.nomSirhen}}</td></tr>
+                                                                                     <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th><td>{{personnelService.personnel.prenomSirhen}}</td></tr>
+                                                                                     <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th><td>{{personnelService.personnel.dateNaissanceSirhen}}</td></tr>
+                                                                                     <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th><td>{{personnelService.personnel.positionSirhen}}</td></tr>
+                                                                                     <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th><td>{{personnelService.personnel.libelleSirhen}}</td></tr>
+                                                                                 </tbody>
+                                                                             </table>
+                                                                 <!--</ng-template>-->
+                                                          </ng-template>
+                                                          </div>
+                                                          </div>
+                                                          </tr>
+                                            </tr>
+                                        </ng-container>   
                                     </tbody> 
                             </table>
+                        
                         </div>
                     </div>
             </div>
@@ -250,7 +273,7 @@
      <!-- onglet sihren-->
 
     <!-- onglet epp-->
-    <div *ngIf="critereRechercheService.ongletActive=='epp'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='epp'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
                     <div class="table-responsive">
@@ -296,7 +319,7 @@
      <!-- onglet epp-->
 
      <!-- onglet eppPrive-->
-    <div *ngIf="critereRechercheService.ongletActive=='eppPrive'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='eppPrive'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
                     <div class="table-responsive">
@@ -340,7 +363,7 @@
     </div>
     <!-- onglet eppPrive-->
     <!-- onglet aaf-->
-    <div *ngIf="critereRechercheService.ongletActive=='aaf'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='aaf'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
                     <div class="table-responsive">
@@ -379,7 +402,7 @@
     </div>
     <!-- onglet aaf-->
     <!-- onglet agora-->
-    <div *ngIf="critereRechercheService.ongletActive=='agora'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='agora'">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></h4>
                 <div class="table-responsive">

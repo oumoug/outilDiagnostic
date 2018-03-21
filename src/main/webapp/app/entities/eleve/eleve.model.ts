@@ -1,4 +1,4 @@
-import {Parent} from "."
+import {Parent} from '.'
 export interface Eleve{
     nomSiecle:string,
     prenomSiecle:string,

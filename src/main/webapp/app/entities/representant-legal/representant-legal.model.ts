@@ -1,4 +1,4 @@
-import {Enfant} from "./enfant.model"
+import {Enfant} from './enfant.model'
 export interface RepresentantLegal{
     nomSiecle:string
     prenomSiecle:string

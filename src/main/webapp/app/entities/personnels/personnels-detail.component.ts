@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import{PersonnelService} from "./personnel.service"
-import{CritereRechercheService} from "../critereRecherche"
-import {ActivatedRoute, Router} from "@angular/router"
+import {PersonnelService} from './personnel.service'
+import {CritereRechercheService} from '../critereRecherche'
+import {ActivatedRoute, Router} from '@angular/router'
 import { Subscription } from 'rxjs/Subscription';
-import{Personnel} from "."
+import {Personnel} from '.'
  
 @Component({
   selector: 'jhi-personnels-detail',
@@ -22,17 +22,20 @@ export class PersonnelsDetailComponent implements OnInit {
 
   ngOnInit() {
     this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
-      if(params['siDetail']!=undefined){
+      if(params['siDetail']!==undefined){
         this.siDetail=params['siDetail']
       }
     });
   }
 
   previousState() {
-    if(this.critereRechercheService.getCritere().profil==="Personnels"){
-      this.critereRechercheService.getCritere().profil="personnel"
+    if(this.critereRechercheService.getCritere().profil==='Personnels'){
+      this.critereRechercheService.getCritere().profil='personnel'
     }
     this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
+  }
+  getPersonnelService(){
+    return this.personnelService
   }
 
 

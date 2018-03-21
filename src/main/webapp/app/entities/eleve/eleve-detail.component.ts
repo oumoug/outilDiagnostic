@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CritereRechercheService,RechercheDetail} from '../critereRecherche'
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute,Router } from '@angular/router';
-import {EleveService} from "./eleve.service"
+import {EleveService} from './eleve.service'
 import { Eleve } from '.';
 
 @Component({
@@ -28,8 +28,8 @@ export class EleveDetailComponent implements OnInit {
     this.eleve=this.eleveService.getEleve();
   }
   previousState() {
-    if(this.critereRechercheService.getCritere().profil==="Élève"){
-      this.critereRechercheService.getCritere().profil="eleve"
+    if(this.critereRechercheService.getCritere().profil==='Élève'){
+      this.critereRechercheService.getCritere().profil='eleve'
     }
     this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
   }

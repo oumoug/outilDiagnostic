@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import { PersonnelsDetailComponent,PersonnelsComponent, personnelsRoute } from './';
-import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
-import {OutilDiagnosticSharedModule} from "../../shared"
-import {PersonnelService} from "./"
+import {CritereRechercheModule } from '../critereRecherche/critere-recherche.module'
+import {OutilDiagnosticSharedModule} from '../../shared'
+import {PersonnelService} from './'
 
 const ENTITY_STATES = [
   ...personnelsRoute

@@ -4,28 +4,28 @@
     <ul class="nav nav-tabs nav-justified">    
           <!--- menu pour une recherche de rerésentant légal-->  
       <li class="nav-item">
-        <a  [class.active]="critereRechercheService.ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume','representantLegal')"  jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
+        <a  [class.active]="getCritereRechercheService().ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume')"  jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
       </li>
       <li class="nav-item">
-        <a [class.active]="critereRechercheService.ongletActive=='siecle'" [class.nav-link]='true'  (click)="ongletActif('siecle','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></a>
+        <a [class.active]="getCritereRechercheService().ongletActive=='siecle'" [class.nav-link]='true'  (click)="ongletActif('siecle')" jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></a>
       </li>
       <li class="nav-item">
-           <a  [class.active]="critereRechercheService.ongletActive=='aaf'" [class.nav-link]='true' (click)="ongletActif('aaf','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
+           <a  [class.active]="getCritereRechercheService().ongletActive=='aaf'" [class.nav-link]='true' (click)="ongletActif('aaf')" jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
       </li>
       <li class="nav-item">
-          <a [class.active]="critereRechercheService.ongletActive=='aten'" [class.nav-link]='true'  (click)="ongletActif('aten','representantLegal')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></a>
+          <a [class.active]="getCritereRechercheService().ongletActive=='aten'" [class.nav-link]='true'  (click)="ongletActif('aten')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></a>
       </li>
       <li class="nav-item">
-          <a  [class.active]="critereRechercheService.ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
+          <a  [class.active]="getCritereRechercheService().ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice')" jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
       </li>
       <li class="nav-item">
-          <a [class.active]="critereRechercheService.ongletActive=='eduConnect'" [class.nav-link]='true'  (click)="ongletActif('eduConnect','representantLegal')" jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></a>
+          <a [class.active]="getCritereRechercheService().ongletActive=='eduConnect'" [class.nav-link]='true'  (click)="ongletActif('eduConnect')" jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></a>
       </li>
     </ul>
 </div>
 <div class="container-fluid mb-3">
       <!-- onglet resume-->
-    <div *ngIf="critereRechercheService.ongletActive=='resume'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='resume'">
         <div  class="row">
             <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
@@ -203,7 +203,7 @@
     </div>
      <!-- onglet resume-->
      <!-- onglet siecle-->
-    <div *ngIf="critereRechercheService.ongletActive=='siecle'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='siecle'">
         <div class="col-sm-12 align-self-center">
                 <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
                 <div class="table-responsive">
@@ -242,7 +242,7 @@
 
 
     <!-- onglet aaf-->
-    <div *ngIf="critereRechercheService.ongletActive=='aaf'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='aaf'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
                     <div class="table-responsive">
@@ -274,7 +274,7 @@
      <!-- onglet aaf-->
 
      <!-- onglet aten-->
-    <div *ngIf="critereRechercheService.ongletActive=='aten'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='aten'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
                     <div class="table-responsive">
@@ -316,7 +316,7 @@
      <!-- onglet aten-->
 
      <!-- onglet toutatice-->
-    <div *ngIf="critereRechercheService.ongletActive=='toutatice'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='toutatice'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
                     <div class="table-responsive">
@@ -358,7 +358,7 @@
     <!-- onglet toutatice-->
 
     <!-- onglet eduConnect-->
-    <div *ngIf="critereRechercheService.ongletActive=='eduConnect'">
+    <div *ngIf="getCritereRechercheService().ongletActive=='eduConnect'">
             <div class="col-sm-12 align-self-center">
                     <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
                     <div class="table-responsive">

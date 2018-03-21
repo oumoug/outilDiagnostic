@@ -33,22 +33,22 @@ export class CritereRechercheComponent implements OnInit {
     this.initOptionProfil();
   }
   initOptionProfil(){
-    this.optionProfils.push("Personnels");
-    this.optionProfils.push("Élève");
-    this.optionProfils.push("Représentants légaux");
+    this.optionProfils.push('Personnels');
+    this.optionProfils.push('Élève');
+    this.optionProfils.push('Représentants légaux');
   }
   
   saveProfil(profil:string){
    
-    if(profil==="Personnels"){
-      this.critereRechercheService.getCritere().profil="personnel";
+    if(profil==='Personnels'){
+      this.critereRechercheService.getCritere().profil='personnel';
      
       this.router.navigate([  this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
-    }else if(profil==="Élève"){
-      this.critereRechercheService.getCritere().profil="eleve";
+    }else if(profil==='Élève'){
+      this.critereRechercheService.getCritere().profil='eleve';
       this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
-    }else if(profil==="Représentants légaux"){
-      this.critereRechercheService.getCritere().profil="representantLegal";
+    }else if(profil==='Représentants légaux'){
+      this.critereRechercheService.getCritere().profil='representantLegal';
       this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
     }
     this.critereRechercheService.setIsSearch(true);
@@ -59,7 +59,7 @@ export class CritereRechercheComponent implements OnInit {
     this.lengthChampsValid=false;
     this.profil=false;
     this.isResultat=false;
-    if(this.critereRechercheService.getCritere().profil!==""){
+    if(this.critereRechercheService.getCritere().profil!==''){
       if(this.valideNbChamps()>=2){
         if(this.valideLengthChamps()){
             this.saveProfil(this.critereRechercheService.getCritere().profil);
@@ -80,32 +80,36 @@ export class CritereRechercheComponent implements OnInit {
   }
   valideNbChamps(){
     let nbchamp=0
-    if(this.critereRechercheService.getCritere().nom !=="" ){
+    if(this.critereRechercheService.getCritere().nom !==''){
       nbchamp=nbchamp+1;
     }
-    if( this.critereRechercheService.getCritere().prenom !== "" ){
+    if( this.critereRechercheService.getCritere().prenom !=='' ){
       nbchamp=nbchamp+1;
     }
-    if(this.critereRechercheService.getCritere().etablissement !== ""){
+    if(this.critereRechercheService.getCritere().etablissement !== ''){
       nbchamp=nbchamp+1;
     }
-    if(this.critereRechercheService.getCritere().mail !== ""){
+    if(this.critereRechercheService.getCritere().mail !== ''){
         nbchamp=nbchamp+1;
     }
     return   nbchamp;
 }
 
   valideLengthChamps(){
-    if(this.critereRechercheService.getCritere().nom !=="" && this.critereRechercheService.getCritere().nom.length<3){
+    if(this.critereRechercheService.getCritere().nom !=='' && this.critereRechercheService.getCritere().nom.length<3){
       return false
-    }else if(this.critereRechercheService.getCritere().prenom !== "" && this.critereRechercheService.getCritere().prenom.length<3){
+    }else if(this.critereRechercheService.getCritere().prenom !== '' && this.critereRechercheService.getCritere().prenom.length<3){
       return false
-    }else if(this.critereRechercheService.getCritere().etablissement !=="" && this.critereRechercheService.getCritere().etablissement.length<3) {
+    }else if(this.critereRechercheService.getCritere().etablissement !=='' && this.critereRechercheService.getCritere().etablissement.length<3) {
         return false
-    }else if(this.critereRechercheService.getCritere().mail !=="" && this.critereRechercheService.getCritere().mail.length<3){
+    }else if(this.critereRechercheService.getCritere().mail !=='' && this.critereRechercheService.getCritere().mail.length<3){
         return false
     }else{
         return true
     }
+  }
+  getCritereRechercheService(){
+    return this.critereRechercheService
+
   }
 }

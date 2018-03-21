@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import {CritereRechercheService} from '../critereRecherche/'
-import {RepresentantLegal} from "./representant-legal.model"
-import {RepresentantLegalService} from "./representant-legal.service"
+import {RepresentantLegal} from './representant-legal.model'
+import {RepresentantLegalService} from './representant-legal.service'
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import {JhiAlertService } from 'ng-jhipster';
-import{Enfant} from "."
+import {Enfant} from '.'
 @Component({
   selector: 'jhi-representant-legal',
   templateUrl: './representant-legal.component.html',
@@ -16,7 +16,7 @@ export class RepresentantLegalComponent implements OnInit {
   subscription:Subscription  
   
   representantLegals:RepresentantLegal[]
-  constructor(private activatedRouter: ActivatedRoute,
+  constructor(
     private router:Router ,
     private representantLegalService:RepresentantLegalService,
     private jhiAlertService:JhiAlertService,
@@ -41,12 +41,12 @@ export class RepresentantLegalComponent implements OnInit {
     }
   }
   searchEleve(enfant:Enfant){
-    this.critereRechercheService.getCritere().profil="eleve";
-    if(enfant.nom!==""){
+    this.critereRechercheService.getCritere().profil='eleve';
+    if(enfant.nom!==''){
       this.critereRechercheService.getCritere().nom=enfant.nom
 
     }
-    if(enfant.prenom!==""){
+    if(enfant.prenom!==''){
       this.critereRechercheService.getCritere().prenom=enfant.prenom
     }
     this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
@@ -57,7 +57,12 @@ export class RepresentantLegalComponent implements OnInit {
   }
   afficheDetail(representantLegal:RepresentantLegal,siDetail:string){
     this.representantLegalService.setRepresentantLegal(representantLegal)
-    this.router.navigate(["representantLegalDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
+    this.router.navigate(['representantLegalDetail'],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
   }
+  getCritereRechercheService(){
+    return this.critereRechercheService
+
+  }
+  
 
 }

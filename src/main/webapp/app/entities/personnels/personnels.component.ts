@@ -3,10 +3,11 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import {CritereRechercheService} from '../critereRecherche/';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
-import {JhiAlertService } from 'ng-jhipster';
-import{Personnel} from "./personnels.model"
-import {PersonnelService} from "./personnel.service"
+import {CritereRechercheModule } from '../critereRecherche/critere-recherche.module'
+import {JhiAlertService } from 'ng-jhipster'
+import {Personnel} from './personnels.model'
+import {PersonnelService} from './personnel.service'
+
 @Component({
   selector: 'jhi-personnels',
   templateUrl: './personnels.component.html',
@@ -17,11 +18,10 @@ export class PersonnelsComponent implements OnInit {
   personnels:Personnel[]
  
   
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(
     private personnelService:PersonnelService,
     private jhiAlertService:JhiAlertService,
-    private critereRechercheService:CritereRechercheService ,
-    private router:Router ) {
+    private critereRechercheService:CritereRechercheService ) {
     this.personnels=[]
    }
 
@@ -43,10 +43,17 @@ export class PersonnelsComponent implements OnInit {
     this.personnelService.setDetail(false);
     this.critereRechercheService.setOngletActive(onglet);
    }
-   afficheDetail(personnel:Personnel,siDetail:string){
+   afficheDetail(personnel:Personnel){
     this.personnelService.setPersonnel(personnel)
-    this.personnelService.setDetail(true);
-    this.router.navigate(["personnelDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
+   
   }
+  getCritereRechercheService(){
+    return this.critereRechercheService
+
+  }
+  getPersonnelService(){
+    return this.personnelService
+  }
+  
 
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import{CritereRecherche} from "../critereRecherche"
+import {CritereRecherche} from '../critereRecherche'
 import { SERVER_API_URL } from '../../app.constants';
 import { Observable } from 'rxjs/Observable';
-import{RepresentantLegal} from "./representant-legal.model"
+import {RepresentantLegal} from './representant-legal.model'
 import {createRequestOption } from '../../shared';
 @Injectable()
 export class RepresentantLegalService {
@@ -14,7 +14,6 @@ export class RepresentantLegalService {
   
   search(critere:CritereRecherche):Observable<HttpResponse<RepresentantLegal[]>>{
     const copy = this.convert(critere);
-      const options = createRequestOption(critere);
      return this.http.post<RepresentantLegal[]>(this.resourceUrl,copy,{ observe: 'response' })
      .map((res:HttpResponse<RepresentantLegal[]>) => this.convertArrayResponse(res));
   }

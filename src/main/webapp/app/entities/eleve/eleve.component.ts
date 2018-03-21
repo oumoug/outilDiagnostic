@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import {CritereRecherche,CritereRechercheService} from '../critereRecherche/'
-import {EleveService} from "./eleve.service"
-import {Eleve} from "./eleve.model"
+import {EleveService} from './eleve.service'
+import {Eleve} from './eleve.model'
 import {JhiAlertService } from 'ng-jhipster';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import {Parent} from "."
+import {Parent} from '.'
 @Component({
   selector: 'jhi-eleve',
   templateUrl: './eleve.component.html',
@@ -34,12 +34,12 @@ export class EleveComponent implements OnInit {
 
   }
   searchRepresentant(representant:Parent){
-    this.critereRechercheService.getCritere().profil="representantLegal";
-    if(representant.nom!==""){
+    this.critereRechercheService.getCritere().profil='representantLegal';
+    if(representant.nom!==''){
       this.critereRechercheService.getCritere().nom=representant.nom
 
     }
-    if(representant.prenom!==""){
+    if(representant.prenom!==''){
       this.critereRechercheService.getCritere().prenom=representant.prenom
     }
     this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
@@ -47,13 +47,16 @@ export class EleveComponent implements OnInit {
   }
   afficheDetail(eleve:Eleve,siDetail:string){
     this.eleveService.setEleve(eleve);
-    this.router.navigate(["eleveDetail"],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
+    this.router.navigate(['eleveDetail'],{ queryParams:{'siDetail':siDetail} , skipLocationChange: true });
   }
   ongletActif(onglet:string){
     this.critereRechercheService.setOngletActive(onglet);
    }
   private onError(error) {
     this.jhiAlertService.error(error.message, null, null);
+  }
+  getCritereRechercheService(){
+    return this.critereRechercheService;
   }
 
 }

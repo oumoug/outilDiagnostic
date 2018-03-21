@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RepresentantLegalDetailComponent,RepresentantLegalComponent,representantLegalRoute} from './';
-import {OutilDiagnosticSharedModule} from "../../shared"
+import {OutilDiagnosticSharedModule} from '../../shared'
 import {RouterModule} from '@angular/router';
-import {CritereRechercheModule } from "../critereRecherche/critere-recherche.module"
-import {RepresentantLegalService} from "./representant-legal.service"
+import {CritereRechercheModule } from '../critereRecherche/critere-recherche.module'
+import {RepresentantLegalService} from './representant-legal.service'
 const ENTITY_STATES = [
   ...representantLegalRoute
   

@@ -4,7 +4,7 @@ import { EleveComponent } from './eleve/eleve.component';
 import { PersonnelsComponent } from './personnels/personnels.component';
 import { RepresentantLegalComponent } from './representant-legal/representant-legal.component';
 import {EleveModule } from './eleve/eleve.module'
-import{ PersonnelsModule} from './personnels/personnels.module'
+import { PersonnelsModule} from './personnels/personnels.module'
 import {RepresantantLegalModule} from './representant-legal/represantant-legal.module'
 
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
