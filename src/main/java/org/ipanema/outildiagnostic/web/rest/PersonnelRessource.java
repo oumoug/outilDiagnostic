@@ -1,8 +1,17 @@
 package org.ipanema.outildiagnostic.web.rest;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.net.URLEncoder;
 import javax.validation.Valid;
@@ -15,7 +24,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.ipanema.outildiagnostic.service.dto.CritereRecherche;
-import org.ipanema.outildiagnostic.service.dto.Record;
+import org.ipanema.outildiagnostic.service.dto.RecordPersonnel;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ipanema.outildiagnostic.service.dto.Personnel;
 
 @RestController
@@ -25,12 +37,106 @@ public class PersonnelRessource{
     private final String urlApi="localhost:/api/v1";
     @PostMapping("/personnels")
     @Timed
-    public ResponseEntity<List<Personnel>> appelWebService(@Valid @RequestBody CritereRecherche critere) throws UnsupportedEncodingException{
+    public ResponseEntity<RecordPersonnel> appelWebService(@Valid @RequestBody CritereRecherche critere) throws IOException{
         String url= formatUrl(critere);
+        JSONArray myResponse;
+        JSONArray resulats;
+        JSONObject resultatSi; 
+        Iterator<?> iterator, iterator2;
+        Object cle, cle1;
+        Object val,val1;
+        Personnel personnel;
+        RecordPersonnel recordPersonnel;
+        JSONArray personnelResumes;
+        JSONObject personnelResume;
+
         log.debug("REST request to get Record : {}", url);
-        
+        URL urlJsonServeur = new URL("http://localhost:3000/api/v1/personnels/search?*");
+        HttpURLConnection conn = (HttpURLConnection) urlJsonServeur.openConnection();
+        conn.setRequestMethod("GET");
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        String systemInf;
+        List<String> tmp;
+        recordPersonnel=new RecordPersonnel();
+         while ((inputLine = in.readLine()) != null) {
+          response.append(inputLine);
+        }
+        in.close();
+        try {
+            myResponse = new JSONArray(response.toString());
+            for(int i=0;i< myResponse.length();i++){
+                resulats=myResponse.getJSONObject(i).getJSONArray("resultats");
+                for (int j=0;j<resulats.length();j++){
+                    resultatSi=resulats.getJSONObject(j);
+                    systemInf="";
+                    for ( iterator = resultatSi.keys(); iterator.hasNext();) {
+                        cle = iterator.next();
+                        val = resultatSi.get(String.valueOf(cle));
+                       
+                        if(String.valueOf(cle).equals("2.25.b1196a4db489417ea343f425a5033060.1")){
+
+                            systemInf=String.valueOf(val);
+                             recordPersonnel.getMenu().add(String.valueOf(val));
+                             // donnée résumé plusieurs personnel
+                        }else if(String.valueOf(cle).equals("2.25.b1196a4db489417ea343f425a5033060.2")){
+                            personnelResumes= (JSONArray)val;
+                            for(int k=0;k< personnelResumes.length();k++){
+                                personnel=new Personnel();
+                                personnelResume= personnelResumes.getJSONObject(k);
+                                for ( iterator2 = personnelResume.keys(); iterator2.hasNext();) {
+                                    cle1 = iterator2.next();
+                                    val1 =personnelResume.get(String.valueOf(cle1));
+                                  
+                                    if(String.valueOf(cle1).equals("2.5.4.4")){
+                                        tmp=new ArrayList<String>();
+                                        tmp.add(String.valueOf(val1));
+                                        personnel.getPersonnelResume().put("Nom",tmp);
+
+                                    }else if(String.valueOf(cle1).equals("2.5.6.1")){
+                                        tmp=new ArrayList<String>();
+                                        tmp.add(String.valueOf(val1)); 
+                                        personnel.getPersonnelResume().put("Prénom",tmp);
+                                    }else if(String.valueOf(cle1).equals("2.25.b1196a4db489417ea343f425a5033060.5")){
+                                        tmp=new ArrayList<String>();
+                                        tmp.add(String.valueOf(val1)); 
+                                        personnel.getPersonnelResume().put("Date de naissance",tmp);
+
+
+                                    }else if(String.valueOf(cle1).equals("2.25.b1196a4db489417ea343f425a5033060.8")){
+                                        tmp=new ArrayList<String>();
+                                        tmp.add(String.valueOf(val1)); 
+                                        personnel.getPersonnelResume().put("Établissement",tmp);
+
+                                    }
+                                  
+                                }
+                                personnel.setSystemeInf(systemInf);
+                                recordPersonnel.getResultat().add(personnel);
+
+
+                            }
+
+
+                        }
+                      
+                       
+                    }
+
+                }
+
+            }
+            
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+            e.printStackTrace();
+            log.debug("erreur creation objet", e);
+		}
+    
+       
         // appel webService
-        List<Personnel> entities = new ArrayList<Personnel>();
+       /* List<Personnel> entities = new ArrayList<Personnel>();
         List<String> infoCom=new ArrayList<String>();
         List<String> infoCom1=new ArrayList<String>();
         infoCom.add("Libellé discipline : ARTS PLAST");
@@ -157,8 +263,8 @@ public class PersonnelRessource{
        
         entities.add(personnel1);
         entities.add(personnel2);
-        entities.add(personnel3);
-        return  new ResponseEntity<>(entities, HttpStatus.OK);
+        entities.add(personnel3);*/
+        return  new ResponseEntity<>(recordPersonnel, HttpStatus.OK);
     }
     public String formatUrl(CritereRecherche critere) throws UnsupportedEncodingException{
         String url=urlApi+"personnels";
