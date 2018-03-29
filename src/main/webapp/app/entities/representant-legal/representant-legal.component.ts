@@ -25,7 +25,6 @@ export class RepresentantLegalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.critereRechercheService.loadProfil(  this.critereRechercheService.getCritere().profil)
    this.representantLegalService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<RepresentantLegal[]>) => this.setRepresentantLegals(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));

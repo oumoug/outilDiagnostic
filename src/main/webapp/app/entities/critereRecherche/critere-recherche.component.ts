@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 
 
+
 @Component({
   selector: 'jhi-critere-recherche',
   templateUrl: './critere-recherche.component.html',
@@ -14,14 +15,14 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class CritereRechercheComponent implements OnInit {
   subscription:Subscription
-  optionProfils:string[]
+  optionProfils:{}
   isResultat:Boolean
   isErreur:Boolean
   lengthChampsValid:Boolean
   profil:Boolean
   
   constructor(private critereRechercheService:CritereRechercheService,  private router:Router,private activatedRoute:ActivatedRoute) { 
-    this.optionProfils=[]
+    this.optionProfils={'personnel':'Personnels','eleve':'Élève','representantLegal':'Représentants légaux'}
     this.isResultat=false;
     this.isErreur=false;
     this.lengthChampsValid=false;
@@ -30,30 +31,13 @@ export class CritereRechercheComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initOptionProfil();
-  }
-  initOptionProfil(){
-    this.optionProfils.push('Personnels');
-    this.optionProfils.push('Élève');
-    this.optionProfils.push('Représentants légaux');
+    
   }
   
-  saveProfil(profil:string){
-   
-    if(profil==='Personnels'){
-      this.critereRechercheService.getCritere().profil='personnel';
-     
-      this.router.navigate([  this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
-    }else if(profil==='Élève'){
-      this.critereRechercheService.getCritere().profil='eleve';
-      this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
-    }else if(profil==='Représentants légaux'){
-      this.critereRechercheService.getCritere().profil='representantLegal';
-      this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
-    }
-    this.critereRechercheService.setIsSearch(true);
-
+  getKeyOptionProfil(){
+    return Array.from(Object.keys(this.optionProfils));
   }
+  
   search(){
     this.isErreur=false;
     this.lengthChampsValid=false;
@@ -62,8 +46,9 @@ export class CritereRechercheComponent implements OnInit {
     if(this.critereRechercheService.getCritere().profil!==''){
       if(this.valideNbChamps()>=2){
         if(this.valideLengthChamps()){
-            this.saveProfil(this.critereRechercheService.getCritere().profil);
-            this.isResultat=true;
+          this.router.navigate([  this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
+          this.critereRechercheService.setIsSearch(true); 
+          this.isResultat=true;
          
         }else{
           this.lengthChampsValid=true;

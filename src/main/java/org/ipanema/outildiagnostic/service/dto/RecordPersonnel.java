@@ -5,41 +5,40 @@ import java.util.List;
 import java.util.Map;
 
 public class RecordPersonnel{
-    private List<Personnel> resultat;
-    private List<String> menu;
+    private List<Personnel> personnels;
+    private List<String> menus;
     public RecordPersonnel(){
-        this.menu=new ArrayList<String>();
-        this.resultat=new ArrayList<Personnel>();
+        this.menus=new ArrayList<String>();
+        this.personnels=new ArrayList<Personnel>();
 
     }
     /**
      * @return the resultat
      */
-    public List<Personnel> getResultat() {
-        return resultat;
+    public List<Personnel> getPersonnels() {
+        return personnels;
     }
     /**
      * @return the menu
      */
-    public List<String> getMenu() {
-        return menu;
+    public List<String> getMenus() {
+        return menus;
     }
     /**
-     * @param menu the menu to set
+     * @param menus the menu to set
      */
-    public void setMenu(List<String> menu) {
-        this.menu = menu;
+    public void setMenus(List<String> menu) {
+        this.menus = menu;
     }
     /**
      * @param resultat the resultat to set
      */
-    public void setResultat(List<Personnel> resultat) {
-        this.resultat = resultat;
+    public void setPersonnels(List<Personnel> resultat) {
+        this.personnels = resultat;
     }
     public String toString(){
         return "RecordPersonnel{"+
-        "resultat='"+getResultat()+"'"+
-        ",menu='"+getMenu()+"'}";
-
+        "resultat='"+getPersonnels()+"'"+
+        ",menus='"+getMenus()+"'}";
     }
 }

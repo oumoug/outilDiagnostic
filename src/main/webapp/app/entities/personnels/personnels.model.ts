@@ -1,44 +1,7 @@
 
-import { BaseEntity } from './../../shared';
-export class Personnel implements BaseEntity {
-    constructor(
-    nomSirhen:string,
-    prenomSirhen:string,
-    dateNaissanceSirhen:string,
-    positionSirhen:string,
-    libelleSirhen:string,
-    nomEpp:string,
-    prenomEpp:string,
-    dateNaissanceEpp:string,
-    positionEpp:string,
-    libelleEpp:string,
-    infoCompEpp:string[],
-    gradeEpp:string,
-    numenEpp:string,
-    fonctionEpp:string,
-    nomEppPrive:string,
-    prenomEppPrive:string,
-    dateNaissanceEppPrive:string,
-    positionEppPrive:string,
-    libelleEppPrive:string,
-    infoCompEppPrive:string[],
-    gradeEppPrive:string,
-    numenEppPrive:string,
-    nomAaf:string,
-    prenomAaf:string,
-    dateNaissanceAaf:string,
-    identifiantAaf:string,
-    etablissementAaf:string,
-    fonctionAaf:string,
-    villeAaf:string,
-    disciplineAaf:string,
-    baseGestionAaf:string,
-    nomAgora:string,
-    prenomAgora:string,
-    dateNaissanceAgora:string,
-    positionAgora:string,
-    libelleAgora:string,
-    infoCompAgora:string[]
-)
-    {}
+
+export interface Personnel{
+    systemeInf: string;
+    personnelResume: Map<String,String[]>  ;
+    personnelDetaille: Map<String,String[]>;
 }

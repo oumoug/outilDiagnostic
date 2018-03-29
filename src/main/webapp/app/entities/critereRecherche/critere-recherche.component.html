@@ -32,7 +32,7 @@
               <div class="form-group">
                 <label jhiTranslate="outilDiagnostic.critereRecherche.profil" for="field_profil"></label>
                 <select class="form-control" id="field_profil" name="profil" [(ngModel)]="getCritereRechercheService().critereRecherche.profil" required >
-                  <option *ngFor="let profilOption of optionProfils" [ngValue]="profilOption">{{profilOption}}</option>
+                  <option *ngFor="let keyOptionProfil of getKeyOptionProfil()" [ngValue]="keyOptionProfil">{{optionProfils[keyOptionProfil]}}</option>
                 </select>
               </div>
             </div>
@@ -78,6 +78,5 @@
               <span jhiTranslate="outilDiagnostic.critereRecherche.doSearch"></span>
           </div>
       </div>
-    </div>
-    
+    </div>  
 </div>

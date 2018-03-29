@@ -1,6 +1,5 @@
 package org.ipanema.outildiagnostic.service.dto;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +54,12 @@ public class Personnel{
     public void setSystemeInf(String systemeInf) {
         this.systemeInf = systemeInf;
     }
-
+    public String toString(){
+        return " Personnel{"+
+        "systemeInf='"+getSystemeInf()+"'"+
+        ",personnelResume='"+getPersonnelResume()+"'"+
+        ", personnelDetaille='"+getPersonnelDetaille()+"'}";
+    }
 
     
 }

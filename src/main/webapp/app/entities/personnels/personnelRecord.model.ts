@@ -1,6 +1,6 @@
 import {Personnel} from  '.'
 export interface PersonnelRecord{
-     menu:string[]
+     menus:string[]
      personnels:Personnel[]
 
 

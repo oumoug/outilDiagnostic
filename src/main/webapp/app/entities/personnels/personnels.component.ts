@@ -7,6 +7,7 @@ import {CritereRechercheModule } from '../critereRecherche/critere-recherche.mod
 import {JhiAlertService } from 'ng-jhipster'
 import {Personnel} from './personnels.model'
 import {PersonnelService} from './personnel.service'
+import {PersonnelRecord} from './personnelRecord.model'
 
 @Component({
   selector: 'jhi-personnels',
@@ -16,6 +17,7 @@ import {PersonnelService} from './personnel.service'
 export class PersonnelsComponent implements OnInit {
   subscription:Subscription  
   personnels:Personnel[]
+  personnelRecord:PersonnelRecord
  
   
   constructor(
@@ -23,18 +25,18 @@ export class PersonnelsComponent implements OnInit {
     private jhiAlertService:JhiAlertService,
     private critereRechercheService:CritereRechercheService ) {
     this.personnels=[]
+    this.personnelRecord={menus:[],personnels:[]}
    }
 
   ngOnInit() {
-    this.critereRechercheService.loadProfil(this.critereRechercheService.getCritere().profil)
+   // this.critereRechercheService.loadProfil(this.critereRechercheService.getCritere().profil)
     this.personnelService.search(this.critereRechercheService.getCritere()).subscribe(
-      (res: HttpResponse<Personnel[]>) => this.setPersonnels(res.body),
+      (res: HttpResponse<PersonnelRecord>) => this.setPersonnelRecord(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
   }
-  setPersonnels(data){
-    for (let i = 0; i < data.length; i++) {
-      this.personnels.push(data[i]);
-    }
+  setPersonnelRecord(data){
+   this.personnelRecord.menus=data.menus;
+   this.personnelRecord.personnels=data.personnels
   }
   private onError(error) {
     this.jhiAlertService.error(error.message, null, null);
@@ -54,6 +56,18 @@ export class PersonnelsComponent implements OnInit {
   getPersonnelService(){
     return this.personnelService
   }
-  
+  getkeys(myMap:Map<string,string[]>){
+
+   return Array.from(Object.keys(myMap));
+  }
+  getPersonnelSystemeInf(systemInf:string){
+    for( let personnnel of this.personnelRecord.personnels){
+      if(personnnel.systemeInf===systemInf){
+        return personnnel
+
+      }
+
+    }
+  }
 
 }

@@ -22,7 +22,6 @@ export class EleveComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.critereRechercheService.loadProfil(this.critereRechercheService.getCritere().profil)
     this.eleveService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<Eleve[]>) => this.setEleves(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));

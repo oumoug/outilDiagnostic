@@ -1,0 +1,125 @@
+{
+        "personnel": [
+             
+                {"systemeInf":"ACA",
+                    "resume": 
+                    {
+                        "2.5.4.4":"​Nom",
+                        "2.5.6.1":"Prénom",
+                        "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "2.25.b1196a4db489417ea343f425a5033060.6":"Profil national",
+                       
+                        "position":"Position",
+                        "libelle":"Libellé"
+        
+                    },
+                    "detaille":
+                    {
+                        "2.5.4.4":"​Nom",
+                        "2.5.6.1":"Prénom",
+                        "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "0.9.2342.19200300.100.1.3":"Adresse de messagerie",
+                        "2.25.b1196a4db489417ea343f425a5033060.8":"Liste des établissements",
+                        "2.5.4.49":"Identifiant entrée",
+                        "2.25.b1196a4db489417ea343f425a5033060.11":"Profil organisationnel",
+                        "2.5.4.12":"Titre"
+                   } 
+                }
+            ,
+           {
+            "systemeInf":"TOUTATICE",
+                    "resume": 
+                    {
+                        "2.5.4.4":"​Nom",
+                        "2.5.6.1":"Prénom",
+                        "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "0.9.2342.19200300.100.1.3":"Adresse de messagerie",
+                        "position":"Position",
+                        "libelle":"Libellé",
+                        "infoComp":"Informations complementaires",
+                        "grade":"Grade",
+                        "numen":"Numen",
+                        "fonction":"Fonction"
+                    },
+                    "detaille":
+                    {
+                        "2.5.4.4":"​Nom",
+                        "2.5.6.1":"Prénom",
+                        "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "0.9.2342.19200300.100.1.3":"Adresse de messagerie",
+                        "2.25.b1196a4db489417ea343f425a5033060.8":"Liste des établissements",
+                        "2.5.4.49":"Identifiant entrée",
+                        "2.25.b1196a4db489417ea343f425a5033060.11":"Profil organisationnel",
+                        "2.5.4.12":"Titre"
+
+        
+                   }
+                
+               },
+            
+                
+                {
+                    "systemeInf":"tableauEppPrive",
+                    "resume": 
+                    {
+                        "2.5.4.4":"​Nom",
+                        "2.5.6.1":"Prénom",
+                        "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "position":"Position",
+                        "libelle":"Libellé",
+                        "infoComp":"Informations complementaires",
+                        "grade":"Grade",
+                        "numen":"Numen"
+                     },
+                     "detaille":
+                    {
+                        "2.5.4.4":"​Nom",
+                        "2.5.6.1":"Prénom",
+                        "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "0.9.2342.19200300.100.1.3":"Adresse de messagerie",
+                        "2.25.b1196a4db489417ea343f425a5033060.8":"Liste des établissements"
+        
+                   }
+                }
+            ,
+            {
+                "systemeInf":"tableauAaf",
+                 "resume": 
+                  {
+                    "2.5.4.4":"​Nom",
+                    "2.5.6.1":"Prénom",
+                    "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                    "identifiant":"Identifiant",
+                    "etablissement":"Établissement",
+                    "fonction":"Fonction",
+                    "ville":"Ville",
+                    "discipline":"Discipline",
+                    "baseGestion":"Base de gestion"
+                  },
+                 "detaille":
+                  {
+                    "2.5.4.4":"​Nom",
+                    "2.5.6.1":"Prénom",
+                    "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                    "0.9.2342.19200300.100.1.3":"Adresse de messagerie",
+                    "2.25.b1196a4db489417ea343f425a5033060.8":"Liste des établissements"
+    
+                 }
+                },
+           
+                {
+                    "systemeInf":"tableauAgora",
+                    "resume": 
+                    {
+                    "2.5.4.4":"​Nom",
+                    "2.5.6.1":"Prénom",
+                    "2.25.b1196a4db489417ea343f425a5033060.5":"Date de naissance",
+                        "position":"Position",
+                        "libelle":"Libellé",
+                        "infoComp":"Informations complementaires"
+                    }
+
+                }
+            
+        ]
+}
