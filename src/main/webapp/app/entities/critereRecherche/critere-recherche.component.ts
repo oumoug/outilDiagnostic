@@ -20,7 +20,8 @@ export class CritereRechercheComponent implements OnInit {
   isErreur:Boolean
   lengthChampsValid:Boolean
   profil:Boolean
-  
+  loulou:string[]
+  rechercheRepresantant:CritereRecherche
   constructor(private critereRechercheService:CritereRechercheService,  private router:Router,private activatedRoute:ActivatedRoute) { 
     this.optionProfils={'personnel':'Personnels','eleve':'Élève','representantLegal':'Représentants légaux'}
     this.isResultat=false;
@@ -31,6 +32,23 @@ export class CritereRechercheComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
+     if(params!==undefined){
+          this.loulou=params['profil']
+        /* this.rechercheRepresantant.profil=params['profil']
+          this.rechercheRepresantant.nom=params['nom']
+          this.rechercheRepresantant.prenom=params['prenom']*/
+          if(params['nom']!==undefined){
+            this.critereRechercheService.getCritere().nom=params['nom']
+            }
+          if(params['prenom']!==undefined){this.critereRechercheService.getCritere().prenom=params['prenom']}
+          if(params['profil']!==undefined){this.critereRechercheService.getCritere().profil=params['profil']}
+          this.router.navigate([ this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
+
+    }
+  }
+  )
+
     
   }
   

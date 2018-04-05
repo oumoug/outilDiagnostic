@@ -1,435 +1,75 @@
 package org.ipanema.outildiagnostic.service.dto;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Eleve{
-    private String nomSiecle;
-    private String  prenomSiecle;
-    private String  identifiantSiecle;
-    private String dateNaissanceSiecle;
-    private String etablissementSiecle;
-    private List<Parent> representantLegalSiecle;
-    private String nomAaf;
-    private String prenomAaf;
-    private String identifiantAaf;
-    private String dateNaissanceAaf;
-    private String etablissementAaf;
-    private String classeAaf;
-    private String nomToutatice;
-    private String prenomToutatice;
-    private String identifiantToutatice;
-    private String mailToutatice;
-    private String etatCompteToutatice;
-    private String lastConToutatice;
-    private String nomEduconnect;
-    private String prenomEduconnect;
-    private String identifiantEduconnect;
-    private String mailEduconnect;
-    private String etatCompteEduconnect;
-    private String lastConEduconnect;
-    private String nomAten;
-    private String prenomAten;
-    private String  identifiantAten;
-    private String dateNaissanceAten;
-    private String etablissementAten;
-    private List<Parent> representantLegalAten;
+    private String systemeInf;
+    private Map<String, List<String>>  eleveResume;
+    private Map<String, List<String>>  eleveDetaille;
+    private List<Parent> representant;
     public Eleve(){
-        this.representantLegalSiecle=new ArrayList<Parent>();
-        this.representantLegalAten=new ArrayList<Parent>();
+        this.eleveDetaille=new HashMap<String, List<String>>();
+        this.eleveResume=new HashMap<String, List<String>>();
+        this.representant=new ArrayList<Parent>();
+
     }
     /**
-     * @return the representantLegalAten
+     * @return the representant
      */
-    public List<Parent> getRepresentantLegalAten() {
-        return representantLegalAten;
+    public List<Parent> getRepresentant() {
+        return representant;
     }
     /**
-     * @return the represantantLegalSiecle
+     * @return the eleveResume
      */
-    public List<Parent> getRepresentantLegalSiecle() {
-        return representantLegalSiecle;
+    public Map<String, List<String>> getEleveResume() {
+        return eleveResume;
     }
     /**
-     * @return the prenomToutatice
+     * @return the systemeInf
      */
-    public String getPrenomToutatice() {
-        return prenomToutatice;
+    public String getSystemeInf() {
+        return systemeInf;
     }
     /**
-     * @return the prenomSiecle
+     * @return the eleveDetaille
      */
-    public String getPrenomSiecle() {
-        return prenomSiecle;
+    public Map<String, List<String>> getEleveDetaille() {
+        return eleveDetaille;
     }
     /**
-     * @return the prenomEduconnect
+     * @param eleveDetaille the eleveDetaille to set
      */
-    public String getPrenomEduconnect() {
-        return prenomEduconnect;
+    public void setEleveDetaille(Map<String, List<String>> eleveDetaille) {
+        this.eleveDetaille = eleveDetaille;
     }
     /**
-     * @return the prenomAten
+     * @param eleveResume the eleveResume to set
      */
-    public String getPrenomAten() {
-        return prenomAten;
+    public void setEleveResume(Map<String, List<String>> eleveResume) {
+        this.eleveResume = eleveResume;
     }
     /**
-     * @return the prenomAaf
+     * @param systemeInf the systemeInf to set
      */
-    public String getPrenomAaf() {
-        return prenomAaf;
+    public void setSystemeInf(String systemeInf) {
+        this.systemeInf = systemeInf;
     }
     /**
-     * @return the nomToutatice
+     * @param representant the representant to set
      */
-    public String getNomToutatice() {
-        return nomToutatice;
+    public void setRepresentant(List<Parent> representant) {
+        this.representant = representant;
     }
-    /**
-     * @return the nomSiecle
-     */
-    public String getNomSiecle() {
-        return nomSiecle;
-    }
-    /**
-     * @return the nomEduconnect
-     */
-    public String getNomEduconnect() {
-        return nomEduconnect;
-    }
-    /**
-     * @return the nomAten
-     */
-    public String getNomAten() {
-        return nomAten;
-    }
-    /**
-     * @return the nomAaf
-     */
-    public String getNomAaf() {
-        return nomAaf;
-    }
-    /**
-     * @return the mailToutatice
-     */
-    public String getMailToutatice() {
-        return mailToutatice;
-    }
-    /**
-     * @return the mailEduconnect
-     */
-    public String getMailEduconnect() {
-        return mailEduconnect;
-    }
-    /**
-     * @return the lastConToutatice
-     */
-    public String getLastConToutatice() {
-        return lastConToutatice;
-    }
-    /**
-     * @return the lastConEduconnect
-     */
-    public String getLastConEduconnect() {
-        return lastConEduconnect;
-    }
-    /**
-     * @return the identifiantToutatice
-     */
-    public String getIdentifiantToutatice() {
-        return identifiantToutatice;
-    }
-    /**
-     * @return the identifiantSiecle
-     */
-    public String getIdentifiantSiecle() {
-        return identifiantSiecle;
-    }
-    /**
-     * @return the identifiantEduconnect
-     */
-    public String getIdentifiantEduconnect() {
-        return identifiantEduconnect;
-    }
-    /**
-     * @return the identifiantAten
-     */
-    public String getIdentifiantAten() {
-        return identifiantAten;
-    }
-    /**
-     * @return the identifiantAaf
-     */
-    public String getIdentifiantAaf() {
-        return identifiantAaf;
-    }
-    /**
-     * @return the etatCompteToutatice
-     */
-    public String getEtatCompteToutatice() {
-        return etatCompteToutatice;
-    }
-    /**
-     * @return the etatCompteEduconnect
-     */
-    public String getEtatCompteEduconnect() {
-        return etatCompteEduconnect;
-    }
-    /**
-     * @return the etablissementSiecle
-     */
-    public String getEtablissementSiecle() {
-        return etablissementSiecle;
-    }
-    /**
-     * @return the etablissementAten
-     */
-    public String getEtablissementAten() {
-        return etablissementAten;
-    }
-    /**
-     * @return the etablissementAaf
-     */
-    public String getEtablissementAaf() {
-        return etablissementAaf;
-    }
-    /**
-     * @return the dateNaissanceSiecle
-     */
-    public String getDateNaissanceSiecle() {
-        return dateNaissanceSiecle;
-    }
-    /**
-     * @return the dateNaissanceAten
-     */
-    public String getDateNaissanceAten() {
-        return dateNaissanceAten;
-    }
-    /**
-     * @return the classeAaf
-     */
-    public String getClasseAaf() {
-        return classeAaf;
-    }
-    /**
-     * @return the dateNaissanceAaf
-     */
-    public String getDateNaissanceAaf() {
-        return dateNaissanceAaf;
-    }
-    /**
-     * @param classeAaf the classeAaf to set
-     */
-    public void setClasseAaf(String classeAaf) {
-        this.classeAaf = classeAaf;
-    }
-    /**
-     * @param dateNaissanceAaf the dateNaissanceAaf to set
-     */
-    public void setDateNaissanceAaf(String dateNaissanceAaf) {
-        this.dateNaissanceAaf = dateNaissanceAaf;
-    }
-    /**
-     * @param dateNaissanceAten the dateNaissanceAten to set
-     */
-    public void setDateNaissanceAten(String dateNaissanceAten) {
-        this.dateNaissanceAten = dateNaissanceAten;
-    }
-    /**
-     * @param dateNaissanceSiecle the dateNaissanceSiecle to set
-     */
-    public void setDateNaissanceSiecle(String dateNaissanceSiecle) {
-        this.dateNaissanceSiecle = dateNaissanceSiecle;
-    }
-    /**
-     * @param etablissementAaf the etablissementAaf to set
-     */
-    public void setEtablissementAaf(String etablissementAaf) {
-        this.etablissementAaf = etablissementAaf;
-    }
-    /**
-     * @param etablissementAten the etablissementAten to set
-     */
-    public void setEtablissementAten(String etablissementAten) {
-        this.etablissementAten = etablissementAten;
-    }
-    /**
-     * @param etablissementSiecle the etablissementSiecle to set
-     */
-    public void setEtablissementSiecle(String etablissementSiecle) {
-        this.etablissementSiecle = etablissementSiecle;
-    }
-    /**
-     * @param etatCompteEduconnect the etatCompteEduconnect to set
-     */
-    public void setEtatCompteEduconnect(String etatCompteEduconnect) {
-        this.etatCompteEduconnect = etatCompteEduconnect;
-    }
-    /**
-     * @param etatCompteToutatice the etatCompteToutatice to set
-     */
-    public void setEtatCompteToutatice(String etatCompteToutatice) {
-        this.etatCompteToutatice = etatCompteToutatice;
-    }
-    /**
-     * @param identifiantAaf the identifiantAaf to set
-     */
-    public void setIdentifiantAaf(String identifiantAaf) {
-        this.identifiantAaf = identifiantAaf;
-    }
-    /**
-     * @param identifiantAten the identifiantAten to set
-     */
-    public void setIdentifiantAten(String identifiantAten) {
-        this.identifiantAten = identifiantAten;
-    }
-    /**
-     * @param identifiantEduconnect the identifiantEduconnect to set
-     */
-    public void setIdentifiantEduconnect(String identifiantEduconnect) {
-        this.identifiantEduconnect = identifiantEduconnect;
-    }
-    /**
-     * @param identifiantSiecle the identifiantSiecle to set
-     */
-    public void setIdentifiantSiecle(String identifiantSiecle) {
-        this.identifiantSiecle = identifiantSiecle;
-    }
-    /**
-     * @param identifiantToutatice the identifiantToutatice to set
-     */
-    public void setIdentifiantToutatice(String identifiantToutatice) {
-        this.identifiantToutatice = identifiantToutatice;
-    }
-    /**
-     * @param lastConEduconnect the lastConEduconnect to set
-     */
-    public void setLastConEduconnect(String lastConEduconnect) {
-        this.lastConEduconnect = lastConEduconnect;
-    }
-    /**
-     * @param lastConToutatice the lastConToutatice to set
-     */
-    public void setLastConToutatice(String lastConToutatice) {
-        this.lastConToutatice = lastConToutatice;
-    }
-    /**
-     * @param mailEduconnect the mailEduconnect to set
-     */
-    public void setMailEduconnect(String mailEduconnect) {
-        this.mailEduconnect = mailEduconnect;
-    }
-    /**
-     * @param mailToutatice the mailToutatice to set
-     */
-    public void setMailToutatice(String mailToutatice) {
-        this.mailToutatice = mailToutatice;
-    }
-    /**
-     * @param nomAaf the nomAaf to set
-     */
-    public void setNomAaf(String nomAaf) {
-        this.nomAaf = nomAaf;
-    }
-    /**
-     * @param nomAten the nomAten to set
-     */
-    public void setNomAten(String nomAten) {
-        this.nomAten = nomAten;
-    }
-    /**
-     * @param nomEduconnect the nomEduconnect to set
-     */
-    public void setNomEduconnect(String nomEduconnect) {
-        this.nomEduconnect = nomEduconnect;
-    }
-    /**
-     * @param nomSiecle the nomSiecle to set
-     */
-    public void setNomSiecle(String nomSiecle) {
-        this.nomSiecle = nomSiecle;
-    }
-    /**
-     * @param nomToutatice the nomToutatice to set
-     */
-    public void setNomToutatice(String nomToutatice) {
-        this.nomToutatice = nomToutatice;
-    }
-    /**
-     * @param prenomAaf the prenomAaf to set
-     */
-    public void setPrenomAaf(String prenomAaf) {
-        this.prenomAaf = prenomAaf;
-    }
-    /**
-     * @param prenomAten the prenomAten to set
-     */
-    public void setPrenomAten(String prenomAten) {
-        this.prenomAten = prenomAten;
-    }
-    /**
-     * @param prenomEduconnect the prenomEduconnect to set
-     */
-    public void setPrenomEduconnect(String prenomEduconnect) {
-        this.prenomEduconnect = prenomEduconnect;
-    }
-    /**
-     * @param prenomSiecle the prenomSiecle to set
-     */
-    public void setPrenomSiecle(String prenomSiecle) {
-        this.prenomSiecle = prenomSiecle;
-    }
-    /**
-     * @param prenomToutatice the prenomToutatice to set
-     */
-    public void setPrenomToutatice(String prenomToutatice) {
-        this.prenomToutatice = prenomToutatice;
-    }
-    /**
-     * @param represantantLegalSiecle the represantantLegalSiecle to set
-     */
-    public void setRepresentantLegalSiecle(List<Parent> represantantLegalSiecle) {
-        this.representantLegalSiecle = represantantLegalSiecle;
-    }
-    /**
-     * @param representantLegalAten the representantLegalAten to set
-     */
-    public void setRepresentantLegalAten(List<Parent> representantLegalAten) {
-        this.representantLegalAten = representantLegalAten;
-    }
-    @Override
-    public String toString() {
-        return "Eleve{"+
-        "nomSiecle='"+getNomSiecle()+"'"+
-        ",prenomSiecle='"+getPrenomSiecle()+"'"+
-        ",identifiantSiecle='"+getIdentifiantSiecle()+"'"+
-        ",dateNaissanceSiecle='"+getDateNaissanceSiecle()+"'"+
-        ",etablissementSiecle='"+getEtablissementSiecle()+"'"+
-        ",representantLegalSiecle='"+getRepresentantLegalSiecle()+"'"+
-        ",nomAaf='"+getNomAaf()+"'"+
-        ",prenomAaf='"+getPrenomAaf()+"'"+
-        ",identifiantAaf='"+getIdentifiantAaf()+"'"+
-        ",dateNaissanceAaf='"+getDateNaissanceAaf()+"'"+
-        ",etablissementAaf='"+getEtablissementAaf()+"'"+
-        ",classeAaf='"+getClasseAaf()+"'"+
-        ",nomToutatice='"+getNomToutatice()+"'"+
-        ",prenomToutatice='"+getPrenomToutatice()+"'"+
-        ",identifiantToutatice='"+getIdentifiantToutatice()+"'"+
-        ",mailToutatice='"+getMailToutatice()+"'"+
-        ",etatCompteToutatice='"+getEtatCompteToutatice()+"'"+
-        ",lastConToutatice='"+getLastConToutatice()+"'"+
-        ",nomEduconnect='"+getNomEduconnect()+"'"+
-        ",prenomEduconnect='"+getPrenomEduconnect()+"'"+
-        ",identifiantEduconnect='"+getIdentifiantEduconnect()+"'"+
-        ",mailEduconnect='"+getMailEduconnect()+"'"+
-        ",etatCompteEduconnect='"+getEtatCompteEduconnect()+"'"+
-        ",lastConEduconnect='"+getLastConEduconnect()+"'"+
-        ",nomAten='"+getNomAten()+"'"+
-        ",prenomAten='"+getPrenomAten()+"'"+
-        ",identifiantAten='"+getIdentifiantAten()+"'"+
-        ",dateNaissanceAten='"+getDateNaissanceAten()+"'"+
-        ",etablissementAten='"+getEtablissementAten()+"'"+
-        ",representantLegalAten='"+getRepresentantLegalAten()+"'}";
+    public String toString(){
+        return " Eleve{"+
+        "systemeInf='"+getSystemeInf()+"'"+
+        ",eleveResume="+getEleveResume()+
+        ",eleveDetaille="+getEleveDetaille()+
+        ",representant="+getRepresentant()+"}";
+
     }
     
 }

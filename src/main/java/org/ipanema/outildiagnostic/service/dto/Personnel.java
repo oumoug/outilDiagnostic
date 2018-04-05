@@ -57,8 +57,8 @@ public class Personnel{
     public String toString(){
         return " Personnel{"+
         "systemeInf='"+getSystemeInf()+"'"+
-        ",personnelResume='"+getPersonnelResume()+"'"+
-        ", personnelDetaille='"+getPersonnelDetaille()+"'}";
+        ",personnelResume="+getPersonnelResume()+
+        ", personnelDetaille="+getPersonnelDetaille()+"}";
     }
 
     

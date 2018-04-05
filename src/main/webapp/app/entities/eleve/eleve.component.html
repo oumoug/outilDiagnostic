@@ -1,383 +1,145 @@
 
 <jhi-critere-recherche></jhi-critere-recherche>
 <div class=" container-fluid mb-3">
-    <ul class="nav nav-tabs nav-justified">    
-      <!--- Menu pour une recherche d'éléve-->  
-      <li class="nav-item">
-          <a  [class.active]="getCritereRechercheService().ongletActive=='resume'" [class.nav-link]='true' (click)="ongletActif('resume')"   jhiTranslate="outilDiagnostic.critereRecherche.resume"></a>
-        </li>
-      <li class="nav-item" >
-          <a [class.active]="getCritereRechercheService().ongletActive=='siecle'" [class.nav-link]='true'  (click)="ongletActif('siecle')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></a>
-      </li>
-      <li class="nav-item">
-            <a  [class.active]="getCritereRechercheService().ongletActive=='aaf'" [class.nav-link]='true' (click)="ongletActif('aaf')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></a>
-      </li>
-      <li class="nav-item" >
-            <a  [class.active]="getCritereRechercheService().ongletActive=='toutatice'" [class.nav-link]='true' (click)="ongletActif('toutatice')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></a>
-      </li>
-      <li class="nav-item">
-          <a  [class.active]="getCritereRechercheService().ongletActive=='eduConnect'" [class.nav-link]='true' (click)="ongletActif('eduConnect')"  jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></a>
-      </li>
-      <li class="nav-item">
-        <a  [class.active]="getCritereRechercheService().ongletActive=='aten'" [class.nav-link]='true' (click)="ongletActif('aten')"   jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></a>
-      </li>
-    </ul>
+        <ul class="nav nav-tabs nav-justified">    
+               <!--- menu pour une recherche de personnel-->  
+               <ng-container  *ngFor="let menu  of eleveRecord.menus">
+                <li class="nav-item" >
+                    <a [class.active]="getCritereRechercheService().ongletActive==menu" [class.nav-link]='true' (click)="ongletActif(menu)">{{menu}}</a>
+                  </li>
+               </ng-container>
+         
+         
+      </ul>
 </div>
-<div class="container-fluid  mb-3">
-    <!-- onglet resume-->
-        <div *ngIf="getCritereRechercheService().ongletActive=='resume'">
-            <div class="row">
-                <!--  <div class="col-sm-12">-->
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
-                                   <!--  <th></th>-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let eleve of eleves">
-                                    <ng-template [ngIf]="eleve.nomSiecle!=null  || eleve.prenomSiecle!=null || eleve.identifiantSiecle!=null || eleve.dateNaissanceSiecle!=null || eleve.etablissementSiecle!=null || eleve.representantLegalSiecle.length!=0">
-                                        <td>{{eleve.nomSiecle}}</td>
-                                        <td>{{eleve.prenomSiecle}}</td>
-                                        <td>{{eleve.identifiantSiecle}}</td>
-                                        <td>{{eleve.dateNaissanceSiecle}}</td>
-                                        <td>{{eleve.etablissementSiecle}}</td>
-                                        <td>
-                                            <tr *ngIf="eleve.representantLegalSiecle.length!=0">
-                                                <td  *ngFor="let representant of eleve.representantLegalSiecle"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
+    <ng-container *ngIf="getCritereRechercheService().ongletActive==='Résumé'">
+            <ng-container  *ngFor="let menu  of eleveRecord.menus">
+                <div class="container-fluid mb-3">
+                    <div class="row">
+                        <ng-container *ngIf="menu!=='Résumé'">
+                            <div class="col-sm-12 align-self-center">
+                                <h4> {{menu}}</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr> 
+                                                 <ng-container  *ngFor=" let key of getkeys(getEleveSystemeInf(menu).eleveResume)">
+                                                        <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.resume.{{key}}"></th>    
+                                                    </ng-container>
                                             </tr>
-                                        </td> 
-                                        <!-- <td  class="text-right"><a (click)="afficheDetail(eleve,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
-                                    </ng-template>
-                                </tr>
-                            </tbody>  
-                        </table>
+                                        </thead>
+                                        <tbody>
+                                                <tr *ngFor="let eleve of eleveRecord.eleves">
+                                                        <ng-container *ngIf="eleve.systemeInf===menu">
+                                                            <ng-container *ngFor= "let key of getkeys(eleve.eleveResume)">
+                                                            <td>
+                                                                <ng-container  *ngIf="key==='0.0.0'">
+                                                                    <tr *ngFor=" let parent of getParentSystemInf(menu,eleve)">
+                                                                               <td> <a (click)="searchRepresentant(parent)">{{parent.nom}} {{parent.prenom}} <i class="fa fa-search"></i></a></td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="eleve.eleveResume[key].length>1" >
+                                                                    <tr *ngFor=" let valeur of eleve.eleveResume[key]">
+                                                                        <td>
+                                                                            {{valeur}}
+                                                                        </td>
+                                                                    <tr>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="eleve.eleveResume[key].length<=1" >
+                                                                    {{eleve.eleveResume[key]}}
+                                                                </ng-container>
+                                                            </td>
+                                                            </ng-container>
+                                                        </ng-container>
+                                                </tr>
+                                            </tbody> 
+                                    </table>
+                                </div>
+                            </div>
+                        </ng-container>
                     </div>
-                <!--  </div>-->
-                <!--<div class="col-sm-12 align-self-center">-->
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th>
-                                   <!--  <th></th>-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let eleve of eleves">
-                                    <ng-template [ngIf]="eleve.nomAaf!=null || eleve.prenomAaf !=null || eleve.identifiantAaf !=null || eleve.dateNaissanceAaf!=null || eleve.classeAaf !=null">
-                                        <td>{{eleve.nomAaf}}</td>
-                                        <td>{{eleve.prenomAaf}}</td>
-                                        <td>{{eleve.identifiantAaf}}</td>
-                                        <td>{{eleve.dateNaissanceAaf}}</td>
-                                        <td>{{eleve.etablissementAaf}}</td> 
-                                        <td>{{eleve.classeAaf}}</td>   
-                                        <!-- <td class="text-right"><a (click)="afficheDetail(eleve,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
-                                    </ng-template>
-                                </tr>
-                            </tbody>  
-                        </table>
-                    </div>
-                <!--</div>-->
-                <!-- <div class="col-sm-12 align-self-center">-->
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th>
-                                    <!-- <th></th>-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let eleve of eleves" >
-                                    <ng-template [ngIf]="eleve.nomToutatice!=null || eleve.prenomToutatice !=null || eleve.identifiantToutatice!=null || eleve.mailToutatice !=null || eleve.etatCompteToutatice !=null || eleve.lastConToutatice!=null ">
-                                        <td>{{eleve.nomToutatice}}</td>
-                                        <td>{{eleve.prenomToutatice}}</td>
-                                        <td>{{eleve.identifiantToutatice}}</td>
-                                        <td>{{eleve.mailToutatice}}</td>
-                                        <td>{{eleve.etatCompteToutatice}}</td>  
-                                        <td>{{eleve.lastConToutatice}}</td>  
-                                        <!-- <td   class="text-right"><a (click)="afficheDetail(eleve,'toutatice')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
-                                </ng-template>
-                                </tr>
-                            </tbody>  
-                        
-                        </table>
-                    </div>
-                 <!--</div>-->
-                <!-- <div class="col-sm-12 align-self-center">-->
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th>
-                                    <!-- <th></th>-->
-                                
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let eleve of eleves">
-                                    <ng-template [ngIf]="eleve.nomEduconnect!=null|| eleve.prenomEduconnect!=null || eleve.identifiantEduconnect!=null|| eleve.mailEduconnect!=null||eleve.etatCompteEduconnect!=null || eleve.lastConEduconnect!=null">
-                                        <td>{{eleve.nomEduconnect}}</td>
-                                        <td>{{eleve.prenomEduconnect}}</td>
-                                        <td>{{eleve.identifiantEduconnect}}</td>
-                                        <td>{{eleve.mailEduconnect}}</td>
-                                        <td>{{eleve.etatCompteEduconnect}}</td>  
-                                        <td>{{eleve.lastConEduconnect}}</td>  
-                                        <!-- <td class="text-right"><a (click)="afficheDetail(eleve,'Educonnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
-                                    </ng-template>
-                                </tr>
-                            </tbody>  
-                        </table>
-                    </div>
-                <!-- </div>-->
-               <!--  <div class="col-sm-12 align-self-center">-->
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>  
-                                    <!-- <th></th>      -->                        
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let eleve of eleves">
-                                    <ng-template [ngIf]="eleve.nomAten!=null|| eleve.prenomAten!=null|| eleve.identifiantAten !=null||eleve.dateNaissanceAten!=null|| eleve.etablissementAten!=null|| eleve.representantLegalAten.length!=0">
-                                        <td>{{eleve.nomAten}}</td>
-                                        <td>{{eleve.prenomAten}}</td>
-                                        <td>{{eleve.identifiantAten}}</td>
-                                        <td>{{eleve.dateNaissanceAten}}</td>
-                                        <td>{{eleve.etablissementAten}}</td>  
-                                        <td>
-                                             <tr *ngIf="eleve.representantLegalAten!=null">
-                                                 <td  *ngFor="let representant of eleve.representantLegalAten"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-container  *ngFor="let menu  of eleveRecord.menus">
+                <div class="container-fluid mb-3">
+                    <div class="row">
+                        <ng-container *ngIf="getCritereRechercheService().ongletActive==menu && getCritereRechercheService().ongletActive!=='Résumé'">
+                            <div class="col-sm-12 align-self-center">
+                                <h4> {{menu}}</h4>
+                                    <table class="table table-sm table-striped table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr> 
+                                                <ng-container  *ngFor=" let key of getkeys(getEleveSystemeInf(menu).eleveResume)">
+                                                    <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.resume.{{key}}"></th>    
+                                                 </ng-container>
+                                                 
                                             </tr>
-                                        </td>   
-                                       <!--  <td class="text-right"><a (click)="afficheDetail(eleve,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>-->
-                                    </ng-template>
-                                 </tr>  
-                            </tbody>  
-                        </table>
+                                        </thead>
+                                        <tbody>
+                                            <ng-container *ngFor="let eleve of eleveRecord.eleves">
+                                                <ng-container *ngIf="eleve.systemeInf===menu">
+                                                    <tr (click)="afficheDetail(eleve,menu)">
+                                                        <ng-container *ngFor= "let key of getkeys(eleve.eleveResume)">
+                                                            <td>
+                                                                <ng-container  *ngIf="key==='0.0.0'">
+                                                                    <tr *ngFor=" let parent of getParentSystemInf(menu,eleve)">
+                                                                               <td> <a (click)="searchRepresentant(parent)">{{parent.nom}} {{parent.prenom}} <i class="fa fa-search"></i></a></td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="eleve.eleveResume[key].length>1" >
+                                                                    <tr *ngFor=" let valeur of eleve.eleveResume[key]">
+                                                                        <td>
+                                                                                {{valeur}}
+                                                                        </td>
+                                                                    <tr>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="eleve.eleveResume[key].length<=1">
+                                                                        {{eleve.eleveResume[key]}}
+                                                                </ng-container>
+                                                            </td>
+                                                        </ng-container>
+                                                    </tr>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 align-self-center">
+                                                            <ng-template [ngIf]= "getEleveService().getEleveOnglet(menu)!==null && eleve===getEleveService().getEleveOnglet(menu)">
+                                                                <table class="table table-sm table-striped" >
+                                                                    <thead class="bg-primary">
+                                                                        <tr ><th>Propriété</th><th>Valeur(s)</th></tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                            
+                                                                        <tr  *ngFor= "let key of getkeys(eleve.eleveDetaille)">
+                                                                            <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.detaille.{{key}}"></th>
+                                                                            <td class="col-sm-12">
+                                                                                <ng-container *ngIf="getEleveService().getEleveOnglet(menu).eleveDetaille[key].length>1" >
+                                                                                    <ng-container *ngFor=" let valeur of getEleveService().getEleveOnglet(menu).eleveDetaille[key]">
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                {{valeur}}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </ng-container>
+                                                                                </ng-container>
+                                                                                <ng-container *ngIf="getEleveService().getEleveOnglet(menu).eleveDetaille[key].length<=1" >
+                                                                                    {{getEleveService().getEleveOnglet(menu).eleveDetaille[key]}}
+                                                                                </ng-container>
+                                                                            </td>
+                                                                        </tr>            
+                                                                    </tbody>
+                                                                </table>
+                                                            </ng-template>
+                                                        </div>
+                                                   </div>
+                                                </ng-container>
+                                            </ng-container>
+                                         </tbody> 
+                                    </table>
+                            </div>
+                        </ng-container>
                     </div>
-                <!-- </div>-->
-        </div>
-    </div>
-    <!-- onglet resume-->
-    <!-- onglet siecle-->
-    <div *ngIf="getCritereRechercheService().ongletActive=='siecle'">
-            <div class="col-sm-12 align-self-center">
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSiecle"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.birthday"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.etablissement"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauSiecle.responsable"></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr *ngFor="let eleve of eleves">
-                                        <ng-template [ngIf]="eleve.nomSiecle!=null || eleve.prenomSiecle!=null || eleve.identifiantSiecle!=null || eleve.dateNaissanceSiecle!=null || eleve.etablissementSiecle!=null ||eleve.representantLegalSiecle.length!=0">
-                                            <td>{{eleve.nomSiecle}}</td>
-                                            <td>{{eleve.prenomSiecle}}</td>
-                                            <td>{{eleve.identifiantSiecle}}</td>
-                                            <td>{{eleve.dateNaissanceSiecle}}</td>
-                                            <td>{{eleve.etablissementSiecle}}</td>
-                                            <td>
-                                                <tr *ngIf="eleve.representantLegalSiecle.length!=0">
-                                                     <td  *ngFor="let representant of eleve.representantLegalSiecle"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
-                                                </tr>
-                                            </td>  
-                                            <td  class="text-right"><a (click)="afficheDetail(eleve,'siecle')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
-                                        </ng-template>
-                                    </tr>
-                                </tbody> 
-                        </table>
-                    </div>
-            </div>
-    </div>
-    <!-- onglet siecle-->
-
-     <!-- onglet aaf-->
-    <div *ngIf="getCritereRechercheService().ongletActive=='aaf'">
-            <div class="col-sm-12 align-self-center">
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.birthday"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.etablissement"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAaf.classe"></th>
-                                    <th></th>
-                                </tr>
-                            </thead> 
-                            <tbody>
-                                    <tr *ngFor="let eleve of eleves">
-                                        <ng-template [ngIf]="eleve.nomAaf!=null || eleve.prenomAaf !=null || eleve.identifiantAaf !=null || eleve.dateNaissanceAaf!=null || eleve.classeAaf !=null">
-                                            <td>{{eleve.nomAaf}}</td>
-                                            <td>{{eleve.prenomAaf}}</td>
-                                            <td>{{eleve.identifiantAaf}}</td>
-                                            <td>{{eleve.dateNaissanceAaf}}</td>
-                                            <td>{{eleve.etablissementAaf}}</td> 
-                                            <td>{{eleve.classeAaf}}</td>   
-                                            <td class="text-right"><a (click)="afficheDetail(eleve,'aaf')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
-                                        </ng-template>
-                                    </tr>
-                                </tbody>  
-                        </table>
-                    </div>
-            </div>
-    </div>
-     <!-- onglet aaf-->
-
-      <!-- onglet toutatice-->
-    <div *ngIf="getCritereRechercheService().ongletActive=='toutatice'">
-            <div class="col-sm-12 align-self-center">
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapToutatice"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.mail"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.etatCompte"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauToutatice.lastCon"></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr *ngFor="let eleve of eleves" >
-                                        <ng-template [ngIf]="eleve.nomToutatice!=null || eleve.prenomToutatice !=null || eleve.identifiantToutatice!=null || eleve.mailToutatice !=null || eleve.etatCompteToutatice !=null || eleve.lastConToutatice!=null ">
-                                            <td>{{eleve.nomToutatice}}</td>
-                                            <td>{{eleve.prenomToutatice}}</td>
-                                            <td>{{eleve.identifiantToutatice}}</td>
-                                            <td>{{eleve.mailToutatice}}</td>
-                                            <td>{{eleve.etatCompteToutatice}}</td>  
-                                            <td>{{eleve.lastConToutatice}}</td>  
-                                            <td   class="text-right"><a  (click)="afficheDetail(eleve,'toutatice')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
-                                        </ng-template>
-                                    </tr>
-                                </tbody>    
-                        </table>
-                    </div>
-            </div>
-    </div>
-     <!-- ongglet toutatice-->
-     <!-- onglet eduConnect-->
-    <div *ngIf="getCritereRechercheService().ongletActive=='eduConnect'">
-            <div class="col-sm-12 align-self-center">
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEduConnect"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.mail"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.etatCompte"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauEduConnect.lastCon"></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr *ngFor="let eleve of eleves">
-                                        <ng-template [ngIf]="eleve.nomEduconnect!=null|| eleve.prenomEduconnect!=null || eleve.identifiantEduconnect!=null|| eleve.mailEduconnect!=null||eleve.etatCompteEduconnect!=null || eleve.lastConEduconnect!=null">
-                                            <td>{{eleve.nomEduconnect}}</td>
-                                            <td>{{eleve.prenomEduconnect}}</td>
-                                            <td>{{eleve.identifiantEduconnect}}</td>
-                                            <td>{{eleve.mailEduconnect}}</td>
-                                            <td>{{eleve.etatCompteEduconnect}}</td>  
-                                            <td>{{eleve.lastConEduconnect}}</td>  
-                                            <td class="text-right"><a  (click)="afficheDetail(eleve,'Educonnect')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
-                                        </ng-template>
-                                    </tr>
-                                </tbody> 
-                        </table>
-                    </div>
-            </div>
-    </div>
-    <!-- ongglet eduConnect-->
-    <!-- ongglet aten-->
-    <div *ngIf="getCritereRechercheService().ongletActive=='aten'">
-            <div class="col-sm-12 align-self-center">
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAten"></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.nom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.prenom"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.identifiant"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.birthday"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.etablissement"></th>
-                                    <th jhiTranslate="outilDiagnostic.eleve.tableauAten.responsable"></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr *ngFor="let eleve of eleves">
-                                        <ng-template [ngIf]="eleve.nomAten!=null|| eleve.prenomAten!=null|| eleve.identifiantAten !=null||eleve.dateNaissanceAten!=null|| eleve.etablissementAten!=null || eleve.representantLegalAten.length!=0">
-                                            <td>{{eleve.nomAten}}</td>
-                                            <td>{{eleve.prenomAten}}</td>
-                                            <td>{{eleve.identifiantAten}}</td>
-                                            <td>{{eleve.dateNaissanceAten}}</td>
-                                            <td>{{eleve.etablissementAten}}</td>  
-                                            <td>
-                                                <tr *ngIf="eleve.representantLegalAten.length!=0">
-                                                    <td  *ngFor="let representant of eleve.representantLegalAten"><a (click)="searchRepresentant(representant)" class="fa fa-search ">{{representant.nom}} {{representant.prenom}}</a></td>
-                                                </tr>
-                                            </td>  
-                                            <td class="text-right"><a (click)="afficheDetail(eleve,'aten')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.eleve.detail" class="fa fa-eye"></i></a></td>
-                                        </ng-template>
-                                     </tr>  
-                                </tbody>   
-                        </table>
-                    </div>
-            </div>
-    </div>
-    <!-- ongglet aten-->
-</div>
+                </div>
+            </ng-container>
+                
+                    
+                  

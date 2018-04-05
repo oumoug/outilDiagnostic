@@ -25,7 +25,6 @@ export class EleveDetailComponent implements OnInit {
         this.siDetail=params['siDetail']
       }
     });
-    this.eleve=this.eleveService.getEleve();
   }
   previousState() {
     if(this.critereRechercheService.getCritere().profil==='Élève'){

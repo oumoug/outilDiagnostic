@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import {CritereRechercheService} from '../critereRecherche'
-import {RepresentantLegal} from '.'
 import {ActivatedRoute, Router} from '@angular/router'
 import {RepresentantLegalService} from './representant-legal.service'
 
@@ -13,7 +12,6 @@ import {RepresentantLegalService} from './representant-legal.service'
 export class RepresentantLegalDetailComponent implements OnInit {
   subscription:Subscription;
   siDetail:string
-  representantLegal:RepresentantLegal
   constructor(private critereRechercheService:CritereRechercheService,
     private representantLegalService:RepresentantLegalService,
     private router:Router,
@@ -25,7 +23,7 @@ export class RepresentantLegalDetailComponent implements OnInit {
         this.siDetail=params['siDetail']
       }
     });
-    this.representantLegal=this.representantLegalService.getRepresentantLegal();
+   // this.representantLegal=this.representantLegalService.getRepresentantLegal();
   }
   previousState() {
     if(this.critereRechercheService.getCritere().profil==='Représentants légaux'){

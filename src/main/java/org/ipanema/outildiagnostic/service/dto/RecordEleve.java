@@ -2,21 +2,20 @@ package org.ipanema.outildiagnostic.service.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class RecordPersonnel{
-    private List<Personnel> personnels;
+public class RecordEleve{
+    private List<Eleve> eleves;
     private List<String> menus;
-    public RecordPersonnel(){
+    public RecordEleve(){
         this.menus=new ArrayList<String>();
-        this.personnels=new ArrayList<Personnel>();
+        this. eleves=new ArrayList<Eleve>();
 
     }
     /**
      * @return the resultat
      */
-    public List<Personnel> getPersonnels() {
-        return personnels;
+    public List<Eleve> getEleves() {
+        return eleves;
     }
     /**
      * @return the menu
@@ -33,12 +32,12 @@ public class RecordPersonnel{
     /**
      * @param resultat the resultat to set
      */
-    public void setPersonnels(List<Personnel> resultat) {
-        this.personnels = resultat;
+    public void setEleves(List<Eleve> resultat) {
+        this.eleves = resultat;
     }
     public String toString(){
-        return "RecordPersonnel{"+
-        "personnels='"+getPersonnels()+"'"+
-        ",menus='"+getMenus()+"'}";
+        return "RecordEleve{"+
+        "eleves="+getEleves()+
+        ",menus="+getMenus()+"}";
     }
 }

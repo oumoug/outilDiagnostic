@@ -10,8 +10,8 @@ import {createRequestOption } from '../../shared';
 @Injectable()
 export class PersonnelService {
   private resourceUrl =  SERVER_API_URL + 'api/personnels';
-  personnel:Personnel
   detail:Boolean
+  personnelOnglets:Map<string,Personnel>
   constructor(private http: HttpClient) {
     this.detail=false
    }
@@ -27,13 +27,6 @@ export class PersonnelService {
   getDetail(){
     return this.detail
   }
-  setPersonnel(personnel:Personnel){
-    this.personnel=personnel;
-
-  }
-  getPersonnel(){
-    return this.personnel
-  }
   private convert(critere:CritereRecherche): CritereRecherche {
     const copy: CritereRecherche = Object.assign({}, critere);
     return copy;
@@ -46,12 +39,11 @@ private convertResponse(res:HttpResponse<PersonnelRecord>):HttpResponse<Personne
   const body: PersonnelRecord = this.convertItemFromServer(res.body);
   return res.clone({body});
 }
-  /*private convertArrayResponse(res: HttpResponse<PersonnelRecord>): HttpResponse<Personnel[]> {
-    const jsonResponse: Personnel[] = res.body;
-    const body: Personnel[] = [];
-    for (let i = 0; i < jsonResponse.length; i++) {
-        body.push(this.convertItemFromServer(jsonResponse[i]));
-    }
-    return res.clone({body});
-  }*/
+setPersonnelOnglet(key:string,personnel:Personnel){
+  this.personnelOnglets[key]=personnel
+}
+getPersonnelOnglet(key:string){
+  return this.personnelOnglets[key];
+}
+
 }

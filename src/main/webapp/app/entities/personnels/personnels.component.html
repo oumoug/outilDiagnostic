@@ -16,7 +16,7 @@
     <ng-container  *ngFor="let menu  of personnelRecord.menus">
         <div class="container-fluid mb-3">
             <div class="row">
-                <div *ngIf="menu!=='Résumé'">
+                <ng-container *ngIf="menu!=='Résumé'">
                     <div class="col-sm-12 align-self-center">
                         <h4> {{menu}}</h4>
                         <div class="table-responsive">
@@ -51,7 +51,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </ng-container>
@@ -61,7 +61,7 @@
 <ng-container  *ngFor="let menu  of personnelRecord.menus">
     <div class="container-fluid mb-3">
         <div class="row">
-            <div *ngIf="getCritereRechercheService().ongletActive==menu && getCritereRechercheService().ongletActive!=='Résumé'">
+            <ng-container *ngIf="getCritereRechercheService().ongletActive==menu && getCritereRechercheService().ongletActive!=='Résumé'">
                 <div class="col-sm-12 align-self-center">
                     <h4> {{menu}}</h4>
                     <div class="table-responsive">
@@ -76,7 +76,7 @@
                             <tbody>
                                 <ng-container *ngFor="let personnel of personnelRecord.personnels">
                                     <ng-container *ngIf="personnel.systemeInf===menu">
-                                        <tr (click)="afficheDetail(personnel)">
+                                        <tr (click)="afficheDetail(personnel,menu)">
                                             <ng-container *ngFor= "let key of getkeys(personnel.personnelResume)">
                                                 <td>
                                                     <ng-container *ngIf="personnel.personnelResume[key].length>1" >
@@ -93,18 +93,18 @@
                                             </ng-container>
                                         </tr>
                                         <tr>
-                                            <ng-template [ngIf]= "getPersonnelService().personnel!==undefined && personnel===getPersonnelService().personnel">
+                                            <ng-template [ngIf]= "getPersonnelService().getPersonnelOnglet(menu)!==null && personnel===getPersonnelService().getPersonnelOnglet(menu)">
                                                 <table class="table table-sm table-striped" >
                                                     <thead class="bg-primary">
                                                         <tr ><th>Propriété</th><th>Valeur(s)</th></tr>
                                                     </thead>
                                                      <tbody>
                                                              
-                                                        <tr  *ngFor= "let key of getkeys(personnel.personnelDetaille)">
+                                                        <tr  *ngFor= "let key of getkeys(getPersonnelService().getPersonnelOnglet(menu).personnelDetaille)">
                                                             <th jhiTranslate="outilDiagnostic.personnel.{{menu}}.detaille.{{key}}"></th>
                                                             <td class="col-sm-12">
-                                                                <ng-container *ngIf="getPersonnelService().personnel.personnelDetaille[key].length>1" >
-                                                                    <ng-container *ngFor=" let valeur of getPersonnelService().personnel.personnelDetaille[key]">
+                                                                <ng-container *ngIf="getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key].length>1" >
+                                                                    <ng-container *ngFor=" let valeur of getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key]">
                                                                         <tr>
                                                                             <td>
                                                                                 {{valeur}}
@@ -112,8 +112,8 @@
                                                                         </tr>
                                                                     </ng-container>
                                                                 </ng-container>
-                                                                <ng-container *ngIf="getPersonnelService().personnel.personnelDetaille[key].length<=1" >
-                                                                    {{getPersonnelService().personnel.personnelResume[key]}}
+                                                                <ng-container *ngIf="getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key].length<=1" >
+                                                                    {{getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key]}}
                                                                 </ng-container>
                                                             </td>
                                                         </tr>            
@@ -127,232 +127,10 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
     </div>
 </ng-container>
     
         
-        <!-- onglet sihren-->
-        <div *ngIf="getCritereRechercheService().ongletActive=='sirhen'">
-                <div class="row">
-                        <div class="col-sm-12 align-self-center">
-                            <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapSirhen"></h4>
-                            <div class="table-responsive">
-                                <table class="table table-sm table-striped table-bordered table-hover">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th>
-                                            <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th>
-                                            <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th>
-                                            <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th>
-                                            <th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th>
-                                        
-                                        </tr>
-                                    </thead> 
-                                    <tbody>
-                                        <ng-container *ngFor="let personnel of personnels">
-                                                <tr (click)="afficheDetail(personnel)" >
-                                                    
-                                                                <td>{{personnel.nomSirhen}} </td>
-                                                                <td>{{personnel.prenomSirhen}}</td>
-                                                                <td>{{personnel.dateNaissanceSirhen}}</td>
-                                                                <td>{{personnel.positionSirhen}}</td>
-                                                                <td>{{personnel.libelleSirhen}}</td>  
-                                                <tr>
-                                                        <div class="row">
-                                                                <div class="col-sm-12">
-                                                            <ng-template [ngIf]= "getPersonnelService().personnel!==undefined && getPersonnelService().personnel.nomSirhen===personnel.nomSirhen">
-                                                                    
-                                                                <!-- <ng-template [ngIf]="siDetail==='sirhen'">-->
-                                                                                <table class="table table-sm table-striped">
-                                                                                    <thead class="bg-primary">
-                                                                                        <tr><th>Propriété</th><th>Valeur(s)</th></tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.nom"></th><td>{{personnelService.personnel.nomSirhen}}</td></tr>
-                                                                                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.prenom"></th><td>{{personnelService.personnel.prenomSirhen}}</td></tr>
-                                                                                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.birthday"></th><td>{{personnelService.personnel.dateNaissanceSirhen}}</td></tr>
-                                                                                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.position"></th><td>{{personnelService.personnel.positionSirhen}}</td></tr>
-                                                                                        <tr><th jhiTranslate="outilDiagnostic.personnel.tableauSirhen.libelle"></th><td>{{personnelService.personnel.libelleSirhen}}</td></tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                    <!--</ng-template>-->
-                                                            </ng-template>
-                                                            </div>
-                                                            </div>
-                                                            </tr>
-                                                </tr>
-                                            </ng-container>   
-                                        </tbody> 
-                                </table>
-                            
-                            </div>
-                        </div>
-                </div>
-        </div>
-        <!-- onglet sihren-->
-
-        <!-- onglet epp-->
-        <div *ngIf="getCritereRechercheService().ongletActive=='epp'">
-                <div class="col-sm-12 align-self-center">
-                        <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEpp"></h4>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-striped table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.nom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.prenom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.birthday"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.position"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.libelle"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.infoComp"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.grade"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.numen"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEpp.fonction"></th>
-                                        <th></th>
-                                    </tr>
-                                </thead> 
-                                <tbody>
-                                        <tr *ngFor="let personnel of personnels">
-                                            <ng-template [ngIf]="personnel.nomEpp!=null|| personnel.prenomEpp!=null|| personnel.dateNaissanceEpp!=null|| personnel.positionEpp!=null|| personnel.libelleEpp!=null">
-                                                <td>{{personnel.nomEpp}}</td>
-                                                <td>{{personnel.prenomEpp}}</td>
-                                                <td>{{personnel.dateNaissanceEpp}}</td>
-                                                <td>{{personnel.positionEpp}}</td>
-                                                <td>{{personnel.libelleEpp}}</td>  
-                                                <td *ngIf="personnel.infoCompEpp.length>0">
-                                                        <tr *ngFor="let information of personnel.infoCompEpp ">
-                                                            <td>{{information}}</td>
-                                                        </tr>
-                                                    </td> 
-                                                    <td>{{personnel.gradeEpp}}</td>
-                                                    <td>{{personnel.numenEpp}}</td> 
-                                                    <td>{{personnel.fonctionEpp}}</td> 
-                                                <td class="text-right"><a (click)="afficheDetail(personnel,'epp')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
-                                            </ng-template>
-                                        </tr>
-                                    </tbody>  
-                            </table>
-                        </div>
-                </div>
-        </div>
-        <!-- onglet epp-->
-
-        <!-- onglet eppPrive-->
-        <div *ngIf="getCritereRechercheService().ongletActive=='eppPrive'">
-                <div class="col-sm-12 align-self-center">
-                        <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapEppPrive"></h4>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-striped table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.nom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.prenom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.birthday"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.position"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.libelle"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.infoComp"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.grade"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauEppPrive.numen"></th>
-                                        <th></th>
-                                    </tr>
-                                </thead> 
-                                <tbody>
-                                        <tr *ngFor="let personnel of personnels">
-                                            </ng-container>          <ng-template [ngIf]="personnel.nomEppPrive!=null|| personnel.prenomEppPrive!=null|| personnel.dateNaissanceEppPrive!=null|| personnel.positionEppPrive!=null|| personnel.libelleEppPrive!=null">
-                                                <td>{{personnel.nomEppPrive}}</td>
-                                                <td>{{personnel.prenomEppPrive}}</td>
-                                                <td>{{personnel.dateNaissanceEppPrive}}</td>
-                                                <td>{{personnel.positionEppPrive}}</td>
-                                                <td>{{personnel.libelleEppPrive}}</td> 
-                                                <td *ngIf="personnel.infoCompEpp.length>0">
-                                                        <tr *ngFor="let information of personnel.infoCompEppPrive ">
-                                                            <td>{{information}}</td>
-                                                        </tr>
-                                                    </td> 
-                                                    <td>{{personnel.gradeEppPrive}}</td>
-                                                    <td>{{personnel.numenEppPrive}}</td>  
-        
-                                                <td class="text-right"><a (click)="afficheDetail(personnel,'eppPrive')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
-                                            </ng-template>
-                                        </tr>
-                                    </tbody>
-                            </table>
-                        </div>
-                </div>
-        </div>
-        <!-- onglet eppPrive-->
-        <!-- onglet aaf-->
-        <div *ngIf="getCritereRechercheService().ongletActive=='aaf'">
-                <div class="col-sm-12 align-self-center">
-                        <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAaf"></h4>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-striped table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.nom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.prenom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.identifiant"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.birthday"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.etablissement"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.fonction"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.ville"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAaf.discipline"></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        <tr *ngFor="let personnel of personnels">
-                                            <ng-template [ngIf]="personnel.nomAaf!=null|| personnel.prenomAaf!=null|| personnel.dateNaissanceAaf!=null|| personnel.identifiantAaf!=null|| personnel.etablissementAaf!=null||  personnel.villeAaf!=null||  personnel.fonctionAaf!=null||  personnel.disciplineAaf!=null">
-                                                <td>{{personnel.nomAaf}}</td>
-                                                <td>{{personnel.prenomAaf}}</td>
-                                                <td>{{personnel.identifiantAaf}}</td> 
-                                                <td>{{personnel.dateNaissanceAaf}}</td>
-                                                <td>{{personnel.etablissementAaf}}</td>
-                                                <td>{{personnel.fonctionAaf}}</td>  
-                                                <td>{{personnel.villeAaf}}</td>  
-                                                <td>{{personnel.disciplineAaf}}</td>  
-                                                <td class="text-right"><a (click)="afficheDetail(personnel,'aaf')" class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
-                                            </ng-template>
-                                        </tr>
-                                    </tbody> 
-                            </table>
-                        </div>
-                </div>
-        </div>
-        <!-- onglet aaf-->
-        <!-- onglet agora-->
-        <div *ngIf="getCritereRechercheService().ongletActive=='agora'">
-                <div class="col-sm-12 align-self-center">
-                    <h4 jhiTranslate="outilDiagnostic.critereRecherche.ldapAgora"></h4>
-                    <div class="table-responsive">
-                            <table class="table table-sm table-striped table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.nom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.prenom"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.birthday"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.position"></th>
-                                        <th jhiTranslate="outilDiagnostic.personnel.tableauAgora.libelle"></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>  
-                                <tbody>
-                                        <tr *ngFor="let personnel of personnels">
-                                            <ng-template [ngIf]="personnel.nomAgora!=null|| personnel.prenomAgora!=null|| personnel.dateNaissanceAgora!=null|| personnel.positionAgora!=null|| personnel.libelleAgora!=null">
-                                                <td>{{personnel.nomAgora}}</td>
-                                                <td>{{personnel.prenomAgora}}</td>
-                                                <td>{{personnel.dateNaissanceAgora}}</td>
-                                                <td>{{personnel.positionAgora}}</td>
-                                                <td>{{personnel.libelleAgora}}</td>  
-                                                <td class="text-right"><a(click)="afficheDetail(personnel,'agora')"  class="btn btn-sm btn-info"><i jhiTranslate="outilDiagnostic.personnel.detail" class="fa fa-eye"></i></a></td>
-                                            </ng-template>
-                                        </tr>
-                                    </tbody>   
-                            </table>
-                    </div>
-                </div>
-        </div>
-            <!-- onglet agora-->
-    </div>
+      

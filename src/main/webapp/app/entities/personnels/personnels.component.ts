@@ -29,10 +29,11 @@ export class PersonnelsComponent implements OnInit {
    }
 
   ngOnInit() {
-   // this.critereRechercheService.loadProfil(this.critereRechercheService.getCritere().profil)
     this.personnelService.search(this.critereRechercheService.getCritere()).subscribe(
       (res: HttpResponse<PersonnelRecord>) => this.setPersonnelRecord(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
+      this. critereRechercheService.ongletActive='Résumé'
+      this.personnelService.personnelOnglets= this.initPersonnelsOnglet(this.personnelRecord.menus)
   }
   setPersonnelRecord(data){
    this.personnelRecord.menus=data.menus;
@@ -45,12 +46,25 @@ export class PersonnelsComponent implements OnInit {
     this.personnelService.setDetail(false);
     this.critereRechercheService.setOngletActive(onglet);
    }
-   afficheDetail(personnel:Personnel){
-    this.personnelService.setPersonnel(personnel)
+   afficheDetail(personnel:Personnel,menu:string){
+     if(personnel===this.personnelService.getPersonnelOnglet(menu)){
+      this.personnelService.setPersonnelOnglet(menu,null)
+     }else{
+      this.personnelService.setPersonnelOnglet(menu,personnel)
+     }
+   
    
   }
   getCritereRechercheService(){
     return this.critereRechercheService
+
+  }
+  initPersonnelsOnglet(menus:string[]){
+    let PersonnelsOnglet=new Map()
+    for(let menu of menus){
+      PersonnelsOnglet.set(menu,null);
+    }
+    return  PersonnelsOnglet;
 
   }
   getPersonnelService(){

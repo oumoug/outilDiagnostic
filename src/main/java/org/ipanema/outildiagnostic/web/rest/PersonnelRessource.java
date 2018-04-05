@@ -38,7 +38,7 @@ public class PersonnelRessource{
     public ResponseEntity<RecordPersonnel>  appelWebService(@Valid @RequestBody CritereRecherche critere) throws IOException{
         String url= formatUrl(critere);
         RecordPersonnel recordPersonnel;
-        URL urlJsonServeur = new URL("http://localhost:3000/api/v1/personnels/search?*");
+        URL urlJsonServeur = new URL("http://localhost:3000/api/v1/personnel");
         HttpURLConnection conn = (HttpURLConnection) urlJsonServeur.openConnection();
         conn.setRequestMethod("GET");
         BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -51,7 +51,7 @@ public class PersonnelRessource{
         String inputLine;
         StringBuffer response = new StringBuffer();
         String systemInf;
-        JSONArray myResponse; 
+       JSONArray myResponse; 
         JSONArray resulatSiTous;
         JSONObject resultatSi; 
         Iterator<?> iterator;
@@ -146,8 +146,9 @@ public class PersonnelRessource{
                     tmp.add(String.valueOf(val1));
                     resumeTmp.put(String.valueOf(cle1),tmp);  
                 }
-                resumeTmps.add(resumeTmp);    
+                
             }
+            resumeTmps.add(resumeTmp);    
         }
         return  resumeTmps;
     }
