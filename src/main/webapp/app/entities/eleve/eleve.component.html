@@ -12,134 +12,116 @@
          
       </ul>
 </div>
-    <ng-container *ngIf="getCritereRechercheService().ongletActive==='Résumé'">
-            <ng-container  *ngFor="let menu  of eleveRecord.menus">
-                <div class="container-fluid mb-3">
-                    <div class="row">
-                        <ng-container *ngIf="menu!=='Résumé'">
-                            <div class="col-sm-12 align-self-center">
-                                <h4> {{menu}}</h4>
-                                <div class="table-responsive">
-                                    <table class="table table-sm table-striped table-bordered">
-                                        <thead class="thead-dark">
-                                            <tr> 
-                                                 <ng-container  *ngFor=" let key of getkeys(getEleveSystemeInf(menu).eleveResume)">
-                                                        <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.resume.{{key}}"></th>    
-                                                    </ng-container>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr *ngFor="let eleve of eleveRecord.eleves">
-                                                        <ng-container *ngIf="eleve.systemeInf===menu">
-                                                            <ng-container *ngFor= "let key of getkeys(eleve.eleveResume)">
-                                                            <td>
-                                                                <ng-container  *ngIf="key==='0.0.0'">
-                                                                    <tr *ngFor=" let parent of getParentSystemInf(menu,eleve)">
-                                                                               <td> <a (click)="searchRepresentant(parent)">{{parent.nom}} {{parent.prenom}} <i class="fa fa-search"></i></a></td>
-                                                                    </tr>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="eleve.eleveResume[key].length>1" >
-                                                                    <tr *ngFor=" let valeur of eleve.eleveResume[key]">
-                                                                        <td>
-                                                                            {{valeur}}
-                                                                        </td>
-                                                                    <tr>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="eleve.eleveResume[key].length<=1" >
-                                                                    {{eleve.eleveResume[key]}}
-                                                                </ng-container>
-                                                            </td>
-                                                            </ng-container>
-                                                        </ng-container>
-                                                </tr>
-                                            </tbody> 
-                                    </table>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-                </div>
-            </ng-container>
-        </ng-container>
-        <ng-container  *ngFor="let menu  of eleveRecord.menus">
-                <div class="container-fluid mb-3">
-                    <div class="row">
-                        <ng-container *ngIf="getCritereRechercheService().ongletActive==menu && getCritereRechercheService().ongletActive!=='Résumé'">
-                            <div class="col-sm-12 align-self-center">
-                                <h4> {{menu}}</h4>
-                                    <table class="table table-sm table-striped table-bordered">
-                                        <thead class="thead-dark">
-                                            <tr> 
-                                                <ng-container  *ngFor=" let key of getkeys(getEleveSystemeInf(menu).eleveResume)">
-                                                    <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.resume.{{key}}"></th>    
-                                                 </ng-container>
-                                                 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <ng-container *ngFor="let eleve of eleveRecord.eleves">
-                                                <ng-container *ngIf="eleve.systemeInf===menu">
-                                                    <tr (click)="afficheDetail(eleve,menu)">
-                                                        <ng-container *ngFor= "let key of getkeys(eleve.eleveResume)">
-                                                            <td>
-                                                                <ng-container  *ngIf="key==='0.0.0'">
-                                                                    <tr *ngFor=" let parent of getParentSystemInf(menu,eleve)">
-                                                                               <td> <a (click)="searchRepresentant(parent)">{{parent.nom}} {{parent.prenom}} <i class="fa fa-search"></i></a></td>
-                                                                    </tr>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="eleve.eleveResume[key].length>1" >
-                                                                    <tr *ngFor=" let valeur of eleve.eleveResume[key]">
-                                                                        <td>
-                                                                                {{valeur}}
-                                                                        </td>
-                                                                    <tr>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="eleve.eleveResume[key].length<=1">
-                                                                        {{eleve.eleveResume[key]}}
-                                                                </ng-container>
-                                                            </td>
-                                                        </ng-container>
+<ng-container *ngIf="getCritereRechercheService().ongletActive==='Résumé'">
+    <ng-container  *ngFor="let menu  of eleveRecord.menus">
+        <div class="container-fluid mb-3">
+            <div class="row">
+                <ng-container *ngIf="menu!=='Résumé'">
+                    <div class="col-sm-12 align-self-center">
+                        <h4> {{menu}}</h4>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>     
+                                        <th   *ngFor=" let key of getkeys(getEleveSystemeInf(menu).eleveResume)"  jhiTranslate="outilDiagnostic.eleve.{{menu}}.resume.{{key}}"></th>             
+                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let eleve of eleveRecord.eleves">
+                                        <tr *ngIf="eleve.systemeInf===menu">
+                                            <td  *ngFor= "let key of getkeys(eleve.eleveResume)">
+                                                <table  *ngIf="key==='0.0.0'" class="table mb-0">
+                                                    <tr *ngFor=" let parent of getParentSystemInf(menu,eleve)">
+                                                        <td> <a (click)="searchRepresentant(parent)">{{parent.nom}} {{parent.prenom}} <i class="fa fa-search"></i></a></td>
                                                     </tr>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 align-self-center">
-                                                            <ng-template [ngIf]= "getEleveService().getEleveOnglet(menu)!==null && eleve===getEleveService().getEleveOnglet(menu)">
-                                                                <table class="table table-sm table-striped" >
-                                                                    <thead class="bg-primary">
-                                                                        <tr ><th>Propriété</th><th>Valeur(s)</th></tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                            
-                                                                        <tr  *ngFor= "let key of getkeys(eleve.eleveDetaille)">
-                                                                            <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.detaille.{{key}}"></th>
-                                                                            <td class="col-sm-12">
-                                                                                <ng-container *ngIf="getEleveService().getEleveOnglet(menu).eleveDetaille[key].length>1" >
-                                                                                    <ng-container *ngFor=" let valeur of getEleveService().getEleveOnglet(menu).eleveDetaille[key]">
-                                                                                        <tr>
-                                                                                            <td>
-                                                                                                {{valeur}}
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    </ng-container>
-                                                                                </ng-container>
-                                                                                <ng-container *ngIf="getEleveService().getEleveOnglet(menu).eleveDetaille[key].length<=1" >
-                                                                                    {{getEleveService().getEleveOnglet(menu).eleveDetaille[key]}}
-                                                                                </ng-container>
-                                                                            </td>
-                                                                        </tr>            
-                                                                    </tbody>
-                                                                </table>
-                                                            </ng-template>
-                                                        </div>
-                                                   </div>
+                                                </table>
+                                                <table *ngIf="eleve.eleveResume[key].length>1" class="table  mb-0" >
+                                                    <tr *ngFor=" let valeur of eleve.eleveResume[key]">
+                                                        <td>
+                                                            {{valeur}}
+                                                        </td>
+                                                    <tr>
+                                                </table>
+                                                <ng-container *ngIf="eleve.eleveResume[key].length<=1" >
+                                                    {{eleve.eleveResume[key]}}
                                                 </ng-container>
-                                            </ng-container>
-                                         </tbody> 
-                                    </table>
-                            </div>
-                        </ng-container>
+                                            </td>             
+                                        </tr>
+                                    </ng-container>
+                                </tbody> 
+                            </table>
+                        </div>
                     </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+<ng-container  *ngFor="let menu  of eleveRecord.menus">
+    <div class="container-fluid mb-3">
+        <div class="row">
+            <ng-container *ngIf="getCritereRechercheService().ongletActive==menu && getCritereRechercheService().ongletActive!=='Résumé'">
+                <div class="col-sm-12 align-self-center">
+                    <h4> {{menu}}</h4>
+                    <table class="table table-sm " [class.table-hover]="hover">
+                        <thead class="thead-dark">
+                            <tr> 
+                                 <th *ngFor=" let key of getkeys(getEleveSystemeInf(menu).eleveResume)" jhiTranslate="outilDiagnostic.eleve.{{menu}}.resume.{{key}}"></th>     
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <ng-container *ngFor="let eleve of eleveRecord.eleves">
+                                <tr  *ngIf="eleve.systemeInf===menu" (click)="afficheDetail(eleve,menu)"  [class.table-primary]="eleve===getEleveService().getEleveOnglet(menu)">
+                                    <td *ngFor= "let key of getkeys(eleve.eleveResume)">
+                                        <table  *ngIf="key==='0.0.0'" class="table mb-0">
+                                            <tr *ngFor=" let parent of getParentSystemInf(menu,eleve)" [class.table-primary]="eleve===getEleveService().getEleveOnglet(menu)">
+                                                <td> <a (click)="searchRepresentant(parent)">{{parent.nom}} {{parent.prenom}} <i class="fa fa-search"></i></a></td>
+                                            </tr>
+                                        </table>
+                                        <table *ngIf="eleve.eleveResume[key].length>1" class="table mb-0">
+                                            <tr *ngFor=" let valeur of eleve.eleveResume[key]">
+                                                <td>
+                                                    {{valeur}}
+                                                </td>
+                                            <tr>
+                                        </table>
+                                        <ng-container *ngIf="eleve.eleveResume[key].length<=1">
+                                                 {{eleve.eleveResume[key]}}
+                                        </ng-container>
+                                    </td>
+                                    </tr>
+                                        <tr *ngIf= "getEleveService().getEleveOnglet(menu)!==null && eleve===getEleveService().getEleveOnglet(menu)">
+                                            <td [attr.colspan]="getkeys(eleve.eleveResume).length">
+                                                <table class="table table-sm table-striped">
+                                                    <tbody>
+                                                        <tr  *ngFor= "let key of getkeys(eleve.eleveDetaille)">
+                                                            <th jhiTranslate="outilDiagnostic.eleve.{{menu}}.detaille.{{key}}"></th>
+                                                                <td>
+                                                                    <table *ngIf="getEleveService().getEleveOnglet(menu).eleveDetaille[key].length>1" class="table mb-0" >
+                                                                        <tr  *ngFor=" let valeur of getEleveService().getEleveOnglet(menu).eleveDetaille[key]">
+                                                                            <td>
+                                                                                {{valeur}}
+                                                                            </td>
+                                                                        </tr>
+                                                                    
+                                                                    </table>
+                                                                    <ng-container *ngIf="getEleveService().getEleveOnglet(menu).eleveDetaille[key].length<=1" >
+                                                                        {{getEleveService().getEleveOnglet(menu).eleveDetaille[key]}}
+                                                                    </ng-container>
+                                                                </td>
+                                                            </tr>            
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                        </tr>          
+                            </ng-container>
+                        </tbody> 
+                    </table>
                 </div>
             </ng-container>
+        </div>
+    </div>
+</ng-container>
                 
                     
                   

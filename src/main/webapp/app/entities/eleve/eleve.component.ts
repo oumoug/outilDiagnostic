@@ -16,6 +16,7 @@ import {Parent} from '.'
 export class EleveComponent implements OnInit {
   subscription:Subscription  
   eleveRecord:EleveRecord
+  hover:boolean
   constructor(private router: Router,private eleveService:EleveService,
     private jhiAlertService:JhiAlertService,
     private activatedRoute:ActivatedRoute,private critereRechercheService:CritereRechercheService ) {   
@@ -28,6 +29,7 @@ export class EleveComponent implements OnInit {
       (res: HttpErrorResponse) => this.onError(res.message));
       this.critereRechercheService.ongletActive='Résumé'
      this.eleveService.eleveOnglets= this.initEleveOnglets(this.eleveRecord.menus);
+     this.hover=true
   }
   setElevelRecord(data){
     this.eleveRecord.menus=data.menus;
@@ -63,8 +65,10 @@ export class EleveComponent implements OnInit {
   }
   afficheDetail(eleve:Eleve,menu:string){
     if(eleve===this.eleveService.getEleveOnglet(menu)){
+      this.hover=true
       this.eleveService.setEleveOnglet(menu,null)
      }else{
+      this.hover=false
       this.eleveService.setEleveOnglet(menu,eleve)
      }
     

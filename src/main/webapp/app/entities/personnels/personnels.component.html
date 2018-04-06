@@ -22,32 +22,28 @@
                         <div class="table-responsive">
                             <table class="table table-sm table-striped table-bordered">
                                 <thead class="thead-dark">
-                                    <tr> 
-                                            <ng-container  *ngFor=" let key of getkeys(getPersonnelSystemeInf(menu).personnelResume)">
-                                                <th jhiTranslate="outilDiagnostic.personnel.{{menu}}.resume.{{key}}"></th>    
-                                            </ng-container>
-                                    </tr>
+                                    <tr>
+                                          <th   *ngFor=" let key of getkeys(getPersonnelSystemeInf(menu).personnelResume)" jhiTranslate="outilDiagnostic.personnel.{{menu}}.resume.{{key}}"></th>   
+                                    </tr>      
                                 </thead>
                                 <tbody>
-                                        <tr *ngFor="let personnel of personnelRecord.personnels">
-                                                <ng-container *ngIf="personnel.systemeInf===menu">
-                                                    <ng-container *ngFor= "let key of getkeys(personnel.personnelResume)">
-                                                    <td>
-                                                        <ng-container *ngIf="personnel.personnelResume[key].length>1" >
-                                                            <tr *ngFor=" let valeur of personnel.personnelResume[key]">
-                                                                <td>
-                                                                    {{valeur}}
-                                                                </td>
-                                                            <tr>
-                                                        </ng-container>
-                                                        <ng-container *ngIf="personnel.personnelResume[key].length<=1" >
-                                                            {{personnel.personnelResume[key]}}
-                                                        </ng-container>
-                                                    </td>
-                                                    </ng-container>
+                                    <ng-container *ngFor="let personnel of personnelRecord.personnels">
+                                        <tr *ngIf="personnel.systemeInf===menu"> 
+                                            <td *ngFor= "let key of getkeys(personnel.personnelResume)">
+                                                <table *ngIf="personnel.personnelResume[key].length>1" class="table mb-0">
+                                                    <tr *ngFor=" let valeur of personnel.personnelResume[key]" >
+                                                        <td>
+                                                            {{valeur}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <ng-container *ngIf="personnel.personnelResume[key].length<=1" >
+                                                    {{personnel.personnelResume[key]}}
                                                 </ng-container>
+                                            </td>
                                         </tr>
-                                    </tbody> 
+                                    </ng-container>
+                                </tbody> 
                             </table>
                         </div>
                     </div>
@@ -65,65 +61,54 @@
                 <div class="col-sm-12 align-self-center">
                     <h4> {{menu}}</h4>
                     <div class="table-responsive">
-                        <table class="table table-sm table-striped table-bordered">
+                        <table class="table table-sm" [class.table-hover]='hover'>
                             <thead class="thead-dark">
                                 <tr> 
-                                    <ng-container  *ngFor=" let key of getkeys(getPersonnelSystemeInf(menu).personnelResume)">
-                                        <th jhiTranslate="outilDiagnostic.personnel.{{menu}}.resume.{{key}}"></th>    
-                                     </ng-container>
+                                     <th  *ngFor=" let key of getkeys(getPersonnelSystemeInf(menu).personnelResume)" jhiTranslate="outilDiagnostic.personnel.{{menu}}.resume.{{key}}"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <ng-container *ngFor="let personnel of personnelRecord.personnels">
-                                    <ng-container *ngIf="personnel.systemeInf===menu">
-                                        <tr (click)="afficheDetail(personnel,menu)">
-                                            <ng-container *ngFor= "let key of getkeys(personnel.personnelResume)">
-                                                <td>
-                                                    <ng-container *ngIf="personnel.personnelResume[key].length>1" >
-                                                        <tr *ngFor=" let valeur of personnel.personnelResume[key]">
-                                                            <td>
-                                                                    {{valeur}}
-                                                            </td>
-                                                        <tr>
-                                                    </ng-container>
-                                                    <ng-container *ngIf="personnel.personnelResume[key].length<=1" >
-                                                        {{personnel.personnelResume[key]}}
-                                                    </ng-container>
-                                                </td>
-                                            </ng-container>
+                                        <tr *ngIf="personnel.systemeInf===menu" (click)="afficheDetail(personnel,menu)" [class.table-primary]='personnel===getPersonnelService().getPersonnelOnglet(menu)'>
+                                            <td *ngFor= "let key of getkeys(personnel.personnelResume)">
+                                                <table *ngIf="personnel.personnelResume[key].length>1" class="table mb-0">
+                                                    <tr *ngFor=" let valeur of personnel.personnelResume[key]"  [class.table-primary]='personnel===getPersonnelService().getPersonnelOnglet(menu)'> 
+                                                        <td>
+                                                             {{valeur}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <ng-container *ngIf="personnel.personnelResume[key].length<=1" >
+                                                    {{personnel.personnelResume[key]}}
+                                                </ng-container>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <ng-template [ngIf]= "getPersonnelService().getPersonnelOnglet(menu)!==null && personnel===getPersonnelService().getPersonnelOnglet(menu)">
-                                                <table class="table table-sm table-striped" >
-                                                    <thead class="bg-primary">
-                                                        <tr ><th>Propriété</th><th>Valeur(s)</th></tr>
-                                                    </thead>
-                                                     <tbody>
-                                                             
-                                                        <tr  *ngFor= "let key of getkeys(getPersonnelService().getPersonnelOnglet(menu).personnelDetaille)">
-                                                            <th jhiTranslate="outilDiagnostic.personnel.{{menu}}.detaille.{{key}}"></th>
-                                                            <td class="col-sm-12">
-                                                                <ng-container *ngIf="getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key].length>1" >
-                                                                    <ng-container *ngFor=" let valeur of getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key]">
-                                                                        <tr>
+                                        <tr *ngIf= "getPersonnelService().getPersonnelOnglet(menu)!==null && personnel===getPersonnelService().getPersonnelOnglet(menu)">
+                                            <td [attr.colspan]="getkeys(personnel.personnelResume).length">
+                                                    <table class="table table-sm table-striped"> 
+                                                        <tbody>     
+                                                            <tr  *ngFor= "let key of getkeys(getPersonnelService().getPersonnelOnglet(menu).personnelDetaille)">
+                                                                <th jhiTranslate="outilDiagnostic.personnel.{{menu}}.detaille.{{key}}"></th>
+                                                                <td>
+                                                                    <table *ngIf="getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key].length>1" class="table mb-0">
+                                                                        <tr *ngFor=" let valeur of getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key]">
+                                                                                
                                                                             <td>
-                                                                                {{valeur}}
+                                                                                 {{valeur}}      
                                                                             </td>
                                                                         </tr>
+                                                                    </table>
+                                                                    <ng-container *ngIf="getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key].length<=1">  
+                                                                        {{getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key]}}
                                                                     </ng-container>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key].length<=1" >
-                                                                    {{getPersonnelService().getPersonnelOnglet(menu).personnelDetaille[key]}}
-                                                                </ng-container>
-                                                            </td>
-                                                        </tr>            
-                                                    </tbody>
-                                                </table>
-                                            </ng-template>
+                                                                </td>
+                                                            </tr>            
+                                                        </tbody>
+                                                   </table>
+                                                 </td>
                                         </tr>
-                                    </ng-container>
                                 </ng-container>
-                             </tbody> 
+                            </tbody> 
                         </table>
                     </div>
                 </div>

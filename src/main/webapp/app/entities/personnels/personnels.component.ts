@@ -18,6 +18,7 @@ export class PersonnelsComponent implements OnInit {
   subscription:Subscription  
   personnels:Personnel[]
   personnelRecord:PersonnelRecord
+  hover:Boolean
  
   
   constructor(
@@ -34,6 +35,7 @@ export class PersonnelsComponent implements OnInit {
       (res: HttpErrorResponse) => this.onError(res.message));
       this. critereRechercheService.ongletActive='Résumé'
       this.personnelService.personnelOnglets= this.initPersonnelsOnglet(this.personnelRecord.menus)
+      this.hover=true
   }
   setPersonnelRecord(data){
    this.personnelRecord.menus=data.menus;
@@ -47,10 +49,13 @@ export class PersonnelsComponent implements OnInit {
     this.critereRechercheService.setOngletActive(onglet);
    }
    afficheDetail(personnel:Personnel,menu:string){
+    
      if(personnel===this.personnelService.getPersonnelOnglet(menu)){
       this.personnelService.setPersonnelOnglet(menu,null)
+      this.hover=true
      }else{
       this.personnelService.setPersonnelOnglet(menu,personnel)
+      this.hover=false
      }
    
    
