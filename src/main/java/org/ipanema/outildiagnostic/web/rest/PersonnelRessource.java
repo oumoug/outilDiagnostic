@@ -134,14 +134,14 @@ public class PersonnelRessource{
             for ( iterator1 = personnelResume.keys(); iterator1.hasNext();) {
                 cle1 = iterator1.next();
                 val1 =personnelResume.get(String.valueOf(cle1));
-                if(val1.getClass()==JSONArray.class){
+                if(val1.getClass().equals(JSONArray.class)){
                     jsonArray=(JSONArray) val1;
                     tmp=new ArrayList<String>();
                     for(int x=0;x<jsonArray.length();x++){
                         tmp.add(jsonArray.getString(x)); 
                     }
                     resumeTmp.put(String.valueOf(cle1),tmp);  
-                }else{
+                }else if(val1.getClass().equals(String.class)){
                     tmp=new ArrayList<String>();
                     tmp.add(String.valueOf(val1));
                     resumeTmp.put(String.valueOf(cle1),tmp);  
@@ -167,14 +167,14 @@ public class PersonnelRessource{
             for ( iterator2 = personnelDetaille.keys(); iterator2.hasNext();) {
                 cle2 = iterator2.next();
                 val2 =personnelDetaille.get(String.valueOf(cle2));
-                if(val2.getClass()==JSONArray.class){
+                if(val2.getClass().equals(JSONArray.class)){
                     jsonArray=(JSONArray) val2;
                     tmp=new ArrayList<String>();
                     for(int x=0;x<jsonArray.length();x++){
                         tmp.add(jsonArray.getString(x)); 
                     }
                     detailleTmp.put(String.valueOf(cle2),tmp);  
-                }else{
+                }else if(val2.getClass().equals(String.class)){
                     tmp=new ArrayList<String>();
                     tmp.add(String.valueOf(val2));
                     detailleTmp.put(String.valueOf(cle2),tmp);  

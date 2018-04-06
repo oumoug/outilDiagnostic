@@ -22,16 +22,18 @@
                                         <table class="table table-sm table-striped table-bordered">
                                             <thead class="thead-dark">
                                                 <tr> 
-                                                        <ng-container  *ngFor=" let key of getkeys(getResponsableSystemeInf(menu). responsableResume)">
-                                                            <th jhiTranslate="outilDiagnostic.representant.{{menu}}.resume.{{key}}"></th>    
-                                                        </ng-container>
+                                                    <th  *ngFor=" let key of getkeys(getResponsableSystemeInf(menu). responsableResume)" jhiTranslate="outilDiagnostic.representant.{{menu}}.resume.{{key}}"></th>         
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                    <tr *ngFor="let responsable of responsableRecord.responsables">
-                                                            <ng-container *ngIf="responsable.systemeInf===menu">
-                                                                <ng-container *ngFor= "let key of getkeys( responsable.responsableResume)">
-                                                                <td>
+                                                    <ng-container *ngFor="let responsable of responsableRecord.responsables">
+                                                            <tr *ngIf="responsable.systemeInf===menu">
+                                                                <td *ngFor= "let key of getkeys( responsable.responsableResume)">
+                                                                    <table  *ngIf="key==='0.0.0'" class="table mb-0">
+                                                                        <tr *ngFor=" let enfant of getEnfantSystemInf(menu,responsable)">
+                                                                            <td> <a (click)=" searchEnfant(enfant)">{{enfant .nom}} {{enfant.prenom}} <i class="fa fa-search"></i></a></td>
+                                                                        </tr>
+                                                                    </table>
                                                                     <ng-container *ngIf=" responsable.responsableResume[key].length>1" >
                                                                         <tr *ngFor=" let valeur of  responsable.responsableResume[key]">
                                                                             <td>
@@ -43,9 +45,9 @@
                                                                         {{ responsable.responsableResume[key]}}
                                                                     </ng-container>
                                                                 </td>
-                                                                </ng-container>
-                                                            </ng-container>
-                                                    </tr>
+                                                               
+                                                            </tr>
+                                                    </ng-container>
                                                 </tbody> 
                                         </table>
                                     </div>
@@ -62,64 +64,61 @@
                             <div class="col-sm-12 align-self-center">
                                 <h4> {{menu}}</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-sm table-striped table-bordered">
+                                    <table class="table table-sm   table-bordered" [class.table-hover]='hover'>
                                         <thead class="thead-dark">
-                                            <tr> 
-                                                <ng-container  *ngFor=" let key of getkeys(getResponsableSystemeInf(menu).responsableResume)">
-                                                    <th jhiTranslate="outilDiagnostic.representant.{{menu}}.resume.{{key}}"></th>    
-                                                 </ng-container>
+                                            <tr>
+                                                <th   *ngFor=" let key of getkeys(getResponsableSystemeInf(menu).responsableResume)" jhiTranslate="outilDiagnostic.representant.{{menu}}.resume.{{key}}"></th>    
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <ng-container *ngFor="let responsable of responsableRecord.responsables">
-                                                <ng-container *ngIf="responsable.systemeInf===menu">
-                                                    <tr (click)="afficheDetail(responsable,menu)">
-                                                        <ng-container *ngFor= "let key of getkeys(responsable.responsableResume)">
-                                                            <td>
-                                                                <ng-container *ngIf="responsable.responsableResume[key].length>1" >
+                                                <tr *ngIf="responsable.systemeInf===menu" (click)="afficheDetail(responsable,menu)" [class.table-primary]="responsable===getRepresentantLegalService().getResponsableOnglet(menu)">
+                                                    <td  *ngFor= "let key of getkeys(responsable.responsableResume)">
+                                                        <table  *ngIf="key==='0.0.0'" class="table mb-0">
+                                                            <tr *ngFor=" let enfant of getEnfantSystemInf(menu,responsable)" [class.table-primary]="responsable===getRepresentantLegalService().getResponsableOnglet(menu)">
+                                                                <td> <a (click)=" searchEnfant(enfant)">{{enfant.nom}} {{enfant.prenom}} <i class="fa fa-search"></i></a></td>
+                                                            </tr>
+                                                         </table>
+                                                        <table *ngIf="responsable.responsableResume[key].length>1"  class="table mb-0">
                                                                     <tr *ngFor=" let valeur of responsable.responsableResume[key]">
                                                                         <td>
                                                                                 {{valeur}}
                                                                         </td>
                                                                     <tr>
-                                                                </ng-container>
-                                                                <ng-container *ngIf="responsable.responsableResume[key].length<=1" >
-                                                                    {{responsable.responsableResume[key]}}
-                                                                </ng-container>
-                                                            </td>
+                                                        </table>
+                                                        <ng-container *ngIf="responsable.responsableResume[key].length<=1" >
+                                                            {{responsable.responsableResume[key]}}
                                                         </ng-container>
-                                                    </tr>
-                                                    <tr>
-                                                        <ng-template [ngIf]= "getRepresentantLegalService().getResponsableOnglet(menu)!==null && responsable===getRepresentantLegalService().getResponsableOnglet(menu)">
+                                                    </td>
+                                                       
+                                            </tr>
+                                            <tr>     
+                                                <tr  *ngIf= "getRepresentantLegalService().getResponsableOnglet(menu)!==null && responsable===getRepresentantLegalService().getResponsableOnglet(menu)">              
+                                                        <td [attr.colspan]="getkeys(responsable.responsableResume).length">
                                                             <table class="table table-sm table-striped" >
-                                                                <thead class="bg-primary">
-                                                                    <tr ><th>Propriété</th><th>Valeur(s)</th></tr>
-                                                                </thead>
-                                                                 <tbody>
-                                                                         
-                                                                    <tr  *ngFor= "let key of getkeys(responsable.responsableDetaille)">
-                                                                        <th jhiTranslate="outilDiagnostic.representant.{{menu}}.detaille.{{key}}"></th>
-                                                                        <td class="col-sm-12">
-                                                                            <ng-container *ngIf="getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key].length>1" >
-                                                                                <ng-container *ngFor=" let valeur of getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key]">
-                                                                                    <tr>
-                                                                                        <td>
-                                                                                            {{valeur}}
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </ng-container>
-                                                                            </ng-container>
-                                                                            <ng-container *ngIf="getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key].length<=1" >
-                                                                                {{getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key]}}
-                                                                            </ng-container>
-                                                                        </td>
-                                                                    </tr>            
-                                                                </tbody>
+                                                                <tr *ngFor= "let key of getkeys(responsable.responsableDetaille)">
+                                                                <th jhiTranslate="outilDiagnostic.representant.{{menu}}.detaille.{{key}}"></th>
+                                                                <td>
+                                                                    <table  *ngIf="getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key].length>1" class="table mb-0">
+                                                                        <tr    *ngFor=" let valeur of getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key]">
+                                                                            <td>
+                                                                                 {{valeur}}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                              
+                                                                    <ng-container *ngIf="getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key].length<=1" >
+                                                                        {{getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key]}}
+                                                                    </ng-container>
+                                                                </td>
+                                                                </tr>
                                                             </table>
-                                                        </ng-template>
+                                                            </td>            
+                                                  
                                                     </tr>
-                                                </ng-container>
-                                            </ng-container>
+                                                     
+                                            </tr>
+                                        </ng-container>
                                          </tbody> 
                                     </table>
                                 </div>

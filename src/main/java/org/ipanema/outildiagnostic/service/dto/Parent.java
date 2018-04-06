@@ -4,6 +4,13 @@ public class Parent{
     private String systemInf;
     private String nom;
     private String prenom;
+    private String lien;
+    /**
+     * @return the lien
+     */
+    public String getLien() {
+        return lien;
+    }
     /**
      * @return the systemInf
      */
@@ -40,11 +47,19 @@ public class Parent{
     public void setSystemInf(String systemInf) {
         this.systemInf = systemInf;
     }
+    /**
+     * @param lien the lien to set
+     */
+    public void setLien(String lien) {
+        this.lien = lien;
+    }
+    
     public String toString(){
         return "Parent{"+
             "systemInf='"+getSystemInf()+"'"+
             ",nom='"+getNom()+"'"+
-            ",prenom='"+getPrenom()+"'}";
+            ",prenom='"+getPrenom()+
+            ",lien='"+getLien()+"'}";
 
     }
 }

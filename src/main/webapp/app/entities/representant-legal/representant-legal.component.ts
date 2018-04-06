@@ -17,6 +17,7 @@ export class RepresentantLegalComponent implements OnInit {
   subscription:Subscription  
   profil:string
   responsableRecord:ResponsableRecord
+  hover:Boolean
   constructor(
     private router:Router ,
     private representantLegalService:RepresentantLegalService,
@@ -30,6 +31,7 @@ export class RepresentantLegalComponent implements OnInit {
       (res: HttpResponse<ResponsableRecord>) => this.setResponsableRecord(res.body),
       (res: HttpErrorResponse) => this.onError(res.message));
       this. critereRechercheService.ongletActive='Résumé'
+      this.hover=true
       this.representantLegalService.responsableOnglets=this.initResponsableOnglets(this.responsableRecord.menus);
      /* this.subscription=this.activatedRoute.queryParams.subscribe((params) => {
         if(params!==undefined){
@@ -55,17 +57,21 @@ export class RepresentantLegalComponent implements OnInit {
   setResponsableRecord(data){
     this.responsableRecord.menus=data.menus
     this.responsableRecord.responsables=data.responsables
+   
   }
-  searchEleve(enfant:Enfant){
-    this.critereRechercheService.getCritere().profil='eleve';
-    if(enfant.nom!==''){
-      this.critereRechercheService.getCritere().nom=enfant.nom
+  getEnfantSystemInf(menu:string,responsable:Responsable){
+    let enfants=[]
+    for (let enfant of responsable.enfants){
+      if(enfant.systemInf===menu){
+        enfants.push(enfant)
 
+      }
     }
-    if(enfant.prenom!==''){
-      this.critereRechercheService.getCritere().prenom=enfant.prenom
-    }
-    this.router.navigate([this.critereRechercheService.getCritere().profil],{skipLocationChange: true });
+    return  enfants;
+  
+}
+  searchEnfant(enfant:Enfant){
+   
 
   }
   private onError(error) {
@@ -74,8 +80,10 @@ export class RepresentantLegalComponent implements OnInit {
   afficheDetail(responsable:Responsable,menu:string){
     if(responsable=== this.representantLegalService.getResponsableOnglet(menu)){
       this.representantLegalService.setResponsableOnglet(menu,null)
+      this.hover=true
      }else{
       this.representantLegalService.setResponsableOnglet(menu,responsable)
+      this.hover=false
      }
   
   }

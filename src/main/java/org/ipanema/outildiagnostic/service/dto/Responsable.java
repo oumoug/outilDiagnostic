@@ -8,12 +8,20 @@ public class Responsable{
     private String systemeInf;
     private Map<String, List<String>>  responsableResume;
     private Map<String, List<String>>  responsableDetaille;
+    private List<Enfant> enfants;
     
    
    public  Responsable(){
        this.responsableDetaille=new HashMap<String,List<String>>();
        this.responsableResume=new HashMap<String,List<String>>();
+       this.enfants=new ArrayList<Enfant>();
 
+   }
+   /**
+    * @return the enfants
+    */
+   public List<Enfant> getEnfants() {
+       return enfants;
    }
    /**
     * @return the responsableDetaille
@@ -51,11 +59,18 @@ public class Responsable{
    public void setSystemeInf(String systemeInf) {
        this.systemeInf = systemeInf;
    }
+   /**
+    * @param enfants the enfants to set
+    */
+   public void setEnfants(List<Enfant> enfants) {
+       this.enfants = enfants;
+   }
    public String  toString(){
         return " Responsable{"+
        "systemeInf='"+getSystemeInf()+"'"+
        "responsableResume="+getResponsableResume()+
-       ", responsableDetaille="+getResponsableDetaille()+"}";
+       ", responsableDetaille="+getResponsableDetaille()+
+       ",enfants="+getEnfants()+"}";
    }
 
 

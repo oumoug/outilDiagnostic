@@ -61,7 +61,7 @@
                 <div class="col-sm-12 align-self-center">
                     <h4> {{menu}}</h4>
                     <div class="table-responsive">
-                        <table class="table table-sm" [class.table-hover]='hover'>
+                        <table class="table table-sm table-bordered" [class.table-hover]='hover'>
                             <thead class="thead-dark">
                                 <tr> 
                                      <th  *ngFor=" let key of getkeys(getPersonnelSystemeInf(menu).personnelResume)" jhiTranslate="outilDiagnostic.personnel.{{menu}}.resume.{{key}}"></th>
