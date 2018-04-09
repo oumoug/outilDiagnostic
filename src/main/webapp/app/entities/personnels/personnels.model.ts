@@ -1,7 +1,5 @@
-
-
-export interface Personnel{
+export interface Personnel {
     systemeInf: string;
-    personnelResume: Map<String,String[]>  ;
-    personnelDetaille: Map<String,String[]>;
+    personnelResume: Map<String, String[]>;
+    personnelDetaille: Map<String, String[]>;
 }

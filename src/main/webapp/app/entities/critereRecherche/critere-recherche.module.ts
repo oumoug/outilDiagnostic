@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {OutilDiagnosticSharedModule} from '../../shared'
-import { CritereRechercheComponent,CritereRechercheService} from './'
+import { OutilDiagnosticSharedModule } from '../../shared';
+import { CritereRechercheComponent, CritereRechercheService } from './';
 @NgModule({
   imports: [
     OutilDiagnosticSharedModule
-    
   ],
   declarations: [
     CritereRechercheComponent,
-    
   ],
-  providers:[
+  providers: [
     CritereRechercheService
-
   ],
-  exports:[ CritereRechercheComponent ],
+  exports: [ CritereRechercheComponent ],
 })
 export class CritereRechercheModule { }

@@ -91,33 +91,29 @@
                                                         </ng-container>
                                                     </td>
                                                        
-                                            </tr>
-                                            <tr>     
+                                                </tr>
                                                 <tr  *ngIf= "getRepresentantLegalService().getResponsableOnglet(menu)!==null && responsable===getRepresentantLegalService().getResponsableOnglet(menu)">              
-                                                        <td [attr.colspan]="getkeys(responsable.responsableResume).length">
-                                                            <table class="table table-sm table-striped" >
-                                                                <tr *ngFor= "let key of getkeys(responsable.responsableDetaille)">
+                                                    <td [attr.colspan]="getkeys(responsable.responsableResume).length">
+                                                        <table class="table table-sm table-striped" >
+                                                            <tr *ngFor= "let key of getkeys(responsable.responsableDetaille)">
                                                                 <th jhiTranslate="outilDiagnostic.representant.{{menu}}.detaille.{{key}}"></th>
                                                                 <td>
                                                                     <table  *ngIf="getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key].length>1" class="table mb-0">
                                                                         <tr    *ngFor=" let valeur of getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key]">
                                                                             <td>
-                                                                                 {{valeur}}
+                                                                                {{valeur}}
                                                                             </td>
                                                                         </tr>
                                                                     </table>
-                                              
+                                                
                                                                     <ng-container *ngIf="getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key].length<=1" >
                                                                         {{getRepresentantLegalService().getResponsableOnglet(menu).responsableDetaille[key]}}
                                                                     </ng-container>
                                                                 </td>
-                                                                </tr>
-                                                            </table>
-                                                            </td>            
-                                                  
-                                                    </tr>
-                                                     
-                                            </tr>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
                                         </ng-container>
                                          </tbody> 
                                     </table>

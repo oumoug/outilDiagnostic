@@ -1,10 +1,7 @@
 import { Routes } from '@angular/router';
-
-import { HomeComponent } from './';
-import {CritereRechercheComponent} from '../entities/critereRecherche/critere-recherche.component'
-
-export const HOME_ROUTE: Routes =[
-    {
+import { CritereRechercheComponent } from '../entities/critereRecherche/critere-recherche.component';
+export const HOME_ROUTE: Routes = [
+   {
         path: '',
         component: CritereRechercheComponent,
         data: {
@@ -12,4 +9,4 @@ export const HOME_ROUTE: Routes =[
             pageTitle: 'home.title'
         }
     }
-] 
+];
